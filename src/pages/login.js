@@ -6,15 +6,10 @@ function signIn() {
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
   firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-    console.log('certo');
-    // verStatus()
     window.location = '#feed';
   }, (error) => {
-  // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorMessage);
-    console.log(errorCode);
     document.querySelector('.error').textContent = errorMessage;
     if (errorCode === 'auth/invalid-email') {
       document.querySelector('.error').textContent = 'Email inválido';
@@ -29,7 +24,6 @@ function signIn() {
       document.querySelector('.error').textContent = 'Senha incorreta';
     }
   });
-
 }
 
 function google() {
@@ -67,8 +61,8 @@ function Login() {
       <h3 class="subtitle">Bem vindo, viajante!</h3>
         <form>
           ${Input({ type: 'email', class: 'js-email-input', placeholder: ' Email' })}<br>
-          ${Input({ type: 'password', class: 'js-password-input', placeholder: ' Password' })}<br>
-          ${Button({ class: 'signIn', title: 'Log in', onclick: signIn })}
+          ${Input({ type: 'password', class: 'js-password-input', placeholder: ' Senha' })}<br>
+          ${Button({ class: 'signIn', title: 'Entrar', onclick: signIn })}
        </form>
       <section class="error"></section><br>
       <section>Entrar com a conta do Google<br>

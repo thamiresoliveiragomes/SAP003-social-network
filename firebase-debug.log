@@ -1,0 +1,37 @@
+[debug] [2019-10-09T13:38:45.456Z] ----------------------------------------------------------------------
+[debug] [2019-10-09T13:38:45.460Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Bruna\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-10-09T13:38:45.460Z] CLI Version:   7.5.0
+[debug] [2019-10-09T13:38:45.460Z] Platform:      win32
+[debug] [2019-10-09T13:38:45.461Z] Node Version:  v10.16.0
+[debug] [2019-10-09T13:38:45.461Z] Time:          Wed Oct 09 2019 10:38:45 GMT-0300 (GMT-03:00)
+[debug] [2019-10-09T13:38:45.461Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-09T13:38:45.501Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-09T13:38:45.503Z] > authorizing via signed-in user
+[debug] [2019-10-09T13:38:45.503Z] [iam] checking project my-social-network-c4cf3 for permissions ["firebase.projects.get"]
+[debug] [2019-10-09T13:38:45.507Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-10-09T13:38:45.507Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-10-09T13:38:46.174Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-09T13:38:46.191Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/my-social-network-c4cf3:testIamPermissions  
+
+[debug] [2019-10-09T13:38:47.016Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-09T13:38:47.019Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/my-social-network-c4cf3  
+ 
+[debug] [2019-10-09T13:38:47.778Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Bruna\OneDrive\Laboratoria\codigos\SAP003-social-network'...
+[info] 
+[debug] [2019-10-09T13:38:47.806Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/my-social-network-c4cf3/webApps/-/config  
+ 
+[debug] [2019-10-09T13:38:48.476Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: src
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\Bruna\OneDrive\Laboratoria\codigos\SAP003-social-network\functions" for Cloud Functions...
+[debug] [2019-10-09T13:38:51.685Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\Users\\Bruna\\OneDrive\\Laboratoria\\codigos\\SAP003-social-network\\functions","node_version":"10.16.0"}
+[debug] [2019-10-09T13:38:51.685Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-10-09T13:38:51.695Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"C:\\Users\\Bruna\\OneDrive\\Laboratoria\\codigos\\SAP003-social-network\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-10-09T13:38:51.702Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"C:\\Users\\Bruna\\OneDrive\\Laboratoria\\codigos\\SAP003-social-network\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-10-09T13:38:51.704Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"C:\\Users\\Bruna\\OneDrive\\Laboratoria\\codigos\\SAP003-social-network\\functions\\node_modules\\firebase-functions\\lib\\index.js"}

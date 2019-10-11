@@ -9,7 +9,6 @@ function changePage() {
 }
 
 function Home() {
-  // location.hash = 'home';
   const template = `
     <h1>Home Page</h1>
     ${Button({ id: '🐠', title: 'Botão 🐠', onclick: teste })}
