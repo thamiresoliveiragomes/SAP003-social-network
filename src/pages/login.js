@@ -53,7 +53,7 @@ function Login() {
 
   const template = `
   <figure>
-    <img class="logo" src="imagens/figure2.png"/> 
+    <img class="logo" src="imagens/viagens-2c.png"/> 
   </figure>
 
     <section class="box-login">
