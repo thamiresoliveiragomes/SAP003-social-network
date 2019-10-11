@@ -2,12 +2,13 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 import RoundButton from '../components/round-button.js';
 
-
-function signIn() {
+function signIn() { 
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
   firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
     console.log('certo');
+    // verStatus()
+    window.location = '#feed';
   }, (error) => {
   // Handle Errors here.
     const errorCode = error.code;
@@ -28,6 +29,7 @@ function signIn() {
       document.querySelector('.error').textContent = 'Senha incorreta';
     }
   });
+
 }
 
 function google() {
@@ -40,6 +42,7 @@ function google() {
     // document.querySelector('.greetings').innerHTML = `Olá ${user.displayName}`;
     // const test = document.querySelector('.greetings');
     // console.log(test)
+    window.location = '#feed';
   }).catch((error) => {
     // Handle Errors here.
     // const errorCode = error.code;
@@ -52,16 +55,8 @@ function google() {
   });
 }
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    window.location = '#feed';
-    // User is signed in.
-  } else {
-    // No user is signed in.
-  }
-});
-
 function Login() {
+
   const template = `
   <figure>
     <img class="logo" src="imagens/figure2.jpg"/> 
