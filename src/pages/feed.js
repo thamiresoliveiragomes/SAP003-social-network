@@ -17,10 +17,10 @@ function savePost() {
     post: txt,
     date: Date(),
   };
-  firebase.firestore().collection("posts").add(post)
+  firebase.firestore().collection('posts').add(post);
 }
 
-function loadData() {
+function LoadPost() {
   
 }
 
