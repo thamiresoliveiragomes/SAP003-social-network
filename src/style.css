@@ -22,8 +22,9 @@
   font-size: 0.8rem;
 }
 .google{
-  color: rgb(149, 57, 172);
+  color: red;149, 57, 172);
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .box-login {
@@ -36,13 +37,15 @@
 
 .logo {
   max-width:100%;
-	height:auto;
+  height:auto;
+  width: 500px;
 }
 
-main{
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Lato', sans-serif;
 }
 
 .entrada {
@@ -55,31 +58,35 @@ main{
 
 
 
-
-
-
 @media (min-width: 500px) {
 
-.logo {
-  size: 50%;
-  /* display: inline-block; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
-  /* margin-right: 60%; */
-  /* text-align: center;   */
-}
-  /* .box-login { */
-    /* display: inline-block; */
-    /* flex-direction: row; */
-    /* justify-content: flex-end; */
-    /* margin-left: 60%; */
-/* } */
+  .logo {
+    /* max-width:100%; */
+    margin-left: 7%;
+    /* margin-right: 50%; */
+    height:auto;
+    min-width: 600px;
+    
+  }
 
-main{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-}
+  .box-login { 
+    /* margin-top: 5%;
+    margin-right: 5%; */
+    /* justify-content: end; */
+    min-width: 400px;
+    background-color: rgba(218, 218, 253, 0.034);
+    border: 1px solid rgb(215, 231, 204) ;
+    box-shadow: 3px 3px 5px 5px rgba(85, 165, 38, 0.801);
+    margin-right: 7%;
+} 
 
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: 7%;
+  }
+}
 
