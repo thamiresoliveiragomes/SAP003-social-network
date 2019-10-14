@@ -13,8 +13,11 @@ const pages = {
 function verificaUser() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      document.querySelector('main').innerHTML = Feed();
-      //document.querySelector('main').innerHTML = pages[location.hash.substring(1)];
+      if (window.location.hash === '#login' || window.location.hash === '#register') {
+        document.querySelector('main').innerHTML = Feed();
+      } else {
+        document.querySelector('main').innerHTML = pages[location.hash.substring(1)];
+      }
       // User is signed in.
     } else if (!user && window.location.hash === '#register') {
       document.querySelector('main').innerHTML = pages.register;
