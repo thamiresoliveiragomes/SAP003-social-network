@@ -1,4 +1,3 @@
-import Home from './pages/home.js';
 import Register from './pages/register.js';
 import Login from './pages/login.js';
 import Feed from './pages/feed.js';
@@ -6,7 +5,6 @@ import Config from './pages/config.js';
 import Profile from './pages/profile.js';
 
 const pages = {
-  home: Home(),
   register: Register(),
   login: Login(),
   feed: Feed(),
