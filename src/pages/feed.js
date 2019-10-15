@@ -44,17 +44,22 @@ function LoadPost() {
   
 }
 
+function profile() {
+  window.location = '#profile';
+}
+
 function Feed() {
   // const name = firebase.auth().currentUser.displayName;
   // console.log(name);
   const template = `
-  <section class="box-post"
+  <section class="box-post">
       <h1> Olá </h1>
       <p>Esse é o feed 🍌</p>
       <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva o post' })}<br>
-      ${Button({ class: 'signIn', title: 'Postar', onclick: savePost })}<br>
+      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
+      ${Button({ class: 'signIn', title: 'Publicar', onclick: savePost })}<br>
       ${Button({ class: 'signIn', title: 'Sair', onclick: logout })}
+      ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}
       </form>
       </section>
       `;

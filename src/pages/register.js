@@ -7,12 +7,12 @@ function create() {
   const password = document.querySelector('.js-password-input').value;
 
   firebase.auth().createUserWithEmailAndPassword(email, password).then((certo) => {
-    firebase.auth().currentUser.updateProfile({ displayName: name });
-    window.location = '#feed';
+    console.log('certo');
+    window.location = '#config';
   }, (error) => {
   // Handle Errors here.
     const errorCode = error.code;
-    const errorMessage = document.querySelector('.error');
+    
     console.log('errooooo');
     if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
     if (errorCode === 'auth/email-already-in-use') errorMessage.textContent = 'O e-mail informado já está em uso';
@@ -26,14 +26,11 @@ function Register() {
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>
-      ${Input({ type: 'text', class: 'js-name-input', placeholder: 'nome' })}<br>
       ${Input({ type: 'email', class: 'js-email-input', placeholder: 'email' })}<br>
       ${Input({ type: 'password', class: 'js-password-input', placeholder: 'senha' })}<br>
-      <label> Data de nascimento: </label>
-      ${Input({ type: 'date', class: 'js-date-input' })}<br>
       ${Button({ class: 'create', title: 'Criar conta', onclick: create })}<br>
     </form>
-    <p class="error"</p><br>
+    <p class="error"></p><br>
     <p>Já tem uma conta? <a href="#login">Login</a></p>
     </section>
   `;

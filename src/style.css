@@ -22,7 +22,7 @@
   font-size: 0.8rem;
 }
 .google{
-  color: red;149, 57, 172);
+  color: red;
   cursor: pointer;
   margin-top: 15px;
 }
@@ -54,6 +54,10 @@ main {
   height: 25px;
   margin: 5px 5px 5px 5px;
   outline:none;
+}
+
+.error {
+  color: red;
 }
 
 
