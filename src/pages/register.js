@@ -2,18 +2,14 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 
 function create() {
-  const name = document.querySelector('.js-name-input').value;
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
 
-  firebase.auth().createUserWithEmailAndPassword(email, password).then((certo) => {
-    console.log('certo');
+  firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
     window.location = '#config';
   }, (error) => {
-  // Handle Errors here.
     const errorCode = error.code;
-    
-    console.log('errooooo');
+    const errorMessage = document.querySelector('.error');
     if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
     if (errorCode === 'auth/email-already-in-use') errorMessage.textContent = 'O e-mail informado já está em uso';
     if (errorCode === 'auth/operation-not-allowed') errorMessage.textContent = 'Conta não ativada';
@@ -36,6 +32,5 @@ function Register() {
   `;
   return template;
 }
-
 
 export default Register;

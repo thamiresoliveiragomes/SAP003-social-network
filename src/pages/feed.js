@@ -10,38 +10,25 @@ function logout() {
     // An error happened.
   });
 }
+
 const firestorePostCollection = firebase.firestore().collection('posts');
 
 function savePost() {
   const txt = document.querySelector('.js-text-input').value;
   const post = {
-    'txt': txt,
-    'date': new Date(),
-    'comments': [],
-    'likes': 0,
-    'user_uid': firebase.auth().currentUser.uid,
+    txt: txt,
+    date: new Date(),
+    comments: [],
+    likes: 0,
+    user_uid: firebase.auth().currentUser.uid,
   };
   const addPromise = firestorePostCollection.add(post);
   addPromise.then(() => {
     txt.value = '';
-
   });
   addPromise.catch((error) => {
     console.log(error)
   });
-}
-
-function savePost() {
-  const txt = document.querySelector('.js-text-input').value;
-  const post = {
-    post: txt,
-    date: Date(),
-  };
-  firebase.firestore().collection('posts').add(post);
-}
-
-function LoadPost() {
-  
 }
 
 function profile() {
@@ -58,8 +45,8 @@ function Feed() {
       <form>
       ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
       ${Button({ class: 'signIn', title: 'Publicar', onclick: savePost })}<br>
+      ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}<br>
       ${Button({ class: 'signIn', title: 'Sair', onclick: logout })}
-      ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}
       </form>
       </section>
       `;
