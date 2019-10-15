@@ -2,29 +2,22 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 
 function create() {
+  const name = document.querySelector('.js-name-input').value;
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
 
   firebase.auth().createUserWithEmailAndPassword(email, password).then((certo) => {
-    console.log('certo');
+    firebase.auth().currentUser.updateProfile({ displayName: name });
     window.location = '#feed';
   }, (error) => {
   // Handle Errors here.
     const errorCode = error.code;
-    const errorMessage = error.message;
+    const errorMessage = document.querySelector('.error');
     console.log('errooooo');
-    if (errorCode === 'auth/weak-password') {
-      document.querySelector('.error').textContent = 'A senha deve possuir no mínimo 6 caracteres';
-    }
-    if (errorCode === 'auth/email-already-in-use') {
-      document.querySelector('.error').textContent = 'O e-mail informado já está em uso';
-    }
-    if (errorCode === 'auth/operation-not-allowed') {
-      document.querySelector('.error').textContent = 'Conta não ativada';
-    }
-    if (errorCode === 'auth/invalid-email') {
-      document.querySelector('.error').textContent = 'Email inválido';
-    }
+    if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
+    if (errorCode === 'auth/email-already-in-use') errorMessage.textContent = 'O e-mail informado já está em uso';
+    if (errorCode === 'auth/operation-not-allowed') errorMessage.textContent = 'Conta não ativada';
+    if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
   });
 }
 
@@ -33,7 +26,7 @@ function Register() {
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'nome' })}<br>
+      ${Input({ type: 'text', class: 'js-name-input', placeholder: 'nome' })}<br>
       ${Input({ type: 'email', class: 'js-email-input', placeholder: 'email' })}<br>
       ${Input({ type: 'password', class: 'js-password-input', placeholder: 'senha' })}<br>
       <label> Data de nascimento: </label>

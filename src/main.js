@@ -12,23 +12,32 @@ const pages = {
 
 function verificaUser() {
   firebase.auth().onAuthStateChanged((user) => {
+    console.log(user);
     if (user) {
-      document.querySelector('main').innerHTML = Feed();
+      window.location.hash = 'feed';
       //document.querySelector('main').innerHTML = pages[location.hash.substring(1)];
       // User is signed in.
     } else if (!user && window.location.hash === '#register') {
       document.querySelector('main').innerHTML = pages.register;
     } else {
-      document.querySelector('main').innerHTML = Login();
+      window.location.hash = 'login';
       // No user is signed in.
     }
   });
 }
-function init() {
-  document.querySelector('main').innerHTML = Login();
+// function init() {
+//   document.querySelector('main').innerHTML = verificaUser();
+// }
+
+window.addEventListener('load', verificaUser);
+
+function changeHash() { 
+  if (window.location.hash === '#home') { document.querySelector('main').innerHTML = Home(); }
+  if (window.location.hash === '#feed') { document.querySelector('main').innerHTML = Feed(); }
+  if (window.location.hash === '#register') { document.querySelector('main').innerHTML = Register(); }
+  if (window.location.hash === '#login') { document.querySelector('main').innerHTML = Login(); }
 }
-window.addEventListener('load', init);
 
 window.addEventListener('hashchange', () => {
-  verificaUser();
+  changeHash();
 }, false);

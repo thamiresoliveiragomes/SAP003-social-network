@@ -4,15 +4,11 @@ function teste() {
   console.log(location.hash);
 }
 
-function changePage() {
-  window.location = '#register';
-}
-
 function Home() {
   const template = `
     <h1>Home Page</h1>
     ${Button({ id: '🐠', title: 'Botão 🐠', onclick: teste })}
-    ${Button({ id: '🎉', title: 'Botão 🎉', onclick: changePage })}
+    ${Button({ id: '🎉', title: 'Botão 🎉', onclick: teste })}
     <p>alteração teste github 🍌</p>
   `;
 
