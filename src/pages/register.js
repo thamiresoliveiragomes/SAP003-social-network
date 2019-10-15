@@ -7,7 +7,7 @@ function create() {
 
   firebase.auth().createUserWithEmailAndPassword(email, password).then((certo) => {
     console.log('certo');
-    window.location = '#feed';
+    window.location = '#config';
   }, (error) => {
   // Handle Errors here.
     const errorCode = error.code;
@@ -33,14 +33,11 @@ function Register() {
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'nome' })}<br>
       ${Input({ type: 'email', class: 'js-email-input', placeholder: 'email' })}<br>
       ${Input({ type: 'password', class: 'js-password-input', placeholder: 'senha' })}<br>
-      <label> Data de nascimento: </label>
-      ${Input({ type: 'date', class: 'js-date-input' })}<br>
       ${Button({ class: 'create', title: 'Criar conta', onclick: create })}<br>
     </form>
-    <p class="error"</p><br>
+    <p class="error"></p><br>
     <p>Já tem uma conta? <a href="#login">Login</a></p>
     </section>
   `;
