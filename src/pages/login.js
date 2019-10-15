@@ -9,8 +9,7 @@ function signIn() {
     window.location = '#feed';
   }, (error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
-    document.querySelector('.error').textContent = errorMessage;
+    
     if (errorCode === 'auth/invalid-email') {
       document.querySelector('.error').textContent = 'Email inválido';
     }
