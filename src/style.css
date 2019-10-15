@@ -1,9 +1,92 @@
 .primary-button {
-  background-color: #ffe521;
-  padding: 10px;
-  font-size: 1.5rem;
-  border-radius: 5px;
-  font-weight: bold;
+  background-color: rgb(162, 170, 162);
+  /* padding: 10px; */
+  font-size: 0.8rem;
+  color: white;
+  border-radius: 25px;
+  /* font-weight: bold; */
   border: none;
   cursor: pointer;
+  height: 25px;
+  width: 100px;
+  margin-top: 5px;
+  outline:none;
 }
+
+.secondary-button{
+  border-radius: 50%;
+  background-color: blue;
+  padding: 8px;
+}
+.subtitle {
+  font-size: 0.8rem;
+}
+.google{
+  color: red;149, 57, 172);
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.box-login {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  max-width:100%;
+  height:auto;
+  width: 500px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.entrada {
+  background-color: rgb(190, 190, 221);
+  border-radius: 20px;
+  height: 25px;
+  margin: 5px 5px 5px 5px;
+  outline:none;
+}
+
+
+
+@media (min-width: 500px) {
+
+  .logo {
+    /* max-width:100%; */
+    margin-left: 7%;
+    /* margin-right: 50%; */
+    height:auto;
+    min-width: 600px;
+    
+  }
+
+  .box-login { 
+    /* margin-top: 5%;
+    margin-right: 5%; */
+    /* justify-content: end; */
+    min-width: 400px;
+    background-color: rgba(218, 218, 253, 0.034);
+    border: 1px solid rgb(215, 231, 204) ;
+    box-shadow: 3px 3px 5px 5px rgba(85, 165, 38, 0.801);
+    margin-right: 7%;
+} 
+
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: 7%;
+  }
+}
+
