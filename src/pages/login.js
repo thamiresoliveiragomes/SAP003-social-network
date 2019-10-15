@@ -7,10 +7,8 @@ function signIn() {
   const password = document.querySelector('.js-password-input').value;
   firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
     window.location = '#feed';
-  }, (error) => {
+  }).catch((error) => {
     const errorCode = error.code;
-    // const errorMessage = error.message;
-    // console.log(errorMessage)
     const errorMessage = document.querySelector('.error');
     if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
     if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
@@ -19,19 +17,11 @@ function signIn() {
   });
 }
 
-function saveUserCollection() {
-  // const user = {
-  //   'name': 'name',
-  //   'ui_id': firebase.auth().
-  // }
-  console.log('user');
-  window.location = '#feed';
-}
-
 function google() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(saveUserCollection);
-
+  firebase.auth().signInWithPopup(provider).then(() => {
+    window.location = '#feed';
+  });
 
   // This gives you a Google Access Token. You can use it to access the Google API.
   // const token = result.credential.accessToken;
@@ -56,7 +46,6 @@ function google() {
 }
 
 function Login() {
-
   const template = `
   <figure>
     <img class="logo" src="imagens/viagens-2c.png"/> 

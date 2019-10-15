@@ -1,16 +1,9 @@
 function Card(props) {
   const template = `
-    <button class="${props.icone} ${props.class} primary-button" onclick="button.handleClick(event, ${props.onclick})">${props.title}</button>
+    <section class="show-posts">${props.txt}</section>
   `;
 
   return template;
 }
-
-window.button = {
-  handleClick: (event, callback) => {
-    event.preventDefault();
-    callback();
-  },
-};
 
 export default Card;

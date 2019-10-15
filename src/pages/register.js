@@ -7,7 +7,7 @@ function create() {
 
   firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
     window.location = '#config';
-  }, (error) => {
+  }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = document.querySelector('.error');
     if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';

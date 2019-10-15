@@ -41,7 +41,7 @@ window.addEventListener('hashchange', () => {
 
 // window.addEventListener('load', verificaUser);
 
-// function changeHash() {
+// function goPage() { 
 //   if (window.location.hash === '#home') { document.querySelector('main').innerHTML = Home(); }
 //   if (window.location.hash === '#feed') { document.querySelector('main').innerHTML = Feed(); }
 //   if (window.location.hash === '#register') { document.querySelector('main').innerHTML = Register(); }
@@ -49,5 +49,5 @@ window.addEventListener('hashchange', () => {
 // }
 
 // window.addEventListener('hashchange', () => {
-//   changeHash();
+//   goPage();
 // }, false);
