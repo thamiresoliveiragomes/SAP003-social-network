@@ -2,7 +2,7 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 import RoundButton from '../components/round-button.js';
 
-function signIn() { 
+function signIn() {
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
   firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
@@ -14,7 +14,7 @@ function signIn() {
     const errorMessage = document.querySelector('.error');
     if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
     if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
-    if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado'; 
+    if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
     if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
   });
 }
