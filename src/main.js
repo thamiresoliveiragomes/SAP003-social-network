@@ -19,18 +19,14 @@ window.addEventListener('load', init);
 
 function verificaUser() {
   firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      if (window.location.hash === '#login' || window.location.hash === '#register') {
-        document.querySelector('main').innerHTML = Feed();
-      } else {
-        document.querySelector('main').innerHTML = pages[location.hash.substring(1)];
-      }
-      // User is signed in.
+    if (user && (window.location.hash === '#login' || window.location.hash === '#register')) {
+      document.querySelector('main').innerHTML = Feed();
+    } else if (user) {
+      document.querySelector('main').innerHTML = pages[location.hash.substring(1)];
     } else if (!user && window.location.hash === '#register') {
       document.querySelector('main').innerHTML = Register();
     } else {
       document.querySelector('main').innerHTML = Login();
-      // No user is signed in.
     }
   });
 }
@@ -38,3 +34,20 @@ function verificaUser() {
 window.addEventListener('hashchange', () => {
   verificaUser();
 }, false);
+
+// function init() {
+//   document.querySelector('main').innerHTML = Login();
+// }
+
+// window.addEventListener('load', verificaUser);
+
+// function goPage() { 
+//   if (window.location.hash === '#home') { document.querySelector('main').innerHTML = Home(); }
+//   if (window.location.hash === '#feed') { document.querySelector('main').innerHTML = Feed(); }
+//   if (window.location.hash === '#register') { document.querySelector('main').innerHTML = Register(); }
+//   if (window.location.hash === '#login') { document.querySelector('main').innerHTML = Login(); }
+// }
+
+// window.addEventListener('hashchange', () => {
+//   goPage();
+// }, false);

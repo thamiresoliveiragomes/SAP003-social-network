@@ -2,54 +2,50 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 import RoundButton from '../components/round-button.js';
 
-function signIn() { 
+function signIn() {
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
   firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
     window.location = '#feed';
-  }, (error) => {
+  }).catch((error) => {
     const errorCode = error.code;
-    
-    if (errorCode === 'auth/invalid-email') {
-      document.querySelector('.error').textContent = 'Email inválido';
-    }
-    if (errorCode === 'auth/user-disabled') {
-      document.querySelector('.error').textContent = 'Usuário desabilitado';
-    }
-    if (errorCode === 'auth/user-not-found') {
-      document.querySelector('.error').textContent = 'Usuário não encontrado';
-    }
-    if (errorCode === 'auth/wrong-password') {
-      document.querySelector('.error').textContent = 'Senha incorreta';
-    }
+    const errorMessage = document.querySelector('.error');
+    if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
+    if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
+    if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
+    if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
   });
 }
 
 function google() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    // const token = result.credential.accessToken;
-    // The signed-in user info.
-    // const user = result.user;
-    // document.querySelector('.greetings').innerHTML = `Olá ${user.displayName}`;
-    // const test = document.querySelector('.greetings');
-    // console.log(test)
+  firebase.auth().signInWithPopup(provider).then(() => {
     window.location = '#feed';
-  }).catch((error) => {
-    // Handle Errors here.
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // The email of the user's account used.
-    // const email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    // const credential = error.credential;
-    // ...
   });
+
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  // const token = result.credential.accessToken;
+  // console.log(token);
+
+  // The signed-in user info.
+  // const user = result.user;
+  // document.querySelector('.greetings').innerHTML = `Olá ${user.displayName}`;
+  // const test = document.querySelector('.greetings');
+  // console.log(test)
+
+  // }).catch((error) => {
+  //   // Handle Errors here.
+  //   // const errorCode = error.code;
+  //   // const errorMessage = error.message;
+  //   // The email of the user's account used.
+  //   // const email = error.email;
+  //   // The firebase.auth.AuthCredential type that was used.
+  //   // const credential = error.credential;
+  //   // ...
+  // });
 }
 
 function Login() {
-
   const template = `
   <figure>
     <img class="logo" src="imagens/viagens-2c.png"/> 
