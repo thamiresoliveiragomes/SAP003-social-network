@@ -14,6 +14,11 @@ const pages = {
   profile: Profile(),
 };
 
+function init() {
+  document.querySelector('main').innerHTML = Login();
+}
+window.addEventListener('load', init);
+
 function verificaUser() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -31,10 +36,6 @@ function verificaUser() {
     }
   });
 }
-function init() {
-  document.querySelector('main').innerHTML = Login();
-}
-window.addEventListener('load', init);
 
 window.addEventListener('hashchange', () => {
   verificaUser();

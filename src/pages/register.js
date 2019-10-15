@@ -11,7 +11,7 @@ function create() {
   }, (error) => {
   // Handle Errors here.
     const errorCode = error.code;
-    const errorMessage = error.message;
+    
     console.log('errooooo');
     if (errorCode === 'auth/weak-password') {
       document.querySelector('.error').textContent = 'A senha deve possuir no mínimo 6 caracteres';

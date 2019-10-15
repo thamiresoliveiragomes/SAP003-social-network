@@ -30,7 +30,7 @@ function profile() {
 
 function Feed() {
   const template = `
-  <section class="box-post"
+  <section class="box-post">
       <h1> Olá </h1>
       <p>Esse é o feed 🍌</p>
       <form>
