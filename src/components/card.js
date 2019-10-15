@@ -1,19 +1,17 @@
-import RoundButton from './round-button.js';
-
 function Card(props) {
-  const template = `
-  <li>
-    <div id="post">  
-      ${props.post} 
-    </div>
-    <div id="buttons">
-      ${RoundButton({ icone: '', class: 'like', title: 'heart', onclick: like })}
-    </div>
-  </li>
-  `;
-
-  return template;
-}
-;
-
-export default Card;
+    const template = `
+      <button class="${props.icone} ${props.class} primary-button" onclick="button.handleClick(event, ${props.onclick})">${props.title}</button>
+    `;
+  
+    return template;
+  }
+  
+  window.button = {
+    handleClick: (event, callback) => {
+      event.preventDefault();
+      callback();
+    },
+  };
+  
+  export default Card;
+  

@@ -1,6 +1,5 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
-// import Card from '../components/card.js';
 
 function logout() {
   firebase.auth().signOut().then(() => {
@@ -32,17 +31,34 @@ function savePost() {
   });
 }
 
+function savePost() {
+  const txt = document.querySelector('.js-text-input').value;
+  const post = {
+    post: txt,
+    date: Date(),
+  };
+  firebase.firestore().collection('posts').add(post);
+}
+
+function LoadPost() {
+  
+}
+
 function Feed() {
   // const name = firebase.auth().currentUser.displayName;
   // console.log(name);
   const template = `
+  <section class="box-post"
       <h1> Olá </h1>
       <p>Esse é o feed 🍌</p>
-      ${Input({ type: 'email', class: 'js-text-input', placeholder: ' escreva aqui' })}
+      <form>
+      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva o post' })}<br>
+      ${Button({ class: 'signIn', title: 'Postar', onclick: savePost })}<br>
       ${Button({ class: 'signIn', title: 'Sair', onclick: logout })}
-      ${Button({ class: 'post', title: 'Postar', onclick: savePost })}
-      <ul>
-      </ul>`
+      </form>
+      </section>
+      `;
+  window.location = '#feed';
   return template;
 }
 
