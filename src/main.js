@@ -12,23 +12,25 @@ const pages = {
   profile: Profile(),
 };
 
+const main = document.querySelector('main');
 function init() {
-  document.querySelector('main').innerHTML = Login();
+  console.log('função init - #login');
+  main.innerHTML = Login();
 }
 window.addEventListener('load', init);
 
 function verificaUser() {
-  firebase.auth().onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {  
     if (user && (window.location.hash === '#login' || window.location.hash === '#register')) {
-      document.querySelector('main').innerHTML = Feed();
+      main.innerHTML = Feed();
     } else if (user) {
-      document.querySelector('main').innerHTML = pages[location.hash.substring(1)];
+      main.innerHTML = pages[location.hash.substring(1)];
     } else if (!user && window.location.hash === '#register') {
-      document.querySelector('main').innerHTML = Register();
+      main.innerHTML = Register();
     } else {
-      document.querySelector('main').innerHTML = Login();
-    }
-  });
+      main.innerHTML = Login();
+  }
+ })
 }
 
 window.addEventListener('hashchange', () => {
@@ -42,10 +44,13 @@ window.addEventListener('hashchange', () => {
 // window.addEventListener('load', verificaUser);
 
 // function goPage() { 
-//   if (window.location.hash === '#home') { document.querySelector('main').innerHTML = Home(); }
-//   if (window.location.hash === '#feed') { document.querySelector('main').innerHTML = Feed(); }
-//   if (window.location.hash === '#register') { document.querySelector('main').innerHTML = Register(); }
-//   if (window.location.hash === '#login') { document.querySelector('main').innerHTML = Login(); }
+  // const newHash = window.location.hash;
+  // const pagesHash = [#feed, #register, #login, #profile, #config];
+  //const 
+//   if (pages.Hash.includes(newHash)) { document.querySelector('main').innerHTML = Home(); }
+//   if (newHash === '#feed') { document.querySelector('main').innerHTML = Feed(); }
+//   if (newHash === '#register') { document.querySelector('main').innerHTML = Register(); }
+//   if (newHash === '#login') { document.querySelector('main').innerHTML = Login(); }
 // }
 
 // window.addEventListener('hashchange', () => {

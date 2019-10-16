@@ -1,6 +1,7 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import RoundButton from '../components/round-button.js';
+import Image from '../components/image.js';
 
 function signIn() {
   const email = document.querySelector('.js-email-input').value;
@@ -47,10 +48,8 @@ function google() {
 
 function Login() {
   const template = `
-  <figure>
-    <img class="logo" src="imagens/viagens-2c.png"/> 
-  </figure>
-
+    ${Image({ class: 'logo', alt: 'logo', src: 'viagens-2c.png' })}
+ 
     <section class="box-login">
       <h1 class="title">&lt nomeee &gt</h1>
       <h3 class="subtitle">Bem vindo, viajante!</h3>
