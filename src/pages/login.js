@@ -48,7 +48,7 @@ function google() {
 
 function Login() {
   const template = `
-    ${Image({ class: 'logo', alt: 'logo', src: 'viagens-2c.png' })}
+    ${Image({ class: 'logo', alt: 'logo', src: './imagens/viagens-2c.png' })}
  
     <section class="box-login">
       <h1 class="title">&lt nomeee &gt</h1>
@@ -59,9 +59,9 @@ function Login() {
           ${Button({ class: 'signIn', title: 'Entrar', onclick: signIn })}
        </form>
       <section class="error"></section><br>
-      <section>Entrar com a conta do Google<br>
-        ${RoundButton({ icone: 'fab fa-google', class: 'google', title: 'google', onclick: google })}
-      </section>
+      <label>Entrar com a conta do Google<br>
+        ${RoundButton({ icone: 'fab fa-google', class: 'google', title: 'google', onclick: google, })}
+      </label>
     <p>Ainda não tem uma conta? <a href="#register">Registre-se</a></p>
     </section>
     `;

@@ -4,98 +4,57 @@ import Input from '../components/input.js';
 function logout() {
   firebase.auth().signOut().then(() => {
     window.location = '#login';
-
   }).catch((error) => {
     console.log(error);
-    // An error happened.
   });
 }
 
+function profile() {
+  window.location = '#profile';
+}
+
+// function templateOut() {
+// const template = `
+//   <section>
+//     <ul class="js-post"></ul>
+//   </section>
+// `;
+//   // loadData();
+//   return template;
+// }
+
 function loadData() {
+  // templateOut();
   console.log('loadData');
-    const postCollection = firebase.firestore().collection('posts');
-    const postList = document.querySelector('.js-post');
-    postList.innerHTML = 'Carregando...';
-    postCollection.onSnapshot((snap) => {
-      postList.innerHTML = ''
-      snap.forEach(post => {
-        const postList = document.querySelector('.js-post');
-        const postTemplate = `
+  const postCollection = firebase.firestore().collection('posts');
+  const postList = document.querySelector('.js-post');
+  postList.innerHTML = 'Carregando...';
+  postCollection.onSnapshot((snap) => {
+    postList.innerHTML = ''
+    snap.forEach((post) => {
+      const postList = document.querySelector('.js-post');
+      const postTemplate = `
         <li> 
-        ${post.data().txt}
+          ${post.data().txt}
         </li>
-        `;
-        postList.innerHTML += postTemplate;
-      })
-        // (addPost(post))
-      // })
-    })
-  }
-
-
-// function loadData() {
-//   console.log('loadData');
-//     const postCollection = firebase.firestore().collection('posts');
-//     const postList = document.querySelector('.js-post');
-//     postList.innerHTML = 'Carregando...';
-//     postCollection.onSnapshot((snap) => {
-//       postList.innerHTML = ''
-//       snap.forEach(post => {
-//         (addPost(post))
-//       })
-//     })
-//   }
-
-//   function addPost(post) {
-//     const postList = document.querySelector('.js-post');
-//     const postTemplate = `
-//     <li> 
-//     ${post.data().txt}
-//     </li>
-//     `;
-//     postList.innerHTML += postTemplate;
-//   }
-
-// window.coisa = {
-//   loadData: loadData,
-//   addPost: addPost
-//   }
-  
-// window.addEventListener('load', loadData);
+      `;
+      postList.innerHTML += postTemplate;
+    });
+  });
+}
+// function form() {
+//   const templateIn = `
+//   <section class="box-post">
+//     <form>
+//       ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
+//       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
+//     </form>
+//   </section>
+//       `;
+//   return templateIn;
+// }
 
 function savePost() {
-
-  function loadData() {
-  console.log('loadData');
-    const postCollection = firebase.firestore().collection('posts');
-    const postList = document.querySelector('.js-post');
-    postList.innerHTML = 'Carregando...';
-    postCollection.onSnapshot((snap) => {
-      postList.innerHTML = ''
-      snap.forEach(post => {
-        const postList = document.querySelector('.js-post');
-        const postTemplate = `
-        <li> 
-        ${post.data().txt}
-        </li>
-        `;
-        postList.innerHTML += postTemplate;
-      })
-        // (addPost(post))
-      // })
-    })
-  }
-
-  // function addPost(post) {
-  //   const postList = document.querySelector('.js-post');
-  //   const postTemplate = `
-  //   <li> 
-  //   ${post.data().txt}
-  //   </li>
-  //   `;
-  //   postList.innerHTML += postTemplate;
-  // }
-
   const firestorePostCollection = firebase.firestore().collection('posts');
   const txt = document.querySelector('.js-text-input').value;
   const post = {
@@ -108,7 +67,6 @@ function savePost() {
   const addPromise = firestorePostCollection.add(post);
   addPromise.then(() => {
     txt.value = '';
-    // window.coisa.loadData();
     loadData();
   });
   addPromise.catch((error) => {
@@ -116,40 +74,30 @@ function savePost() {
   });
 }
 
-function profile() {
-  window.location = '#profile';
-}
 
 function Feed() {
-  // const name = firebase.auth().currentUser.displayName;
-  // console.log(name);
-  const template = `
-  <section class="box-post">
-      <h1> Olá </h1>
-      <p>Esse é o feed 🍌</p>
+  const templateIn = `
+  <section class="box-page">
+    <h1> Olá </h1>
+    <p>Seja bem vindo!</p>
       <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
-      ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
       ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}<br>
       ${Button({ class: 'signIn', title: 'Sair', onclick: logout })}
       </form>
-      </section>
+  </section>
+
+  <section class="box-post">
+    <form>
+      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
+      ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
+    </form>
+  </section>
       `;
   window.location = '#feed';
+  // form();
+  // templateOut();
   loadData();
-  return template;
+  return templateIn;
 }
-
-
-
-
-
-
-
-
-
-
-
-// window.addEventListener('onhashchange', loadData);
 
 export default Feed;

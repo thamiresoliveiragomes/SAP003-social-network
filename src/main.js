@@ -20,7 +20,7 @@ function init() {
 window.addEventListener('load', init);
 
 function verificaUser() {
-  firebase.auth().onAuthStateChanged((user) => {  
+  firebase.auth().onAuthStateChanged((user) => {
     if (user && (window.location.hash === '#login' || window.location.hash === '#register')) {
       main.innerHTML = Feed();
     } else if (user) {
@@ -29,8 +29,8 @@ function verificaUser() {
       main.innerHTML = Register();
     } else {
       main.innerHTML = Login();
-  }
- })
+    }
+  });
 }
 
 window.addEventListener('hashchange', () => {
@@ -43,10 +43,10 @@ window.addEventListener('hashchange', () => {
 
 // window.addEventListener('load', verificaUser);
 
-// function goPage() { 
-  // const newHash = window.location.hash;
-  // const pagesHash = [#feed, #register, #login, #profile, #config];
-  //const 
+// function goPage() {
+// const newHash = window.location.hash;
+// const pagesHash = [#feed, #register, #login, #profile, #config];
+
 //   if (pages.Hash.includes(newHash)) { document.querySelector('main').innerHTML = Home(); }
 //   if (newHash === '#feed') { document.querySelector('main').innerHTML = Feed(); }
 //   if (newHash === '#register') { document.querySelector('main').innerHTML = Register(); }
