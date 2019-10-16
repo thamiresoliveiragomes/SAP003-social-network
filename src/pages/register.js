@@ -1,12 +1,17 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 
+function equal(string, string2) {
+  return (string === string2)
+}
+
 function create() {
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
   const passwordConfirmation = document.querySelector('.js-confirm-password-input').value;
   const errorMessage = document.querySelector('.error');
-  if (password === passwordConfirmation) {
+
+  if (equal(password, passwordConfirmation)) {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       window.location = '#config';
     }).catch((error) => {
