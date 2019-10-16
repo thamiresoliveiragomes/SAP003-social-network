@@ -29,12 +29,13 @@ function loadData() {
   const postCollection = firebase.firestore().collection('posts');
   const postList = document.querySelector('.js-post');
   postList.innerHTML = 'Carregando...';
-  postCollection.onSnapshot((snap) => {
+  postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
     postList.innerHTML = ''
     snap.forEach((post) => {
       const postList = document.querySelector('.js-post');
       const postTemplate = `
         <li> 
+          ${post.data().date.toDate().toLocaleString("pt-BR")}
           ${post.data().txt}
         </li>
       `;
