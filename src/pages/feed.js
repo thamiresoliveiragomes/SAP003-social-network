@@ -38,11 +38,13 @@ function loadData() {
           ${post.data().txt}
         </li>
       `;
-      postList.innerHTML += postTemplate;
+      return postList.innerHTML += postTemplate;
     });
   });
 }
+
 // function form() {
+//   console.log('form-feed');
 //   const templateIn = `
 //   <section class="box-post">
 //     <form>
@@ -74,9 +76,9 @@ function savePost() {
   });
 }
 
-
 function Feed() {
-  const templateIn = `
+
+  const template = `
   <section class="box-page">
     <h1> Olá </h1>
     <p>Seja bem vindo!</p>
@@ -92,12 +94,11 @@ function Feed() {
       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
     </form>
   </section>
-      `;
+  <ul class="js-post"></ul>`;
   window.location = '#feed';
-  // form();
-  // templateOut();
-  loadData();
-  return templateIn;
+  return template;
 }
+
+window.loadData = loadData
 
 export default Feed;

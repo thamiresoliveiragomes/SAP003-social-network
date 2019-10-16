@@ -21,8 +21,9 @@ window.addEventListener('load', init);
 
 function verificaUser() {
   firebase.auth().onAuthStateChanged((user) => {
-    if (user && (window.location.hash === '#login' || window.location.hash === '#register')) {
+    if (user && (window.location.hash === '#login' || window.location.hash === '#register' || window.location.hash === '#feed')) {
       main.innerHTML = Feed();
+      loadData();
     } else if (user) {
       main.innerHTML = pages[location.hash.substring(1)];
     } else if (!user && window.location.hash === '#register') {
