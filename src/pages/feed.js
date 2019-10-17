@@ -1,5 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
+import Card from '../components/card.js';
 
 function logout() {
   firebase.auth().signOut().then(() => {
@@ -30,16 +31,13 @@ function loadData() {
   const postList = document.querySelector('.js-post');
   postList.innerHTML = 'Carregando...';
   postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
-    postList.innerHTML = ''
+    postList.innerHTML = '';
     snap.forEach((post) => {
-      const postList = document.querySelector('.js-post');
       const postTemplate = `
-        <li> 
-          ${post.data().date.toDate().toLocaleString("pt-BR")}
-          ${post.data().txt}
-        </li>
+          ${Card(post.data().date.toDate().toLocaleString('pt-BR'), post.data().txt)}
       `;
       return postList.innerHTML += postTemplate;
+      
     });
   });
 }
@@ -78,7 +76,6 @@ function savePost() {
 }
 
 function Feed() {
-
   const template = `
   <section class="box-page">
     <h1> Olá </h1>
@@ -100,6 +97,6 @@ function Feed() {
   return template;
 }
 
-window.loadData = loadData
+window.loadData = loadData;
 
 export default Feed;

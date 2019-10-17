@@ -10,6 +10,11 @@ function cancel() {
   window.location = '#profile';
 }
 
+function saveUser() {
+  const firestoreUserCollection = firebase.firestore().collection('user');
+  const name = document.qu
+}
+
 
 function Config() {
   const template = `

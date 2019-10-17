@@ -15,13 +15,15 @@ const pages = {
 const main = document.querySelector('main');
 function init() {
   console.log('função init - #login');
-  main.innerHTML = Login();
+  window.location = '#login';
 }
 window.addEventListener('load', init);
 
 function verificaUser() {
+  console.log('verifica user')
   firebase.auth().onAuthStateChanged((user) => {
     if (user && (window.location.hash === '#login' || window.location.hash === '#register' || window.location.hash === '#feed')) {
+      
       main.innerHTML = Feed();
       loadData();
     } else if (user) {
