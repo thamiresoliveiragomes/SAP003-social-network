@@ -1,10 +1,10 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 
-function Card(date, txt) {
+function Card(idPost, date, txt) {
   const template = `
-  <li>
-    Postado em ${date} <br>
+  <li data-id='${idPost}'>
+    <p>Postado em ${date} </p>
     <textarea class='textarea-posts' disabled >${txt}</textarea>
   </li>
   `;

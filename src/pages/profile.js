@@ -9,11 +9,22 @@ function feed() {
   window.location = '#feed';
 }
 
-function Profile() {
+function userPosts() {
   const firestoreCollectionPost = firebase.firestore().collection('posts')
-  // const currentUserId = firebase.auth().currentUser.uid;
-  // firestoreCollectionPost.where('user_uid', '==', currentUserId).get().then(() => console.log('certo'))
-  
+  const currentUserId = firebase.auth().currentUser.uid;
+  console.log(currentUserId); 
+  firestoreCollectionPost.where('user_uid', '==', currentUserId).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((post) => {
+      window.app.printData(post)
+      })
+    })
+}
+
+
+function Profile() {
+
+
   const template = `
     <section class="box-profile">
     <h1>foto</h1>
@@ -22,8 +33,11 @@ function Profile() {
       ${Button({ class: 'voltar', title: 'Ir para o Feed', onclick: feed })}
       <p>BLa bla bla</p>
       </section>
+      <ul class="js-post"></ul>
       `;
   return template;
 }
+
+window.userPosts = userPosts;
 
 export default Profile;

@@ -33,13 +33,21 @@ function loadData() {
   postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
     postList.innerHTML = '';
     snap.forEach((post) => {
-      const postTemplate = `
-          ${Card(post.data().date.toDate().toLocaleString('pt-BR'), post.data().txt)}
-      `;
-      return postList.innerHTML += postTemplate;
-      
+      printData(post)
     });
   });
+}
+      
+function printData(post) {
+  const postList = document.querySelector('.js-post')
+  const idPost = post.id;
+  const date = post.data().date.toDate().toLocaleString('pt-BR');
+  const txt = post.data().txt;
+  const postTemplate = `
+    ${Card(idPost, date, txt)}
+    `;
+  return postList.innerHTML += postTemplate;
+      
 }
 
 // function form() {
@@ -56,6 +64,7 @@ function loadData() {
 // }
 
 function savePost() {
+  console.log('savePost')
   const firestorePostCollection = firebase.firestore().collection('posts');
   const txt = document.querySelector('.js-text-input').value;
   const post = {
@@ -93,10 +102,13 @@ function Feed() {
     </form>
   </section>
   <ul class="js-post"></ul>`;
-  window.location = '#feed';
+  window.location = '#feed'
   return template;
 }
 
-window.loadData = loadData;
+window.app = {
+  loadData,
+  printData,
+}
 
 export default Feed;

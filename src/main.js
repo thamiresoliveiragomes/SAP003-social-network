@@ -22,16 +22,23 @@ window.addEventListener('load', init);
 function verificaUser() {
   console.log('verifica user')
   firebase.auth().onAuthStateChanged((user) => {
-    if (user && (window.location.hash === '#login' || window.location.hash === '#register' || window.location.hash === '#feed')) {
-      
-      main.innerHTML = Feed();
-      loadData();
-    } else if (user) {
-      main.innerHTML = pages[location.hash.substring(1)];
-    } else if (!user && window.location.hash === '#register') {
-      main.innerHTML = Register();
-    } else {
-      main.innerHTML = Login();
+    const currentHash = window.location.hash;
+    if (user) {
+      if (currentHash === '#login' || currentHash === '#register' || currentHash === '#feed') {
+        main.innerHTML = Feed();
+        window.app.loadData();
+      } else if (currentHash === '#profile') {
+        main.innerHTML = Profile();
+        userPosts();
+      } else if ( currentHash === '#config') {
+        main.innerHTML = Config();
+      }
+    } else if (!user) {
+      if (currentHash === '#register') {
+        main.innerHTML = Register();
+      } else {
+        main.innerHTML = Login();
+      }
     }
   });
 }
