@@ -1,8 +1,24 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 
-function equal(string, string2) {
-  return (string === string2)
+// function equal(string, string2) {
+//   return (string === string2)
+// }
+
+function saveUser() {
+  const firestoreUserCollection = firebase.firestore().collection('users');
+  const nome = document.querySelector('.js-text-input');
+  const sobrenome = document.querySelector('.js-text2-input');
+  const bio = document.querySelector('.js-bio-input');
+  const status = document.querySelector('.js-status-input');
+  const user = {
+    nome: nome.value,
+    sobrenome: sobrenome.value,
+    bio: bio.value,
+    status: status.value,
+    user_uid: firebase.auth().currentUser.uid,
+  };
+  firestoreUserCollection.add(user);
 }
 
 function create() {
@@ -11,9 +27,10 @@ function create() {
   const passwordConfirmation = document.querySelector('.js-confirm-password-input').value;
   const errorMessage = document.querySelector('.error');
 
-  if (equal(password, passwordConfirmation)) {
+  if (password === passwordConfirmation) {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-      window.location = '#config';
+      window.location = '#feed';
+      saveUser();
     }).catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
@@ -31,6 +48,15 @@ function Register() {
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>
+      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'nome' })}<br>
+      ${Input({ type: 'text', class: 'js-text2-input', placeholder: 'sobrenome' })}<br>
+      ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}<br>
+      ${Input({ type: 'date', class: 'js-date-input' })}<br>
+      <select class='js-status-input'>
+        <option value=solteiro>Solteiro(a)</option>
+        <option value=namorando>Namorando</option> 
+        <option value=casado>Casado(a)</option>";
+      </select><br>
       ${Input({ type: 'email', class: 'js-email-input', placeholder: 'email' })}<br>
       ${Input({ type: 'password', class: 'js-password-input', placeholder: 'senha' })}<br>
       ${Input({ type: 'password', class: 'js-confirm-password-input', placeholder: 'confirmar senha' })}<br>
@@ -42,5 +68,7 @@ function Register() {
   `;
   return template;
 }
+
+window.saveUser = saveUser;
 
 export default Register;

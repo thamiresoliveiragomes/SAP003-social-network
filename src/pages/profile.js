@@ -1,5 +1,4 @@
 import Button from '../components/button.js';
-import Card from '../components/card.js';
 
 function edit() {
   window.location = '#config';
@@ -10,21 +9,19 @@ function feed() {
 }
 
 function userPosts() {
-  const firestoreCollectionPost = firebase.firestore().collection('posts').orderBy('date', 'desc')
+  const firestorePostCollection = firebase.firestore().collection('posts')
   const currentUserId = firebase.auth().currentUser.uid;
-  console.log(currentUserId); 
-  firestoreCollectionPost.where('user_uid', '==', currentUserId).get()
+  console.log(currentUserId);
+  firestorePostCollection.orderBy('date', 'desc').where('user_uid', '==', currentUserId).get()
     .then((querySnapshot) => {
       querySnapshot.forEach((post) => {
-      window.app.printData(post)
-      })
-    })
+        window.app.printData(post);
+      });
+    });
 }
 
 
 function Profile() {
-
-
   const template = `
     <section class="box-profile">
     <h1>foto</h1>
