@@ -1,5 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
+import Card from '../components/card.js';
 
 function logout() {
   firebase.auth().signOut().then(() => {
@@ -29,18 +30,24 @@ function loadData() {
   const postCollection = firebase.firestore().collection('posts');
   const postList = document.querySelector('.js-post');
   postList.innerHTML = 'Carregando...';
-  postCollection.onSnapshot((snap) => {
-    postList.innerHTML = ''
+  postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
+    postList.innerHTML = '';
     snap.forEach((post) => {
-      const postList = document.querySelector('.js-post');
-      const postTemplate = `
-        <li> 
-          ${post.data().txt}
-        </li>
-      `;
-      return postList.innerHTML += postTemplate;
+      printData(post)
     });
   });
+}
+      
+function printData(post) {
+  const postList = document.querySelector('.js-post')
+  const idPost = post.id;
+  const date = post.data().date.toDate().toLocaleString('pt-BR');
+  const txt = post.data().txt;
+  const postTemplate = `
+    ${Card(idPost, date, txt)}
+    `;
+  return postList.innerHTML += postTemplate;
+      
 }
 
 // function form() {
@@ -57,6 +64,7 @@ function loadData() {
 // }
 
 function savePost() {
+  console.log('savePost')
   const firestorePostCollection = firebase.firestore().collection('posts');
   const txt = document.querySelector('.js-text-input').value;
   const post = {
@@ -77,7 +85,6 @@ function savePost() {
 }
 
 function Feed() {
-
   const template = `
   <section class="box-page">
     <h1> Olá </h1>
@@ -95,10 +102,13 @@ function Feed() {
     </form>
   </section>
   <ul class="js-post"></ul>`;
-  window.location = '#feed';
+  window.location = '#feed'
   return template;
 }
 
-window.loadData = loadData
+window.app = {
+  loadData,
+  printData,
+}
 
 export default Feed;

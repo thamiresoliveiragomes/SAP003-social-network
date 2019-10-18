@@ -47,6 +47,7 @@ function google() {
 }
 
 function Login() {
+  window.location = '#login'
   const template = `
     ${Image({ class: 'logo', alt: 'logo', src: './imagens/viagens-2c.png' })}
  
@@ -65,7 +66,6 @@ function Login() {
     <p>Ainda não tem uma conta? <a href="#register">Registre-se</a></p>
     </section>
     `;
-  window.location = '#login';
 
   return template;
 }

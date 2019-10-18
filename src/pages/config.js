@@ -10,7 +10,6 @@ function cancel() {
   window.location = '#profile';
 }
 
-
 function Config() {
   const template = `
   <section class="box-config">
