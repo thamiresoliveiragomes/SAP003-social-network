@@ -20,17 +20,15 @@ function Config() {
       ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}<br>
       ${Input({ type: 'date', class: 'js-date-input' })}<br>
       <select class='js-status-input'>
-        <option value=\"solteiro\">Solteiro(a)</option>
-        <option value=\"namorando\">Namorando</option> 
-        <option value=\"casado\">Casado(a)</option>";
+        <option value=solteiro>Solteiro(a)</option>
+        <option value=namorando>Namorando</option> 
+        <option value=casado>Casado(a)</option>";
       </select>
-      ${Input({ type: 'email', class: 'js-email-input', placeholder: 'email' })}<br>
-      ${Input({ type: 'password', class: 'js-password-input', placeholder: 'senha' })}<br>
       ${Button({ class: 'cancel', title: 'Cancelar', onclick: cancel })}<br>
       ${Button({ class: 'update', title: 'Salvar', onclick: save })}<br>
     </form>
-    </section>   
-  `;  
+    </section>
+  `;
   return template;
 }
 

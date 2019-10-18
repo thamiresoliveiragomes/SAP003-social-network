@@ -14,32 +14,8 @@ function profile() {
   window.location = '#profile';
 }
 
-// function templateOut() {
-// const template = `
-//   <section>
-//     <ul class="js-post"></ul>
-//   </section>
-// `;
-//   // loadData();
-//   return template;
-// }
-
-function loadData() {
-  // templateOut();
-  console.log('loadData');
-  const postCollection = firebase.firestore().collection('posts');
-  const postList = document.querySelector('.js-post');
-  postList.innerHTML = 'Carregando...';
-  postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
-    postList.innerHTML = '';
-    snap.forEach((post) => {
-      printData(post)
-    });
-  });
-}
-      
 function printData(post) {
-  const postList = document.querySelector('.js-post')
+  const postList = document.querySelector('.js-post');
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
@@ -47,28 +23,27 @@ function printData(post) {
     ${Card(idPost, date, txt)}
     `;
   return postList.innerHTML += postTemplate;
-      
 }
 
-// function form() {
-//   console.log('form-feed');
-//   const templateIn = `
-//   <section class="box-post">
-//     <form>
-//       ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
-//       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
-//     </form>
-//   </section>
-//       `;
-//   return templateIn;
-// }
+function loadData() {
+  console.log('loadData');
+  const postCollection = firebase.firestore().collection('posts');
+  const postList = document.querySelector('.js-post');
+  postList.innerHTML = 'Carregando...';
+  postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
+    postList.innerHTML = '';
+    snap.forEach((post) => {
+      printData(post);
+    });
+  });
+}
 
 function savePost() {
-  console.log('savePost')
+  console.log('savePost');
   const firestorePostCollection = firebase.firestore().collection('posts');
-  const txt = document.querySelector('.js-text-input').value;
+  const txt = document.querySelector('.js-text-input');
   const post = {
-    txt: txt,
+    txt: txt.value,
     date: new Date(),
     comments: [],
     likes: 0,
@@ -102,13 +77,13 @@ function Feed() {
     </form>
   </section>
   <ul class="js-post"></ul>`;
-  window.location = '#feed'
+  window.location = '#feed';
   return template;
 }
 
 window.app = {
   loadData,
   printData,
-}
+};
 
 export default Feed;

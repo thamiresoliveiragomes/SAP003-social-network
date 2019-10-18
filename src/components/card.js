@@ -1,6 +1,3 @@
-import Button from '../components/button.js';
-import Input from '../components/input.js';
-
 function Card(idPost, date, txt) {
   const template = `
   <li data-id='${idPost}'>
