@@ -10,7 +10,7 @@ function feed() {
 }
 
 function userPosts() {
-  const firestoreCollectionPost = firebase.firestore().collection('posts')
+  const firestoreCollectionPost = firebase.firestore().collection('posts').orderBy('date', 'desc')
   const currentUserId = firebase.auth().currentUser.uid;
   console.log(currentUserId); 
   firestoreCollectionPost.where('user_uid', '==', currentUserId).get()
