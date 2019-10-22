@@ -24,7 +24,6 @@ function printProfile(user) {
   return userProfile.innerHTML = profileTemplate;
 }
 
-
 function loadProfile() {
   const firestoreUserCollection = firebase.firestore().collection('users')
   const currentUserId = firebase.auth().currentUser.uid;
@@ -38,15 +37,14 @@ function loadProfile() {
 
 
 function userPosts() {
-  const firestorePostCollection = firebase.firestore().collection('posts')
+  const firestorePostCollection = firebase.firestore().collection('posts');
   const currentUserId = firebase.auth().currentUser.uid;
-  console.log(currentUserId);
   firestorePostCollection.orderBy('date', 'desc').where('user_uid', '==', currentUserId).get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((post) => {
-        window.app.printData(post);
-      });
+  .then((querySnapshot) => {
+    querySnapshot.forEach((post) => {
+      window.app.printData(post, '.js-user-post');
     });
+  });
 }
 
 
@@ -57,7 +55,7 @@ function Profile() {
       ${Button({ class: 'edit', title: 'Editar', onclick: edit })}
       ${Button({ class: 'voltar', title: 'Ir para o Feed', onclick: feed })}
       </section>
-      <ul class="js-post"></ul>
+      <ul class="js-user-post"></ul>
       `;
   return template;
 }
