@@ -30,7 +30,7 @@ function loadData() {
   const postCollection = firebase.firestore().collection('posts');
   const postList = document.querySelector('.js-post');
   postList.innerHTML = 'Carregando...';
-  postCollection.orderBy('date', 'desc').get().then((snap) => {
+  postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
     postList.innerHTML = '';
     snap.forEach((post) => {
       printData(post);

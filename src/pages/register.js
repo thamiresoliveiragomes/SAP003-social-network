@@ -38,8 +38,10 @@ function create() {
       if (errorCode === 'auth/operation-not-allowed') errorMessage.textContent = 'Conta não ativada';
       if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
     });
-  } else {
+  } else if (password !== passwordConfirmation) {
     errorMessage.textContent = 'Senha não confere';
+  } else if (email === '' || password === '') {
+    errorMessage.textContent = 'Preencha os campos em branco';
   }
 }
 
@@ -53,9 +55,9 @@ function Register() {
       ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}<br>
       ${Input({ type: 'date', class: 'js-date-input' })}<br>
       <select class='js-status-input'>
-        <option value=solteiro>Solteiro(a)</option>
-        <option value=namorando>Namorando</option> 
-        <option value=casado>Casado(a)</option>";
+        <option value=Solteiro(a)>Solteiro(a)</option>
+        <option value=Namorando>Namorando</option> 
+        <option value=Casado(a)>Casado(a)</option>";
       </select><br>
       ${Input({ type: 'email', class: 'js-email-input', placeholder: 'email' })}<br>
       ${Input({ type: 'password', class: 'js-password-input', placeholder: 'senha' })}<br>
