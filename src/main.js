@@ -29,6 +29,7 @@ function verificaUser() {
         window.app.loadData();
       } else if (currentHash === '#profile') {
         main.innerHTML = Profile();
+        loadProfile();
         userPosts();
       } else if ( currentHash === '#config') {
         main.innerHTML = Config();
