@@ -4,54 +4,55 @@ import Feed from './pages/feed.js';
 import Config from './pages/config.js';
 import Profile from './pages/profile.js';
 
-const pages = {
-  register: Register(),
-  login: Login(),
-  feed: Feed(),
-  config: Config(),
-  profile: Profile(),
-};
+// const pages = {
+//   register: Register(),
+//   login: Login(),
+//   feed: Feed(),
+//   config: Config(),
+//   profile: Profile(),
+// };
 
-const main = document.querySelector('main');
-function init() {
-  console.log('função init - #login');
-  window.location = '#login';
-}
-window.addEventListener('load', init);
 
 function verificaUser() {
   console.log('verifica user')
   firebase.auth().onAuthStateChanged((user) => {
     const currentHash = window.location.hash;
+    const main = document.querySelector('main');
     if (user) {
-      if (currentHash === '#login' || currentHash === '#register' || currentHash === '#feed') {
-        main.innerHTML = Feed();
-        window.app.loadData();
-      } else if (currentHash === '#profile') {
-        main.innerHTML = Profile();
-        userPosts();
-      } else if ( currentHash === '#config') {
-        main.innerHTML = Config();
+      switch (currentHash) {
+        case '#profile':
+          main.innerHTML = Profile();
+          window.app.userPosts();
+          break;
+        case '#config':
+          main.innerHTML = Config();
+          break;
+        default:
+          main.innerHTML = Feed();
+          window.app.loadData();
       }
     } else if (!user) {
-      if (currentHash === '#register') {
-        main.innerHTML = Register();
-      } else {
-        main.innerHTML = Login();
+      switch (currentHash) {
+        case '#register':
+          main.innerHTML = Register();
+          break;
+        default:
+          main.innerHTML = Login();
       }
     }
   });
 }
 
+window.addEventListener('load', verificaUser);
 window.addEventListener('hashchange', () => {
   verificaUser();
 }, false);
 
 // function init() {
-//   document.querySelector('main').innerHTML = Login();
-// }
-
-// window.addEventListener('load', verificaUser);
+  //   document.querySelector('main').innerHTML = Login();
+  // }
+  
+  // window.addEventListener('load', verificaUser);
 
 // function goPage() {
 // const newHash = window.location.hash;

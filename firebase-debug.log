@@ -35,3 +35,40 @@
 [debug] [2019-10-16T16:23:16.795Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
 [debug] [2019-10-16T16:23:16.813Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
 [debug] [2019-10-16T16:23:16.815Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-10-21T19:17:18.901Z] ----------------------------------------------------------------------
+[debug] [2019-10-21T19:17:18.907Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\monic\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-10-21T19:17:18.908Z] CLI Version:   7.6.0
+[debug] [2019-10-21T19:17:18.908Z] Platform:      win32
+[debug] [2019-10-21T19:17:18.908Z] Node Version:  v10.16.3
+[debug] [2019-10-21T19:17:18.986Z] Time:          Mon Oct 21 2019 16:17:18 GMT-0300 (GMT-03:00)
+[debug] [2019-10-21T19:17:18.986Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-21T19:17:19.058Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-21T19:17:19.060Z] > authorizing via signed-in user
+[debug] [2019-10-21T19:17:19.060Z] [iam] checking project my-social-network-c4cf3 for permissions ["firebase.projects.get"]
+[debug] [2019-10-21T19:17:19.063Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-10-21T19:17:19.063Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-10-21T19:17:19.356Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-21T19:17:19.398Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/my-social-network-c4cf3:testIamPermissions  
+
+[debug] [2019-10-21T19:17:20.461Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-21T19:17:20.462Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/my-social-network-c4cf3  
+ 
+[debug] [2019-10-21T19:17:21.779Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\monic\Documents\Projetos\SAP003-social-network'...
+[info] 
+[debug] [2019-10-21T19:17:21.824Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/my-social-network-c4cf3/webApps/-/config  
+ 
+[debug] [2019-10-21T19:17:22.257Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: src
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\monic\Documents\Projetos\SAP003-social-network\functions" for Cloud Functions...
+[debug] [2019-10-21T19:17:24.301Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions","node_version":"10.16.3"}
+[debug] [2019-10-21T19:17:24.301Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-10-21T19:17:24.350Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-10-21T19:17:24.517Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-10-21T19:17:24.518Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"C:\\Users\\monic\\Documents\\Projetos\\SAP003-social-network\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
