@@ -6,6 +6,13 @@ function save() {
   window.location = '#feed';
 }
 
+// function updateUsers() {
+//   const firestoreUserCollection = firebase.firestore().collection('users');
+//   const currentUserId = firebase.auth().currentUser.uid;
+//   console.log(currentUserId);
+//   firestoreUserCollection.where('user_uid', '==', currentUserId).update
+// }
+
 function cancel() {
   window.location = '#profile';
 }
@@ -20,9 +27,9 @@ function Config() {
       ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}<br>
       ${Input({ type: 'date', class: 'js-date-input' })}<br>
       <select class='js-status-input'>
-        <option value=solteiro>Solteiro(a)</option>
-        <option value=namorando>Namorando</option> 
-        <option value=casado>Casado(a)</option>";
+        <option value=Solteiro(a)>Solteiro(a)</option>
+        <option value=Namorando>Namorando</option>
+        <option value=Casado(a)>Casado(a)</option>";
       </select>
       ${Button({ class: 'cancel', title: 'Cancelar', onclick: cancel })}<br>
       ${Button({ class: 'update', title: 'Salvar', onclick: save })}<br>
