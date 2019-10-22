@@ -37,7 +37,7 @@ function loadProfile() {
 
 
 function userPosts() {
-  const firestorePostCollection = firebase.firestore().collection('posts')
+  const firestorePostCollection = firebase.firestore().collection('posts');
   const currentUserId = firebase.auth().currentUser.uid;
   firestorePostCollection.orderBy('date', 'desc').where('user_uid', '==', currentUserId).get()
   .then((querySnapshot) => {

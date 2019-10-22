@@ -22,6 +22,7 @@ function verificaUser() {
       switch (currentHash) {
         case '#profile':
           main.innerHTML = Profile();
+          loadProfile();
           userPosts();
           break;
         case '#config':

@@ -8,9 +8,11 @@
   border: none;
   cursor: pointer;
   height: 25px;
-  width: 100px;
   margin-top: 5px;
   outline:none;
+}
+.signIn {
+  width: 100px;
 }
 
 .secondary-button{
@@ -46,6 +48,7 @@ main {
   flex-direction: column;
   justify-content: center;
   font-family: 'Lato', sans-serif;
+  /* list-style-type: none; */
 }
 
 .entrada {
@@ -60,6 +63,33 @@ main {
   color: red;
 }
 
+.box-intro {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+.box-intro-head {
+  flex-basis: 80%;
+}
+
+.box-intro-btn {
+  flex-basis: 20%;
+  align-self: center;
+}
+
+.box-post {
+  text-align: center;
+  /* list-style-type: none; */
+
+}
+.box-profile {
+  text-align: center;
+  /* list-style-type: none; */
+}
+
+.js-post, .js-user-post {
+  list-style-type: none;
+}
 
 
 @media (min-width: 500px) {

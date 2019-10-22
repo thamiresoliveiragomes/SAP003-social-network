@@ -102,13 +102,15 @@ function savePost() {
 
 function Feed() {
   const template = `
-  <section class="box-page">
-    <h1> Olá </h1>
-    <p>Seja bem vindo!</p>
-      <form>
+  <section class="box-intro">
+    <header class='box-intro-head'>
+      <h1> Olá </h1>
+      <p>Seja bem vindo!</p>
+    </header>  
+    <form class='box-intro-btn'>
       ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}<br>
-      ${Button({ class: 'signIn', title: 'Sair', onclick: logout })}
-      </form>
+      ${Button({ class: 'profile', title: 'Sair', onclick: logout })}
+    </form>
   </section>
 
   <section class="box-post">
