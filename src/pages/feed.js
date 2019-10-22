@@ -12,7 +12,8 @@ function logout() {
 
 function editPost() {
   // document.getElementById(event.target.id).setAttribute('disabled', false)
-  console.log(event.target.id)
+  console.log('edit')
+  
 }
 
 function SavePostEdited() {
@@ -29,33 +30,35 @@ function profile() {
   window.location = '#profile';
 }
 
-function postDelete() {
-  console.log('testando');
+function postDelete() {   //event como parametro não funciona
+  console.log('post delete');
+  // const id = event.target.dataset.id
   firebase.firestore().collection('posts').doc(event.target.dataset.id).delete()
-    // .then(()=> 
-    // {loadData()})
-
   event.target.parentElement.remove();
   // document.querySelector(`li[data-id='${id}']`).remove();
-  loadData()
+  // document.querySelector(`button[data-id='${id}']`).remove();
 };
 
-function printData(post) {
-  const postList = document.querySelector('.js-post');
+function printData(post, classe) {
+  
+  const postList = document.querySelector(classe);
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
   if (post.data().user_uid === firebase.auth().currentUser.uid) {
     const postTemplateUser = `
-    ${Card(idPost, date, txt)}
-    ${Button({class: 'deletar', title: 'Deletar', dataId: idPost, onclick: postDelete })}
+    <li data-id='${idPost}'>
+      ${Card(idPost, date, txt)}
+      ${Button({class: 'deletar', title: 'Deletar', dataId: idPost, onclick: postDelete })}
+      ${Button({ class: 'editar', title: 'Editar', dataId: idPost, onclick: editPost })}
+    </li>
     `;
     postList.innerHTML += postTemplateUser;
-  }
-  else {
+  } else {
     const postTemplate = `
-    ${Card(idPost, date, txt)}
-    ${Button({ class: 'editar', title: 'Editar', dataId: idPost, onclick: editPost })}
+    <li data-id='${idPost}'>
+      ${Card(idPost, date, txt)}
+    </li>
     `;
     postList.innerHTML += postTemplate;
   }
@@ -63,15 +66,15 @@ function printData(post) {
   return postList.innerHTML;
 }
 
-function loadData() {
+function loadData(classe) {
   console.log('loadData');
   const postCollection = firebase.firestore().collection('posts');
-  const postList = document.querySelector('.js-post');
+  const postList = document.querySelector(classe);
   postList.innerHTML = 'Carregando...';
   postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
     postList.innerHTML = '';
     snap.forEach((post) => {
-      printData(post);
+      printData(post, '.js-post');
     });
   });
 }
@@ -90,7 +93,7 @@ function savePost() {
   const addPromise = firestorePostCollection.add(post);
   addPromise.then(() => {
     txt.value = '';
-    loadData();
+    loadData('.js-post');
   });
   addPromise.catch((error) => {
     console.log(error);
@@ -113,8 +116,9 @@ function Feed() {
       ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
     </form>
+  <ul class="js-post"></ul>
   </section>
-  <ul class="js-post"></ul>`;
+  `;
   window.location = '#feed';
   return template;
 }

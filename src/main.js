@@ -22,14 +22,14 @@ function verificaUser() {
       switch (currentHash) {
         case '#profile':
           main.innerHTML = Profile();
-          window.app.userPosts();
+          userPosts();
           break;
         case '#config':
           main.innerHTML = Config();
           break;
         default:
           main.innerHTML = Feed();
-          window.app.loadData();
+          window.app.loadData('.js-post');
       }
     } else if (!user) {
       switch (currentHash) {
