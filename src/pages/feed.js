@@ -10,6 +10,21 @@ function logout() {
   });
 }
 
+function editPost() {
+  // document.getElementById(event.target.id).setAttribute('disabled', false)
+  console.log(event.target.id)
+}
+
+function SavePostEdited() {
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.doc(event.target.dataset.id).update({
+    txt: 'hackeado!',
+  })
+    .then(() => {
+      console.log('Document successfully updated!');
+    });
+}
+
 function profile() {
   window.location = '#profile';
 }
@@ -21,6 +36,7 @@ function printData(post) {
   const txt = post.data().txt;
   const postTemplate = `
     ${Card(idPost, date, txt)}
+    ${Button({ class: 'editar', title: 'Editar', dataId: idPost, onclick: editPost })}
     `;
   return postList.innerHTML += postTemplate;
 }
