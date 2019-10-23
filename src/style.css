@@ -9,24 +9,31 @@
   cursor: pointer;
   height: 25px;
   margin-top: 5px;
-  outline:none;
+  outline: none;
 }
+
+.editar, .deletar {
+  width: 40px;
+}
+
 .signIn {
   width: 100px;
 }
 
 .secondary-button{
   border-radius: 50%;
-  background-color: blue;
   padding: 8px;
 }
+
 .subtitle {
   font-size: 0.8rem;
 }
-.google{
+
+.google {
   color: red;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 15px
+  ;
 }
 
 .box-login {
@@ -82,14 +89,17 @@ main {
   display: flex;
   flex-direction: row;
 }
+
 .nav-btn-div {
-  flex-basis: 90%;
+  flex-basis: 55%;
 }
+
 .nav-btn {
   border-radius: 0px;
   margin: 0px 5px;
   width: 50px;
 }
+
 .navbar-brand {
   flex-basis: 100%;
   align-self: center;
@@ -110,6 +120,7 @@ main {
 
 .box-post {
   text-align: center;
+  padding: 10px;
 }
 
 .entrada {
@@ -121,10 +132,12 @@ main {
   text-align: center;
   /* list-style-type: none; */
 }
+
 li {
   display: flex;
   flex-direction: column;
 }
+
 .js-post, .js-user-post {
   list-style-type: none;
   padding-inline-start: 0px;

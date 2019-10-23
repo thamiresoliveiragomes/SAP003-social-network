@@ -49,10 +49,10 @@ function google() {
 function Login() {
   window.location = '#login';
   const template = `
-    ${Image({ class: 'logo', alt: 'logo', src: './imagens/viagens-2c.png' })}
+    ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellow-bag.jfif' })}
  
     <section class="box-login">
-      <h1 class="title">&lt nomeee &gt</h1>
+      <h1 class="title">&lt Yellow Bag &gt</h1>
       <h3 class="subtitle">Bem vindo, viajante!</h3>
         <form>
           ${Input({ type: 'email', class: 'js-email-input', placeholder: ' Email' })}<br>

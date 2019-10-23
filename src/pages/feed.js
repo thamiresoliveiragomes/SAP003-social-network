@@ -1,6 +1,7 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Card from '../components/card.js';
+import RoundButton from '../components/round-button.js';
 
 function logout() {
   firebase.auth().signOut().then(() => {
@@ -34,18 +35,21 @@ function SavePostEdited() {
     });
 }
 
-
-function postDelete() {   //event como parametro não funciona
+function postDelete(event) {   //event como parametro não funciona
   console.log('post delete');
+  console.log(event.target.dataset.id);
+  
   // const id = event.target.dataset.id
+
   firebase.firestore().collection('posts').doc(event.target.dataset.id).delete()
   event.target.parentElement.remove();
+
   // document.querySelector(`li[data-id='${id}']`).remove();
   // document.querySelector(`button[data-id='${id}']`).remove();
 };
 
 function printData(post, classe) {
-  
+
   const postList = document.querySelector(classe);
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
@@ -54,8 +58,8 @@ function printData(post, classe) {
     const postTemplateUser = `
     <li data-id='${idPost}'>
       ${Card(idPost, date, txt)}
-      ${Button({class: 'deletar', title: 'Deletar', dataId: idPost, onclick: postDelete })}
-      ${Button({ class: 'editar', title: 'Editar', dataId: idPost, onclick: editPost })}
+      ${RoundButton({class: 'deletar', title: '<i class="far fa-trash-alt"></i>', dataId: idPost, onclick: postDelete })}
+      ${RoundButton({ class: 'editar', title: '<i class="far fa-edit"></i>', dataId: idPost, onclick: editPost })}
     </li>
     `;
     postList.innerHTML += postTemplateUser;
@@ -67,7 +71,7 @@ function printData(post, classe) {
     `;
     postList.innerHTML += postTemplate;
   }
-  
+
   return postList.innerHTML;
 }
 
@@ -106,7 +110,7 @@ function savePost() {
 }
 
 function showMenubar() {
-  const list = document.getElementById('example');
+  const list = document.getElementById('lista-menu');
   if (list.style.display === 'block') {
     list.style.display = 'none';
   } else {
@@ -119,20 +123,20 @@ function Feed() {
   <nav class="navbar">
     <div class="nav-btn-div">
       ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>'})}
-      <ul class="toggle-content" id="example">
+      <ul class="toggle-content" id="lista-menu">
         <li> ${Button({ class: 'profile', title: 'Perfil', onclick: profile })} </li>
         <li> ${Button({ class: 'profile', title: 'Editar', onclick: edit })}</li>
         <li> ${Button({ class: 'profile', title: 'Sair', onclick: logout })}</li>
+        </ul>
     </div>
-    </ul>
-    <a class="navbar-brand">Logo</a>
+    <a class="navbar-brand">&lt Yellow Bag &gt</a>
   </nav>
+
   <section class="box-intro">
     <header class='box-intro-head'>
       <h1> Olá </h1>
       <p>Seja bem vindo!</p>
     </header>  
-      
   </section>
 
   <section class="box-post">

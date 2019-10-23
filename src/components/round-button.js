@@ -1,6 +1,6 @@
 function RoundButton(props) {
   const template = `
-    <button class="${props.icone} ${props.class} secondary-button" onclick="button.handleClick(event, ${props.onclick})">${props.title}</button>
+    <button class="${props.icone} ${props.class} secondary-button" data-id="${props.dataId}" onclick="button.handleClick(event, ${props.onclick})">${props.title}</button>
   `;
 
   return template;
@@ -9,8 +9,8 @@ function RoundButton(props) {
 window.button = {
   handleClick: (event, callback) => {
     event.preventDefault();
-    callback();
+    callback(event);
   },
-};
+}; 
 
 export default RoundButton;
