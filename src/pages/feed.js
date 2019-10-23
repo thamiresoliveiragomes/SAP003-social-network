@@ -10,6 +10,14 @@ function logout() {
   });
 }
 
+function profile() {
+  window.location = '#profile';
+}
+
+function edit() {
+  window.location = '#config';
+}
+
 function editPost() {
   // document.getElementById(event.target.id).setAttribute('disabled', false)
   console.log('edit')
@@ -26,9 +34,6 @@ function SavePostEdited() {
     });
 }
 
-function profile() {
-  window.location = '#profile';
-}
 
 function postDelete() {   //event como parametro não funciona
   console.log('post delete');
@@ -100,17 +105,34 @@ function savePost() {
   });
 }
 
+function showMenubar() {
+  const list = document.getElementById('example');
+  if (list.style.display === 'block') {
+    list.style.display = 'none';
+  } else {
+    list.style.display = 'block';
+  }
+}
+
 function Feed() {
   const template = `
+  <nav class="navbar">
+    <div class="nav-btn-div">
+      ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>'})}
+      <ul class="toggle-content" id="example">
+        <li> ${Button({ class: 'profile', title: 'Perfil', onclick: profile })} </li>
+        <li> ${Button({ class: 'profile', title: 'Editar', onclick: edit })}</li>
+        <li> ${Button({ class: 'profile', title: 'Sair', onclick: logout })}</li>
+    </div>
+    </ul>
+    <a class="navbar-brand">Logo</a>
+  </nav>
   <section class="box-intro">
     <header class='box-intro-head'>
       <h1> Olá </h1>
       <p>Seja bem vindo!</p>
     </header>  
-    <form class='box-intro-btn'>
-      ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}<br>
-      ${Button({ class: 'profile', title: 'Sair', onclick: logout })}
-    </form>
+      
   </section>
 
   <section class="box-post">
