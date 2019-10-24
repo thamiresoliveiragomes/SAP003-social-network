@@ -2,6 +2,7 @@ import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Card from '../components/card.js';
 import RoundButton from '../components/round-button.js';
+import CardUser from '../components/card-user.js';
 
 function logout() {
   firebase.auth().signOut()
@@ -35,14 +36,14 @@ function SavePostEdited(event) {
 }
 
 function postDelete(event) {
+  const dataId = event.currentTarget.dataset.id;
+  console.log(dataId)
   // fazer um loop: https://stackoverflow.com/questions/14106905/changing-event-target
-
-  const id = event.target.parentElement.dataset.id;
+  // console.log(event.target.parentElement.parentElement);
+  // const id = event.target.parentElement.parentElement.dataset.id;
   const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(id).delete()
-    .then(() => event.target.parentElement.remove());
-
-  // document.querySelector(`li[data-id='${id}']`).remove();
+  postCollection.doc(dataId).delete();
+  document.querySelector(`li[data-id='${dataId}']`).remove();
   // document.querySelector(`button[data-id='${id}']`).remove();
 }
 
@@ -57,29 +58,24 @@ function printData(post, classe) {
     .then((querySnapshot) => {
       querySnapshot.forEach((user) => {
         const nome = user.data().nome;
-        console.log(nome);
+
+        if (post.data().user_uid === firebase.auth().currentUser.uid) {
+          const postTemplateUser = `
+          ${CardUser(idPost, date, txt, nome)}
+          `;
+
+
+          postList.innerHTML += postTemplateUser;
+        } else {
+          const postTemplate = `
+            ${Card(idPost, date, txt, nome)}
+          `;
+          postList.innerHTML += postTemplate;
+        }
+
+
       });
     });
-  
-  if (post.data().user_uid === firebase.auth().currentUser.uid) {
-    const postTemplateUser = `
-    <li data-id='${idPost}'>
-      ${Card(idPost, date, txt)}
-      ${RoundButton({ class: 'deletar', title: '<i class="far fa-trash-alt"></i>', dataId: idPost, onclick: postDelete })} 
-      ${RoundButton({ class: 'editar', title: '<i class="far fa-edit"></i>', dataId: idPost, onclick: editPost })}
-    </li>
-    `;
-    postList.innerHTML += postTemplateUser;
-  } else {
-    const postTemplate = `
-    <li data-id='${idPost}'>
-      ${Card(idPost, date, txt)}
-    </li>
-    `;
-    postList.innerHTML += postTemplate;
-  }
-
-  return postList.innerHTML;
 }
 
 function loadData(classe) {
@@ -176,6 +172,7 @@ window.app = {
   printData,
   postDelete,
   printName,
+  editPost,
 };
 
 export default Feed;

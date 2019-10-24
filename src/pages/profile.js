@@ -22,7 +22,7 @@ function printProfile(user) {
     <p>${bio}</p>
     `;
 
-  return userProfile.innerHTML = profileTemplate;
+  userProfile.innerHTML = profileTemplate;
 }
 
 function loadProfile() {
