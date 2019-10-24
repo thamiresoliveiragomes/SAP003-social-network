@@ -4,11 +4,10 @@ import Card from '../components/card.js';
 import RoundButton from '../components/round-button.js';
 
 function logout() {
-  firebase.auth().signOut().then(() => {
-    window.location = '#login';
-  }).catch((error) => {
-    console.log(error);
-  });
+  firebase.auth().signOut()
+    .then(() => {
+      window.location = '#login';
+    });
 }
 
 function profile() {
@@ -19,13 +18,13 @@ function edit() {
   window.location = '#config';
 }
 
-function editPost() {
+function editPost(event) {
   // document.getElementById(event.target.id).setAttribute('disabled', false)
-  console.log('edit')
-  
+  console.log('edit');
+  console.log(event);
 }
 
-function SavePostEdited() {
+function SavePostEdited(event) {
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(event.target.dataset.id).update({
     txt: 'hackeado!',
@@ -35,23 +34,19 @@ function SavePostEdited() {
     });
 }
 
-function postDelete(event) {   //event como parametro não funciona
-  
-  event.preventDefault();
-  // const id = event.target.dataset.id
-  
-  // console.log('post delete')
-  console.log(event);
+function postDelete(event) {
+  // fazer um loop: https://stackoverflow.com/questions/14106905/changing-event-target
 
-  firebase.firestore().collection('posts').doc(event.target.parentElement.dataset.id).delete()
-  event.target.parentElement.remove();
+  const id = event.target.parentElement.dataset.id;
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.doc(id).delete()
+    .then(() => event.target.parentElement.remove());
 
   // document.querySelector(`li[data-id='${id}']`).remove();
   // document.querySelector(`button[data-id='${id}']`).remove();
 }
 
 function printData(post, classe) {
-
   const postList = document.querySelector(classe);
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
@@ -60,8 +55,8 @@ function printData(post, classe) {
     const postTemplateUser = `
     <li data-id='${idPost}'>
       ${Card(idPost, date, txt)}
-      ${RoundButton({class: 'deletar', title: '<i class="far fa-trash-alt"></i>', dataId: idPost, onclick: 'window.app.postDelete(event)' })}
-      ${RoundButton({class: 'editar', title: '<i class="far fa-edit"></i>', dataId: idPost, onclick: editPost })}
+      ${RoundButton({ class: 'deletar', title: '<i class="far fa-trash-alt"></i>', dataId: idPost, onclick: postDelete })} 
+      ${RoundButton({ class: 'editar', title: '<i class="far fa-edit"></i>', dataId: idPost, onclick: editPost })}
     </li>
     `;
     postList.innerHTML += postTemplateUser;
@@ -92,7 +87,7 @@ function loadData(classe) {
 
 function savePost() {
   console.log('savePost');
-  const firestorePostCollection = firebase.firestore().collection('posts');
+
   const txt = document.querySelector('.js-text-input');
   const post = {
     txt: txt.value,
@@ -101,14 +96,11 @@ function savePost() {
     likes: 0,
     user_uid: firebase.auth().currentUser.uid,
   };
-  const addPromise = firestorePostCollection.add(post);
-  addPromise.then(() => {
-    txt.value = '';
-    loadData('.js-post');
-  });
-  addPromise.catch((error) => {
-    console.log(error);
-  });
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.add(post)
+    .then(() => {
+      txt.value = '';
+    });
 }
 
 function showMenubar() {
@@ -120,24 +112,38 @@ function showMenubar() {
   }
 }
 
+function print(user) {
+  const nome = user.data().nome;
+  document.getElementById('name').innerHTML = ` Olá, ${nome}`;
+}
+
+function printName() {
+  const userId = firebase.auth().currentUser.uid;
+  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        print(user);
+      });
+    });
+}
+
 function Feed() {
   const template = `
   <nav class="navbar">
     <div class="nav-btn-div">
-      ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>'})}
+      ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>' })}
       <ul class="toggle-content" id="lista-menu">
         <li> ${Button({ class: 'profile', title: 'Perfil', onclick: profile })} </li>
         <li> ${Button({ class: 'profile', title: 'Editar', onclick: edit })}</li>
         <li> ${Button({ class: 'profile', title: 'Sair', onclick: logout })}</li>
         </ul>
     </div>
-    <a class="navbar-brand">&lt Yellow Bag &gt</a>
+    <a class="navbar-brand title">&lt Yellow Bag &gt</a>
   </nav>
 
   <section class="box-intro">
     <header class='box-intro-head'>
-      <h1> Olá </h1>
-      <p>Seja bem vindo!</p>
+      <h4 class='name' id='name'></h4>
     </header>  
   </section>
 
@@ -157,6 +163,7 @@ window.app = {
   loadData,
   printData,
   postDelete,
+  printName,
 };
 
 export default Feed;

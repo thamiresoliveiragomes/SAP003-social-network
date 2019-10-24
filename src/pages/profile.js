@@ -21,11 +21,12 @@ function printProfile(user) {
     <p>${status}</p>
     <p>${bio}</p>
     `;
+
   return userProfile.innerHTML = profileTemplate;
 }
 
 function loadProfile() {
-  const firestoreUserCollection = firebase.firestore().collection('users')
+  const firestoreUserCollection = firebase.firestore().collection('users');
   const currentUserId = firebase.auth().currentUser.uid;
   firestoreUserCollection.where('user_uid', '==', currentUserId).get()
     .then((querySnapshot) => {
@@ -35,18 +36,16 @@ function loadProfile() {
     });
 }
 
-
 function userPosts() {
   const firestorePostCollection = firebase.firestore().collection('posts');
   const currentUserId = firebase.auth().currentUser.uid;
   firestorePostCollection.orderBy('date', 'desc').where('user_uid', '==', currentUserId).get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((post) => {
-      window.app.printData(post, '.js-user-post');
+    .then((querySnapshot) => {
+      querySnapshot.forEach((post) => {
+        window.app.printData(post, '.js-user-post');
+      });
     });
-  });
 }
-
 
 function Profile() {
   const template = `
