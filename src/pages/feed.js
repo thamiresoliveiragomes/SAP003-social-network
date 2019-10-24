@@ -36,17 +36,19 @@ function SavePostEdited() {
 }
 
 function postDelete(event) {   //event como parametro não funciona
-  console.log('post delete');
-  console.log(event.target.dataset.id);
   
+  event.preventDefault();
   // const id = event.target.dataset.id
+  
+  // console.log('post delete')
+  console.log(event);
 
-  firebase.firestore().collection('posts').doc(event.target.dataset.id).delete()
+  firebase.firestore().collection('posts').doc(event.target.parentElement.dataset.id).delete()
   event.target.parentElement.remove();
 
   // document.querySelector(`li[data-id='${id}']`).remove();
   // document.querySelector(`button[data-id='${id}']`).remove();
-};
+}
 
 function printData(post, classe) {
 
@@ -58,8 +60,8 @@ function printData(post, classe) {
     const postTemplateUser = `
     <li data-id='${idPost}'>
       ${Card(idPost, date, txt)}
-      ${RoundButton({class: 'deletar', title: '<i class="far fa-trash-alt"></i>', dataId: idPost, onclick: postDelete })}
-      ${RoundButton({ class: 'editar', title: '<i class="far fa-edit"></i>', dataId: idPost, onclick: editPost })}
+      ${RoundButton({class: 'deletar', title: '<i class="far fa-trash-alt"></i>', dataId: idPost, onclick: 'window.app.postDelete(event)' })}
+      ${RoundButton({class: 'editar', title: '<i class="far fa-edit"></i>', dataId: idPost, onclick: editPost })}
     </li>
     `;
     postList.innerHTML += postTemplateUser;
