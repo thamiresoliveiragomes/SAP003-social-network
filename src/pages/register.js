@@ -55,8 +55,9 @@ function Register() {
       ${Input({ type: 'text', class: 'js-text-input', placeholder: 'nome' })}
       ${Input({ type: 'text', class: 'js-text2-input', placeholder: 'sobrenome' })}
       ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}
-      ${Input({ type: 'date', class: 'js-date-input' })}
+      ${Input({ type: 'date', class: 'js-date-input', placeholder: 'data de nascimento' })}
       <select class='js-status-input'>
+        <option value= >Status de Relacionamento</option>
         <option value=Solteiro(a)>Solteiro(a)</option>
         <option value=Relacionamento Sério>Relacionamento Sério</option> 
         <option value=Relacionamento Aberto>Relacionamento Aberto</option> 

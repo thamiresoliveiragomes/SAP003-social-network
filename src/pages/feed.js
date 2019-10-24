@@ -51,6 +51,16 @@ function printData(post, classe) {
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
+
+  const userId = post.data().user_uid;
+  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        const nome = user.data().nome;
+        console.log(nome);
+      });
+    });
+  
   if (post.data().user_uid === firebase.auth().currentUser.uid) {
     const postTemplateUser = `
     <li data-id='${idPost}'>
@@ -112,17 +122,18 @@ function showMenubar() {
   }
 }
 
-function print(user) {
-  const nome = user.data().nome;
-  document.getElementById('name').innerHTML = ` Olá, ${nome}`;
-}
+// function print(user) {
+//   const nome = user.data().nome;
+//   document.getElementById('name').innerHTML = ` Olá, ${nome}`;
+// }
 
 function printName() {
   const userId = firebase.auth().currentUser.uid;
   firebase.firestore().collection('users').where('user_uid', '==', userId).get()
     .then((querySnapshot) => {
       querySnapshot.forEach((user) => {
-        print(user);
+        const nome = user.data().nome;
+        document.getElementById('name').innerHTML = ` Olá, ${nome}`;
       });
     });
 }
@@ -144,6 +155,7 @@ function Feed() {
   <section class="box-intro">
     <header class='box-intro-head'>
       <h4 class='name' id='name'></h4>
+      <p>Compartilhe suas aventuras!</p>
     </header>  
   </section>
 
