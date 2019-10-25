@@ -173,6 +173,9 @@ li {
   padding-inline-start: 0px;
 }
 
+.save {
+  display: none;
+}
 
 @media (min-width: 500px) {
 

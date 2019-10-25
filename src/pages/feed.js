@@ -1,7 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Card from '../components/card.js';
-import RoundButton from '../components/round-button.js';
 import CardUser from '../components/card-user.js';
 
 function logout() {
@@ -20,15 +19,22 @@ function edit() {
 }
 
 function editPost(event) {
-  // document.getElementById(event.target.id).setAttribute('disabled', false)
-  console.log('edit');
-  console.log(event);
+  console.log(event.currentTarget.dataset.id);
+  const id = event.currentTarget.dataset.id;
+  document.querySelector(`textarea[id='${id}']`).disabled = false;
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  saveButton.style.display = 'block';
 }
 
-function SavePostEdited(event) {
+function savePostEdited(event) {
+  const id = event.currentTarget.dataset.id;
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  saveButton.style.display = 'none';
+  const textArea = document.querySelector(`textarea[id='${id}']`);
+  textArea.disabled = true;
   const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(event.target.dataset.id).update({
-    txt: 'hackeado!',
+  postCollection.doc(id).update({
+    txt: textArea.value,
   })
     .then(() => {
       console.log('Document successfully updated!');
@@ -37,7 +43,7 @@ function SavePostEdited(event) {
 
 function postDelete(event) {
   const dataId = event.currentTarget.dataset.id;
-  console.log(dataId)
+  console.log(dataId);
   // fazer um loop: https://stackoverflow.com/questions/14106905/changing-event-target
   // console.log(event.target.parentElement.parentElement);
   // const id = event.target.parentElement.parentElement.dataset.id;
@@ -72,8 +78,6 @@ function printData(post, classe) {
           `;
           postList.innerHTML += postTemplate;
         }
-
-
       });
     });
 }
@@ -173,6 +177,7 @@ window.app = {
   postDelete,
   printName,
   editPost,
+  savePostEdited,
 };
 
 export default Feed;
