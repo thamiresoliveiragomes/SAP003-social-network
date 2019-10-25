@@ -2,8 +2,6 @@ import Input from '../components/input.js';
 import Button from '../components/button.js';
 
 function save() {
-// função para atualizar os dados no firebase
-  // window.location = '#feed';
   const firestoreUserCollection = firebase.firestore().collection('users');
   const nome = document.querySelector('.js-text-input');
   const sobrenome = document.querySelector('.js-text2-input');
@@ -43,12 +41,6 @@ function userInfo() {
       });
     });
 }
-
-// function updateUsers() {
-//   const firestoreUserCollection = firebase.firestore().collection('users');
-//   const currentUserId = firebase.auth().currentUser.uid;
-//   firestoreUserCollection.where('user_uid', '==', currentUserId).update
-// }
 
 function cancel() {
   window.location = '#profile';

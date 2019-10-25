@@ -1,10 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 
-// function equal(string, string2) {
-//   return (string === string2)
-// }
-
 function saveUser() {
   const firestoreUserCollection = firebase.firestore().collection('users');
   const nome = document.querySelector('.js-text-input');

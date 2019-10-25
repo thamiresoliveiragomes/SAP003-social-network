@@ -27,7 +27,7 @@ function google() {
 }
 
 function Login() {
-  window.location = '#login';
+  window.location.href = '#login';
   const template = `
     ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
  

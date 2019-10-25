@@ -61,7 +61,9 @@ function Profile() {
   return template;
 }
 
-window.userPosts = userPosts;
-window.loadProfile = loadProfile;
+window.profile = {
+  userPosts,
+  loadProfile,
+};
 
 export default Profile;

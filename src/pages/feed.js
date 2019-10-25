@@ -19,7 +19,6 @@ function edit() {
 }
 
 function editPost(event) {
-  console.log(event.currentTarget.dataset.id);
   const id = event.currentTarget.dataset.id;
   document.querySelector(`textarea[id='${id}']`).disabled = false;
   const saveButton = document.querySelector(`.save[data-id='${id}']`);
@@ -35,15 +34,11 @@ function savePostEdited(event) {
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(id).update({
     txt: textArea.value,
-  })
-    .then(() => {
-      console.log('Document successfully updated!');
-    });
+  });
 }
 
 function postDelete(event) {
   const dataId = event.currentTarget.dataset.id;
-  console.log(dataId)
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(dataId).delete();
   document.querySelector(`li[data-id='${dataId}']`).remove();
@@ -60,7 +55,7 @@ function printData(post, classe) {
   usersCollection.onSnapshot((snap) => {
     snap.forEach((user) => {
       if (user.data().user_uid === userId) {
-        const nome = user.data().nome;
+        const nome = ` ${user.data().nome} ${user.data().sobrenome}`;
         if (userId === firebase.auth().currentUser.uid) {
           const postTemplateUser = `
           ${CardUser(idPost, date, txt, nome)}
@@ -79,7 +74,6 @@ function printData(post, classe) {
 
 
 function loadData(classe) {
-  console.log('loadData');
   const postCollection = firebase.firestore().collection('posts');
   const postList = document.querySelector(classe);
   postList.innerHTML = 'Carregando...';
@@ -87,13 +81,11 @@ function loadData(classe) {
     postList.innerHTML = '';
     snap.forEach((post) => {
       printData(post, '.js-post');
-
     });
   });
 }
 
 function savePost() {
-  console.log('savePost');
   const txt = document.querySelector('.js-text-input');
   const post = {
     txt: txt.value,
