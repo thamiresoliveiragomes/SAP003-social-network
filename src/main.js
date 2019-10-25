@@ -30,7 +30,9 @@ function verificaUser() {
           break;
         default:
           main.innerHTML = Feed();
+          window.app.printName();
           window.app.loadData('.js-post');
+
       }
     } else if (!user) {
       switch (currentHash) {

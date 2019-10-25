@@ -1,8 +1,10 @@
-function Card(idPost, date, txt) {
+function Card(idPost, date, txt, name) {
   const template = `
-    <p>Postado em ${date} </p>
-    <textarea id=${idPost} class='textarea-posts' disabled='true'>${txt}</textarea>
-  `;
+  <li data-id='${idPost}'>
+  <p>${name}</p>
+    <p class='data'>Postado em ${date} </p>
+    <textarea class='textarea-posts' disabled='true'>${txt}</textarea>
+  </li>`;
 
   return template;
 }

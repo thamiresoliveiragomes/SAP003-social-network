@@ -16,16 +16,19 @@ function printProfile(user) {
   const bio = user.data().bio;
   const status = user.data().status;
   const profileTemplate = `
+    <section class="perfil-user" disabled>
     <h3>${nome} ${sobrenome}</h3>
     <p>${nascimento}</p> 
     <p>${status}</p>
     <p>${bio}</p>
+    </section>
     `;
-  return userProfile.innerHTML = profileTemplate;
+
+  userProfile.innerHTML = profileTemplate;
 }
 
 function loadProfile() {
-  const firestoreUserCollection = firebase.firestore().collection('users')
+  const firestoreUserCollection = firebase.firestore().collection('users');
   const currentUserId = firebase.auth().currentUser.uid;
   firestoreUserCollection.where('user_uid', '==', currentUserId).get()
     .then((querySnapshot) => {
@@ -35,18 +38,16 @@ function loadProfile() {
     });
 }
 
-
 function userPosts() {
   const firestorePostCollection = firebase.firestore().collection('posts');
   const currentUserId = firebase.auth().currentUser.uid;
   firestorePostCollection.orderBy('date', 'desc').where('user_uid', '==', currentUserId).get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((post) => {
-      window.app.printData(post, '.js-user-post');
+    .then((querySnapshot) => {
+      querySnapshot.forEach((post) => {
+        window.app.printData(post, '.js-user-post');
+      });
     });
-  });
 }
-
 
 function Profile() {
   const template = `

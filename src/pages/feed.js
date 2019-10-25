@@ -1,28 +1,12 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Card from '../components/card.js';
+import CardUser from '../components/card-user.js';
 
 function logout() {
-  firebase.auth().signOut().then(() => {
-    window.location = '#login';
-  }).catch((error) => {
-    console.log(error);
-  });
-}
-
-function editPost() {
-  // document.getElementById(event.target.id).setAttribute('disabled', false)
-  console.log('edit')
-  
-}
-
-function SavePostEdited() {
-  const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(event.target.dataset.id).update({
-    txt: 'hackeado!',
-  })
+  firebase.auth().signOut()
     .then(() => {
-      console.log('Document successfully updated!');
+      window.location = '#login';
     });
 }
 
@@ -30,40 +14,72 @@ function profile() {
   window.location = '#profile';
 }
 
-function postDelete() {   //event como parametro não funciona
-  console.log('post delete');
-  // const id = event.target.dataset.id
-  firebase.firestore().collection('posts').doc(event.target.dataset.id).delete()
-  event.target.parentElement.remove();
-  // document.querySelector(`li[data-id='${id}']`).remove();
+function edit() {
+  window.location = '#config';
+}
+
+function editPost(event) {
+  console.log(event.currentTarget.dataset.id);
+  const id = event.currentTarget.dataset.id;
+  document.querySelector(`textarea[id='${id}']`).disabled = false;
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  saveButton.style.display = 'block';
+}
+
+function savePostEdited(event) {
+  const id = event.currentTarget.dataset.id;
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  saveButton.style.display = 'none';
+  const textArea = document.querySelector(`textarea[id='${id}']`);
+  textArea.disabled = true;
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.doc(id).update({
+    txt: textArea.value,
+  })
+    .then(() => {
+      console.log('Document successfully updated!');
+    });
+}
+
+function postDelete(event) {
+  const dataId = event.currentTarget.dataset.id;
+  console.log(dataId);
+  // fazer um loop: https://stackoverflow.com/questions/14106905/changing-event-target
+  // console.log(event.target.parentElement.parentElement);
+  // const id = event.target.parentElement.parentElement.dataset.id;
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.doc(dataId).delete();
+  document.querySelector(`li[data-id='${dataId}']`).remove();
   // document.querySelector(`button[data-id='${id}']`).remove();
-};
+}
 
 function printData(post, classe) {
-  
   const postList = document.querySelector(classe);
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
-  if (post.data().user_uid === firebase.auth().currentUser.uid) {
-    const postTemplateUser = `
-    <li data-id='${idPost}'>
-      ${Card(idPost, date, txt)}
-      ${Button({class: 'deletar', title: 'Deletar', dataId: idPost, onclick: postDelete })}
-      ${Button({ class: 'editar', title: 'Editar', dataId: idPost, onclick: editPost })}
-    </li>
-    `;
-    postList.innerHTML += postTemplateUser;
-  } else {
-    const postTemplate = `
-    <li data-id='${idPost}'>
-      ${Card(idPost, date, txt)}
-    </li>
-    `;
-    postList.innerHTML += postTemplate;
-  }
-  
-  return postList.innerHTML;
+
+  const userId = post.data().user_uid;
+  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        const nome = user.data().nome;
+
+        if (post.data().user_uid === firebase.auth().currentUser.uid) {
+          const postTemplateUser = `
+          ${CardUser(idPost, date, txt, nome)}
+          `;
+
+
+          postList.innerHTML += postTemplateUser;
+        } else {
+          const postTemplate = `
+            ${Card(idPost, date, txt, nome)}
+          `;
+          postList.innerHTML += postTemplate;
+        }
+      });
+    });
 }
 
 function loadData(classe) {
@@ -81,7 +97,7 @@ function loadData(classe) {
 
 function savePost() {
   console.log('savePost');
-  const firestorePostCollection = firebase.firestore().collection('posts');
+
   const txt = document.querySelector('.js-text-input');
   const post = {
     txt: txt.value,
@@ -90,27 +106,57 @@ function savePost() {
     likes: 0,
     user_uid: firebase.auth().currentUser.uid,
   };
-  const addPromise = firestorePostCollection.add(post);
-  addPromise.then(() => {
-    txt.value = '';
-    loadData('.js-post');
-  });
-  addPromise.catch((error) => {
-    console.log(error);
-  });
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.add(post)
+    .then(() => {
+      txt.value = '';
+    });
+}
+
+function showMenubar() {
+  const list = document.getElementById('lista-menu');
+  if (list.style.display === 'block') {
+    list.style.display = 'none';
+  } else {
+    list.style.display = 'block';
+  }
+}
+
+// function print(user) {
+//   const nome = user.data().nome;
+//   document.getElementById('name').innerHTML = ` Olá, ${nome}`;
+// }
+
+function printName() {
+  const userId = firebase.auth().currentUser.uid;
+  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        const nome = user.data().nome;
+        document.getElementById('name').innerHTML = ` Olá, ${nome}`;
+      });
+    });
 }
 
 function Feed() {
   const template = `
+  <nav class="navbar">
+    <div class="nav-btn-div">
+      ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>' })}
+      <ul class="toggle-content" id="lista-menu">
+        <li> ${Button({ class: 'profile', title: 'Perfil', onclick: profile })} </li>
+        <li> ${Button({ class: 'profile', title: 'Editar', onclick: edit })}</li>
+        <li> ${Button({ class: 'profile', title: 'Sair', onclick: logout })}</li>
+        </ul>
+    </div>
+    <a class="navbar-brand title">&lt Yellow Bag &gt</a>
+  </nav>
+
   <section class="box-intro">
     <header class='box-intro-head'>
-      <h1> Olá </h1>
-      <p>Seja bem vindo!</p>
+      <h4 class='name' id='name'></h4>
+      <p>Compartilhe suas aventuras!</p>
     </header>  
-    <form class='box-intro-btn'>
-      ${Button({ class: 'profile', title: 'Perfil', onclick: profile })}<br>
-      ${Button({ class: 'profile', title: 'Sair', onclick: logout })}
-    </form>
   </section>
 
   <section class="box-post">
@@ -129,6 +175,9 @@ window.app = {
   loadData,
   printData,
   postDelete,
+  printName,
+  editPost,
+  savePostEdited,
 };
 
 export default Feed;

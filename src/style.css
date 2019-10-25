@@ -1,5 +1,5 @@
 .primary-button {
-  background-color: rgb(162, 170, 162);
+  background-color: #F2C84B;
   /* padding: 10px; */
   font-size: 0.8rem;
   color: white;
@@ -8,23 +8,41 @@
   border: none;
   cursor: pointer;
   height: 25px;
-  margin-top: 5px;
-  outline:none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  outline: none;
 }
+
+.editar, .deletar {
+  width: 40px;
+}
+
 .signIn {
   width: 100px;
 }
 
 .secondary-button{
+  
+  /* margin-right: 50%; */
+  /* text-align: center; */
+  /* display: inline-block; */
   border-radius: 50%;
-  background-color: blue;
   padding: 8px;
+  background-color: #CCD5D9;
 }
+
+.title {
+  color: #F29F05;
+}
+
 .subtitle {
+  color: #F29F05;
   font-size: 0.8rem;
 }
-.google{
-  color: red;
+
+.google {
+  margin-left: 45%;
+  color: #F29F05;
   cursor: pointer;
   margin-top: 15px;
 }
@@ -35,6 +53,9 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  /* height: 70%;
+  margin-top: 10%;
+  margin-bottom: 10%; */
 }
 
 .logo {
@@ -48,49 +69,113 @@ main {
   flex-direction: column;
   justify-content: center;
   font-family: 'Lato', sans-serif;
+  justify-content: center;
+  /* background-color: green; */
   /* list-style-type: none; */
 }
 
 .entrada {
-  background-color: rgb(190, 190, 221);
+  background-color:#CCD5D9;
   border-radius: 20px;
-  height: 25px;
+  /* height: 25px; */
   margin: 5px 5px 5px 5px;
   outline:none;
+
+    height: 30px;
+    width: 80%;
+}
+
+.js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
+.js-confirm-password-input, .js-date-input, .js-date-input {
+  /* height: 5px; */
+  background-color:white;
+  border-radius: 15px;
+  height: 30px;
+  width: 70%;
+}
+
+.create {
+  /* display: inline-block; */
+  /* margin-top: 20px; */
 }
 
 .error {
   color: red;
 }
 
+.data {
+  color: rgba(139, 139, 139, 0.664);
+  font-size: 0.7em;
+  margin-top: 10%;
+  text-align: right;
+}
 .box-intro {
   display: flex;
   flex-direction: row;
   text-align: center;
 }
-.box-intro-head {
-  flex-basis: 80%;
+
+.navbar {
+  /* background-color: #CCD5D9; */
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
 }
 
-.box-intro-btn {
-  flex-basis: 20%;
+.nav-btn-div {
+  flex-basis: 55%;
+}
+
+.nav-btn {
+  border-radius: 0px;
+  margin: 0px 5px;
+  width: 50px;
+}
+
+.navbar-brand {
+  flex-basis: 100%;
   align-self: center;
+  font-size: larger;
+}
+
+.toggle-content {
+  display: none;
+  padding: 0px;
+  margin: 0px 5px;
+}
+
+.profile {
+  width: 50px;
+  margin: 0px;
+  border-radius: 0px;
 }
 
 .box-post {
   text-align: center;
-  /* list-style-type: none; */
-
+  padding: 10px;
 }
+
+
+
 .box-profile {
   text-align: center;
   /* list-style-type: none; */
 }
 
-.js-post, .js-user-post {
-  list-style-type: none;
+li {
+  display: flex;
+  flex-direction: column;
 }
 
+.js-post, .js-user-post {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+.save {
+  display: none;
+}
 
 @media (min-width: 500px) {
 
@@ -110,10 +195,17 @@ main {
     min-width: 400px;
     background-color: rgba(218, 218, 253, 0.034);
     border: 1px solid rgb(215, 231, 204) ;
-    box-shadow: 3px 3px 5px 5px rgba(85, 165, 38, 0.801);
+    box-shadow: 3px 3px 5px 5px #CCD5D9;
     margin-right: 7%;
 } 
 
+.js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
+.js-confirm-password-input, .js-date-input, .js-date-input {
+  background-color:white;
+  border-radius: 10px;
+  height: 30px;
+  width: 50%;
+}
   main {
     display: flex;
     flex-direction: row;
