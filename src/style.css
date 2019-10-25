@@ -199,6 +199,10 @@ li.card {
   margin-bottom: 20px;
 }
 
+.save {
+  display: none;
+}
+
 @media (min-width: 500px) {
 
   .logo {

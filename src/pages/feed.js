@@ -19,15 +19,22 @@ function edit() {
 }
 
 function editPost(event) {
-  // document.getElementById(event.target.id).setAttribute('disabled', false)
-  console.log('edit');
-  console.log(event);
+  console.log(event.currentTarget.dataset.id);
+  const id = event.currentTarget.dataset.id;
+  document.querySelector(`textarea[id='${id}']`).disabled = false;
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  saveButton.style.display = 'block';
 }
 
-function SavePostEdited(event) {
+function savePostEdited(event) {
+  const id = event.currentTarget.dataset.id;
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  saveButton.style.display = 'none';
+  const textArea = document.querySelector(`textarea[id='${id}']`);
+  textArea.disabled = true;
   const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(event.target.dataset.id).update({
-    txt: 'hackeado!',
+  postCollection.doc(id).update({
+    txt: textArea.value,
   })
     .then(() => {
       console.log('Document successfully updated!');
@@ -157,6 +164,7 @@ window.app = {
   postDelete,
   printName,
   editPost,
+  savePostEdited,
 };
 
 export default Feed;

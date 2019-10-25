@@ -20,7 +20,6 @@ function saveUser() {
     nascimento: nascimento.value,
     user_uid: firebase.auth().currentUser.uid,
   };
-  firestoreUserCollection.add(user);
 }
 
 function create() {
