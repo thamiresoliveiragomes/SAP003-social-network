@@ -1,7 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Card from '../components/card.js';
-import RoundButton from '../components/round-button.js';
 import CardUser from '../components/card-user.js';
 
 function logout() {
@@ -38,13 +37,9 @@ function SavePostEdited(event) {
 function postDelete(event) {
   const dataId = event.currentTarget.dataset.id;
   console.log(dataId)
-  // fazer um loop: https://stackoverflow.com/questions/14106905/changing-event-target
-  // console.log(event.target.parentElement.parentElement);
-  // const id = event.target.parentElement.parentElement.dataset.id;
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(dataId).delete();
   document.querySelector(`li[data-id='${dataId}']`).remove();
-  // document.querySelector(`button[data-id='${id}']`).remove();
 }
 
 function printData(post, classe) {
@@ -63,8 +58,6 @@ function printData(post, classe) {
           const postTemplateUser = `
           ${CardUser(idPost, date, txt, nome)}
           `;
-
-
           postList.innerHTML += postTemplateUser;
         } else {
           const postTemplate = `
@@ -72,8 +65,6 @@ function printData(post, classe) {
           `;
           postList.innerHTML += postTemplate;
         }
-
-
       });
     });
 }
@@ -93,7 +84,6 @@ function loadData(classe) {
 
 function savePost() {
   console.log('savePost');
-
   const txt = document.querySelector('.js-text-input');
   const post = {
     txt: txt.value,
@@ -117,11 +107,6 @@ function showMenubar() {
     list.style.display = 'block';
   }
 }
-
-// function print(user) {
-//   const nome = user.data().nome;
-//   document.getElementById('name').innerHTML = ` Olá, ${nome}`;
-// }
 
 function printName() {
   const userId = firebase.auth().currentUser.uid;
@@ -149,10 +134,9 @@ function Feed() {
   </nav>
 
   <section class="box-intro">
-    <header class='box-intro-head'>
-      <h4 class='name' id='name'></h4>
-      <p>Compartilhe suas aventuras!</p>
-    </header>  
+    <h4 class='name' id='name'></h4>
+    <p>Compartilhe suas aventuras!</p>
+
   </section>
 
   <section class="box-post">
