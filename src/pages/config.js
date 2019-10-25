@@ -10,15 +10,24 @@ function save() {
   const bio = document.querySelector('.js-bio-input');
   const status = document.querySelector('.js-status-input');
   const nascimento = document.querySelector('.js-date-input');
-  firestoreUserCollection.where('user_uid', '==', firebase.auth().currentUser.uid).update({
-    nome: nome.value,
-    sobrenome: sobrenome.value,
-    bio: bio.value,
-    status: status.value,
-    nascimento: nascimento.value,
-    user_uid: firebase.auth().currentUser.uid,
-  });
+  firestoreUserCollection.where('user_uid', '==', firebase.auth().currentUser.uid).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        const userId = user.id;
+        firestoreUserCollection.doc(userId).update({
+          nome: nome.value,
+          sobrenome: sobrenome.value,
+          bio: bio.value,
+          status: status.value,
+          nascimento: nascimento.value,
+          user_uid: firebase.auth().currentUser.uid,
+        }).then(() => {
+          window.location = '#profile';
+        });
+      });
+    });
 }
+
 
 function userInfo() {
   const firestoreUserCollection = firebase.firestore().collection('users');
@@ -57,8 +66,8 @@ function Config() {
       <select class='js-status-input'>
         <option value= >Status de Relacionamento</option>
         <option value=Solteiro(a)>Solteiro(a)</option>
-        <option value=Relacionamento Sério>Relacionamento Sério</option> 
-        <option value=Relacionamento Aberto>Relacionamento Aberto</option> 
+        <option value='Relacionamento Sério'>Relacionamento Sério</option> 
+        <option value='Relacionamento Aberto'>Relacionamento Aberto</option> 
         <option value=Casado(a)>Casado(a)</option>
         <option value=Divorciado(a)>Divorciado(a)</option>
         <option value=Viúvo(a)>Viúvo(a)</option>";

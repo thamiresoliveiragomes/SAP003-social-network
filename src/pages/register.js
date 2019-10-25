@@ -20,6 +20,7 @@ function saveUser() {
     nascimento: nascimento.value,
     user_uid: firebase.auth().currentUser.uid,
   };
+  firestoreUserCollection.add(user);
 }
 
 function create() {
@@ -31,7 +32,7 @@ function create() {
   if (password === passwordConfirmation) {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       window.location = '#feed';
-      saveUser();
+      window.saveUser();
     }).catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
@@ -58,8 +59,8 @@ function Register() {
       <select class='js-status-input'>
         <option value= >Status de Relacionamento</option>
         <option value=Solteiro(a)>Solteiro(a)</option>
-        <option value=Relacionamento Sério>Relacionamento Sério</option> 
-        <option value=Relacionamento Aberto>Relacionamento Aberto</option> 
+        <option value='Relacionamento Sério'>Relacionamento Sério</option> 
+        <option value='Relacionamento Aberto'>Relacionamento Aberto</option> 
         <option value=Casado(a)>Casado(a)</option>
         <option value=Divorciado(a)>Divorciado(a)</option>
         <option value=Viúvo(a)>Viúvo(a)</option>";

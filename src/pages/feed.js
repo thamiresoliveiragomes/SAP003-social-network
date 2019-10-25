@@ -54,14 +54,14 @@ function printData(post, classe) {
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
-
   const userId = post.data().user_uid;
-  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((user) => {
-        const nome = user.data().nome;
 
-        if (post.data().user_uid === firebase.auth().currentUser.uid) {
+  const usersCollection = firebase.firestore().collection('users');
+  usersCollection.onSnapshot((snap) => {
+    snap.forEach((user) => {
+      if (user.data().user_uid === userId) {
+        const nome = user.data().nome;
+        if (userId === firebase.auth().currentUser.uid) {
           const postTemplateUser = `
           ${CardUser(idPost, date, txt, nome)}
           `;
@@ -72,9 +72,11 @@ function printData(post, classe) {
           `;
           postList.innerHTML += postTemplate;
         }
-      });
+      }
     });
+  });
 }
+
 
 function loadData(classe) {
   console.log('loadData');
@@ -85,6 +87,7 @@ function loadData(classe) {
     postList.innerHTML = '';
     snap.forEach((post) => {
       printData(post, '.js-post');
+
     });
   });
 }
