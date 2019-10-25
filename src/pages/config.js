@@ -3,10 +3,24 @@ import Button from '../components/button.js';
 
 function save() {
 // função para atualizar os dados no firebase
-  window.location = '#feed';
+  // window.location = '#feed';
+  const firestoreUserCollection = firebase.firestore().collection('users');
+  const nome = document.querySelector('.js-text-input');
+  const sobrenome = document.querySelector('.js-text2-input');
+  const bio = document.querySelector('.js-bio-input');
+  const status = document.querySelector('.js-status-input');
+  const nascimento = document.querySelector('.js-date-input');
+  firestoreUserCollection.where('user_uid', '==', firebase.auth().currentUser.uid).update({
+    nome: nome.value,
+    sobrenome: sobrenome.value,
+    bio: bio.value,
+    status: status.value,
+    nascimento: nascimento.value,
+    user_uid: firebase.auth().currentUser.uid,
+  });
 }
 
-function userInfo () {
+function userInfo() {
   const firestoreUserCollection = firebase.firestore().collection('users');
   const currentUserId = firebase.auth().currentUser.uid;
   firestoreUserCollection.where('user_uid', '==', currentUserId).get()
@@ -54,7 +68,7 @@ function Config() {
     </form>
     </section>
   `;
-  userInfo()
+  userInfo();
   return template;
 }
 
