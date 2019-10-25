@@ -19,11 +19,10 @@ function edit() {
 }
 
 function editPost(event) {
-  console.log(event.currentTarget.dataset.id);
   const id = event.currentTarget.dataset.id;
   document.querySelector(`textarea[id='${id}']`).disabled = false;
   const saveButton = document.querySelector(`.save[data-id='${id}']`);
-  saveButton.style.display = 'block';
+  saveButton.style.display = 'inline-block';
 }
 
 function savePostEdited(event) {
@@ -35,15 +34,11 @@ function savePostEdited(event) {
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(id).update({
     txt: textArea.value,
-  })
-    .then(() => {
-      console.log('Document successfully updated!');
-    });
+  });
 }
 
 function postDelete(event) {
   const dataId = event.currentTarget.dataset.id;
-  console.log(dataId)
   const postCollection = firebase.firestore().collection('posts');
   postCollection.doc(dataId).delete();
   document.querySelector(`li[data-id='${dataId}']`).remove();
@@ -54,14 +49,14 @@ function printData(post, classe) {
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
-
   const userId = post.data().user_uid;
-  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((user) => {
-        const nome = user.data().nome;
 
-        if (post.data().user_uid === firebase.auth().currentUser.uid) {
+  const usersCollection = firebase.firestore().collection('users');
+  usersCollection.onSnapshot((snap) => {
+    snap.forEach((user) => {
+      if (user.data().user_uid === userId) {
+        const nome = ` ${user.data().nome} ${user.data().sobrenome}`;
+        if (userId === firebase.auth().currentUser.uid) {
           const postTemplateUser = `
           ${CardUser(idPost, date, txt, nome)}
           `;
@@ -72,12 +67,13 @@ function printData(post, classe) {
           `;
           postList.innerHTML += postTemplate;
         }
-      });
+      }
     });
+  });
 }
 
+
 function loadData(classe) {
-  console.log('loadData');
   const postCollection = firebase.firestore().collection('posts');
   const postList = document.querySelector(classe);
   postList.innerHTML = 'Carregando...';
@@ -90,8 +86,8 @@ function loadData(classe) {
 }
 
 function savePost() {
-  console.log('savePost');
   const txt = document.querySelector('.js-text-input');
+  console.log(txt)
   const post = {
     txt: txt.value,
     date: new Date(),
@@ -148,7 +144,7 @@ function Feed() {
 
   <section class="box-post">
     <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
+      <textarea class='js-text-input input-feed' placeholder= 'Escreva sua publicação aqui...'> </textarea><br>
       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
     </form>
   <ul class="js-post"></ul>

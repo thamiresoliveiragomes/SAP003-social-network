@@ -13,7 +13,6 @@ function CardUser(idPost, date, txt, name) {
         ${RoundButton({ class: 'save', title: '<i class="far fa-save"></i>', dataId: idPost, onclick: window.app.savePostEdited })}
       </section>
     </li>`;
-
   return template;
 }
 

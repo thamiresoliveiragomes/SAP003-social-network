@@ -1,10 +1,16 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  justify-content: center;
+}
+
 .primary-button {
   background-color: #F2C84B;
-  /* padding: 10px; */
   font-size: 0.8rem;
   color: white;
   border-radius: 25px;
-  /* font-weight: bold; */
   border: none;
   cursor: pointer;
   height: 25px;
@@ -21,16 +27,22 @@
   background-color: lightgreen;
 }
 
+.logo {
+  max-width:100%;
+  height: auto;
+  width: 500px;
+}
+
 .signIn {
   width: 100px;
 }
 
-/* .secondary-button{
+.secondary-button{
   border-radius: 50%;
   padding: 8px;
   width: 35px;
   border: none;
-} */
+}
 
 .title {
   color: #F29F05;
@@ -49,56 +61,40 @@
   background-color: #CCD5D9;
 }
 
-.box-login {
+.box-login, .box-config {
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  /* height: 70%;
-  margin-top: 10%;
-  margin-bottom: 10%; */
+}
+.input-feed {
+  height: 80px;
+  width: 250px;
 }
 
-.logo {
-  max-width:100%;
-  height:auto;
-  width: 500px;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Lato', sans-serif;
-  justify-content: center;
-  /* background-color: green; */
-  /* list-style-type: none; */
-}
-
-.entrada {
+.input-entrada {
   background-color:#CCD5D9;
   border-radius: 20px;
-  /* height: 25px; */
   margin: 5px 5px 5px 5px;
   outline:none;
-
-    height: 30px;
-    width: 80%;
+  height: 30px;
+  width: 80%;
+  outline: none;
 }
 
-.js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
-.js-confirm-password-input, .js-date-input, .js-date-input {
+.input-register, .input-config {
   /* height: 5px; */
   background-color:white;
   border-radius: 15px;
   height: 30px;
   width: 70%;
+  display: block;
+  margin: 10px auto;
+  outline: none;
 }
-
-.create {
-  /* display: inline-block; */
-  /* margin-top: 20px; */
+.box-config {
+  text-align: center;
 }
 
 .error {
@@ -107,17 +103,26 @@ main {
 
 .data {
   margin-left: 10px;
-  color: rgba(139, 139, 139, 0.664);
+  color:#CCD5D9;
   font-size: 0.7em;
   text-align: right;
   
 }
+
 .box-intro {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
+.textarea-posts {
+  height: 50px;
+  width: auto;
+}
+
+textarea {
+  resize: none;
+}
 .navbar {
   /* background-color: #CCD5D9; */
   width: 100%;
@@ -159,10 +164,10 @@ main {
   padding: 10px;
 }
 
-
-
-.box-profile {
-  text-align: center;
+.box-profile1 {
+  text-align: left;
+  padding-left: 2%;
+  border: ridge #CCD5D9;
   /* list-style-type: none; */
 }
 
@@ -177,20 +182,14 @@ li {
 }
 
 .post-header {
-  background-color: lightgray ;
+  background-color:#8C0F54 ;
   display: flex;
   justify-content: space-between;
 }
 
-.textarea-posts {
-  margin-bottom: 10px;
-
-}
-
 .card-btns {
   text-align: left;
-  margin-bottom: 10px;
-  margin-left: 5px;
+  margin: 10px;
 }
 
 li.card {
@@ -205,33 +204,6 @@ li.card {
 
 @media (min-width: 500px) {
 
-  .logo {
-    /* max-width:100%; */
-    margin-left: 7%;
-    /* margin-right: 50%; */
-    height:auto;
-    min-width: 600px;
-    
-  }
-
-  .box-login { 
-    /* margin-top: 5%;
-    margin-right: 5%; */
-    /* justify-content: end; */
-    min-width: 400px;
-    background-color: rgba(218, 218, 253, 0.034);
-    border: 1px solid rgb(215, 231, 204) ;
-    box-shadow: 3px 3px 5px 5px #CCD5D9;
-    margin-right: 7%;
-} 
-
-.js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
-.js-confirm-password-input, .js-date-input, .js-date-input {
-  background-color:white;
-  border-radius: 10px;
-  height: 30px;
-  width: 50%;
-}
   main {
     display: flex;
     flex-direction: row;
@@ -239,6 +211,28 @@ li.card {
     text-align: center;
     margin-top: 7%;
     margin-bottom: 7%;
+  }
+
+  .logo {
+    margin-left: 7%;
+    height:auto;
+    min-width: 600px;
+  }
+
+  .box-login { 
+    min-width: 400px;
+    background-color: rgba(218, 218, 253, 0.034);
+    border: 1px solid rgb(215, 231, 204) ;
+    box-shadow: 3px 3px 5px 5px #CCD5D9;
+    margin-right: 7%;
+  } 
+
+  .js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
+  .js-confirm-password-input, .js-date-input, .js-date-input {
+    background-color:white;
+    border-radius: 10px;
+    height: 30px;
+    width: 50%;
   }
 }
 

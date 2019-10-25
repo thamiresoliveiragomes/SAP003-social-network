@@ -4,7 +4,7 @@ function Card(idPost, date, txt, name) {
     <header class='post-header'> 
         <p class='data'>Postado por ${name} em ${date} 
       </header>
-      <textarea id=${idPost} class='textarea-posts' disabled='true'>${txt}</textarea>
+      <textarea id=${idPost} class='textarea-posts' disabled>${txt}</textarea>
   </li>`;
 
   return template;

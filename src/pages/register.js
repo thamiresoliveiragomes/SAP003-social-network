@@ -1,9 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
-
-// function equal(string, string2) {
-//   return (string === string2)
-// }
+import Image from '../components/image.js';
 
 function saveUser() {
   const firestoreUserCollection = firebase.firestore().collection('users');
@@ -20,18 +17,23 @@ function saveUser() {
     nascimento: nascimento.value,
     user_uid: firebase.auth().currentUser.uid,
   };
+  firestoreUserCollection.add(user);
 }
 
 function create() {
   const email = document.querySelector('.js-email-register-input').value;
   const password = document.querySelector('.js-password-register-input').value;
   const passwordConfirmation = document.querySelector('.js-confirm-password-input').value;
+  const nome = document.querySelector('.js-text-input').value;
+  const sobrenome = document.querySelector('.js-text2-input').value;
   const errorMessage = document.querySelector('.error');
 
-  if (password === passwordConfirmation) {
+  if (nome === '' || sobrenome === '') {
+    errorMessage.textContent = 'Preencha os campos em branco';
+  } else if (password === passwordConfirmation) {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       window.location = '#feed';
-      saveUser();
+      window.saveUser();
     }).catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
@@ -46,30 +48,33 @@ function create() {
   }
 }
 
+
 function Register() {
   const template = `
+    ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'nome' })}
-      ${Input({ type: 'text', class: 'js-text2-input', placeholder: 'sobrenome' })}
-      ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}
-      ${Input({ type: 'date', class: 'js-date-input', placeholder: 'data de nascimento' })}
-      <select class='js-status-input'>
+      ${Input({ type: 'email', class: 'js-email-register-input input-register', placeholder: 'email' })}
+      ${Input({ type: 'password', class: 'js-password-register-input input-register', placeholder: 'senha' })}
+      ${Input({ type: 'password', class: 'js-confirm-password-input input-register', placeholder: 'confirmar senha' })}
+      ${Input({ type: 'text', class: 'js-text-input input-register', placeholder: 'nome' })}
+      ${Input({ type: 'text', class: 'js-text2-input input-register', placeholder: 'sobrenome' })}
+      ${Input({ type: 'text', class: 'js-bio-input input-register', placeholder: 'bio' })}
+      <select class='js-status-input  input-register'>
         <option value= >Status de Relacionamento</option>
-        <option value=Solteiro(a)>Solteiro(a)</option>
-        <option value=Relacionamento Sério>Relacionamento Sério</option> 
-        <option value=Relacionamento Aberto>Relacionamento Aberto</option> 
-        <option value=Casado(a)>Casado(a)</option>
-        <option value=Divorciado(a)>Divorciado(a)</option>
-        <option value=Viúvo(a)>Viúvo(a)</option>";
+        <option value='Solteiro(a)'>Solteiro(a)</option>
+        <option value='Relacionamento Sério'>Relacionamento Sério</option> 
+        <option value='Relacionamento Aberto'>Relacionamento Aberto</option> 
+        <option value='Casado(a)'>Casado(a)</option>
+        <option value='Divorciado(a)'>Divorciado(a)</option>
+        <option value='Viúvo(a)'>Viúvo(a)</option>";
       </select>
-      ${Input({ type: 'email', class: 'js-email-register-input', placeholder: 'email' })}
-      ${Input({ type: 'password', class: 'js-password-register-input', placeholder: 'senha' })}
-      ${Input({ type: 'password', class: 'js-confirm-password-input', placeholder: 'confirmar senha' })}<br>
+      <label>Data de nascimento:</label>
+      ${Input({ type: 'date', class: 'js-date-input input-register', placeholder: 'data de nascimento' })}<div>
       ${Button({ class: 'create', title: 'Criar conta', onclick: create })}
     </form>
-    <p class="error"></p><br>
+    <p class="error"></p>
     <p>Já tem uma conta? <a href="#login">Fazer Login</a></p>
     </section>
   `;
