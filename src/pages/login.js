@@ -30,7 +30,6 @@ function Login() {
   window.location.href = '#login';
   const template = `
     ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
- 
     <section class="box-login">
       <h1 class="title">&lt Yellow Bag &gt</h1>
       <h3 class="subtitle">Bem vindo, viajante!</h3>
@@ -42,7 +41,7 @@ function Login() {
       <section class="error"></section>
       <label>Entrar com a conta do Google</label>
         ${RoundButton({ icone: 'fab fa-google', class: 'google', title: 'google', onclick: google })}
-    <p>Ainda não tem uma conta? <a href="#register">Registre-se</a></p>
+      <p>Ainda não tem uma conta? <a href="#register">Registre-se</a></p>
     </section>
     `;
 

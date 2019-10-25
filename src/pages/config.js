@@ -68,7 +68,7 @@ function Config() {
       ${Button({ class: 'cancel', title: 'Cancelar', onclick: cancel })}
       ${Button({ class: 'update', title: 'Salvar', onclick: save })}
     </form>
-    </section>
+  </section>
   `;
   userInfo();
   return template;

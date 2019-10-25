@@ -1,5 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
+import Image from '../components/image.js';
 
 function saveUser() {
   const firestoreUserCollection = firebase.firestore().collection('users');
@@ -50,6 +51,7 @@ function create() {
 
 function Register() {
   const template = `
+    ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>
@@ -72,7 +74,7 @@ function Register() {
       ${Input({ type: 'date', class: 'js-date-input input-register', placeholder: 'data de nascimento' })}<div>
       ${Button({ class: 'create', title: 'Criar conta', onclick: create })}
     </form>
-    <p class="error"></p><br>
+    <p class="error"></p>
     <p>Já tem uma conta? <a href="#login">Fazer Login</a></p>
     </section>
   `;

@@ -87,6 +87,7 @@ function loadData(classe) {
 
 function savePost() {
   const txt = document.querySelector('.js-text-input');
+  console.log(txt)
   const post = {
     txt: txt.value,
     date: new Date(),
@@ -143,7 +144,7 @@ function Feed() {
 
   <section class="box-post">
     <form>
-      ${Input({ type: 'text', class: 'js-text-input input-feed', placeholder: 'Escreva sua publicação aqui...' })}<br>
+      <textarea class='js-text-input input-feed' placeholder= 'Escreva sua publicação aqui...'> </textarea><br>
       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
     </form>
   <ul class="js-post"></ul>
