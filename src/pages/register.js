@@ -1,5 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
+import Image from '../components/image.js';
 
 // function equal(string, string2) {
 //   return (string === string2)
@@ -49,6 +50,7 @@ function create() {
 
 function Register() {
   const template = `
+    ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
     <section class="box-login">
     <h1>Criar Conta</h1>
     <form>

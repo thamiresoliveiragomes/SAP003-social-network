@@ -1,7 +1,6 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Card from '../components/card.js';
-import RoundButton from '../components/round-button.js';
 import CardUser from '../components/card-user.js';
 
 function logout() {
@@ -76,6 +75,7 @@ function printData(post, classe) {
 
       });
     });
+    // return postList;
 }
 
 function loadData(classe) {
@@ -167,6 +167,7 @@ function Feed() {
   return template;
 }
 
+// melhor padronizar igual as outras paginas, nao?!
 window.app = {
   loadData,
   printData,

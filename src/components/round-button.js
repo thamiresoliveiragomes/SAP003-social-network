@@ -1,6 +1,8 @@
 function RoundButton(props) {
   const template = `
-    <button class="${props.icone} ${props.class} secondary-button" data-id="${props.dataId}" onclick="roundButton.handleClick(event, ${props.onclick})">${props.title}</button>
+    <button class="${props.icone} ${props.class} secondary-button" 
+      data-id="${props.dataId}" onclick="roundButton.handleClick(event, ${props.onclick})">${props.title}
+    </button>
   `;
   return template;
 }

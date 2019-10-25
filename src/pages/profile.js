@@ -16,10 +16,12 @@ function printProfile(user) {
   const bio = user.data().bio;
   const status = user.data().status;
   const profileTemplate = `
-    <h3>${nome} ${sobrenome}</h3>
-    <p>${nascimento}</p> 
-    <p>${status}</p>
-    <p>${bio}</p>
+    <section class="box-profile1">
+      <h3>${nome} ${sobrenome}</h3>
+      <p>Nascida em ${nascimento}</p> 
+      <p>${status}</p>
+      <p>Sobre mim: ${bio}</p>
+    </section>
     `;
 
   userProfile.innerHTML = profileTemplate;
@@ -50,7 +52,7 @@ function userPosts() {
 function Profile() {
   const template = `
     <section class="box-profile">
-    <p class="js-profile"></p>
+      <p class="js-profile"></p>
       ${Button({ class: 'edit', title: 'Editar', onclick: edit })}
       ${Button({ class: 'voltar', title: 'Ir para o Feed', onclick: feed })}
       </section>
