@@ -22,7 +22,7 @@ function editPost(event) {
   const id = event.currentTarget.dataset.id;
   document.querySelector(`textarea[id='${id}']`).disabled = false;
   const saveButton = document.querySelector(`.save[data-id='${id}']`);
-  saveButton.style.display = 'block';
+  saveButton.style.display = 'inline-block';
 }
 
 function savePostEdited(event) {
@@ -143,7 +143,7 @@ function Feed() {
 
   <section class="box-post">
     <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'Escreva sua publicação aqui...' })}<br>
+      ${Input({ type: 'text', class: 'js-text-input input-feed', placeholder: 'Escreva sua publicação aqui...' })}<br>
       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
     </form>
   <ul class="js-post"></ul>

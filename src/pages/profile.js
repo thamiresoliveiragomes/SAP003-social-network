@@ -16,7 +16,7 @@ function printProfile(user) {
   const bio = user.data().bio;
   const status = user.data().status;
   const profileTemplate = `
-    <section class="perfil-user" disabled>
+    <section class="perfil-user">
     <h3>${nome} ${sobrenome}</h3>
     <p>${nascimento}</p> 
     <p>${status}</p>

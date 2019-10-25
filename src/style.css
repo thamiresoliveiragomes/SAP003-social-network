@@ -76,26 +76,30 @@ main {
   /* list-style-type: none; */
 }
 
-.entrada {
+.input-entrada {
   background-color:#CCD5D9;
   border-radius: 20px;
   /* height: 25px; */
   margin: 5px 5px 5px 5px;
   outline:none;
-
-    height: 30px;
-    width: 80%;
+  height: 30px;
+  width: 80%;
+  outline: none;
 }
 
-.js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
-.js-confirm-password-input, .js-date-input, .js-date-input {
+.input-register, .input-config {
   /* height: 5px; */
   background-color:white;
   border-radius: 15px;
   height: 30px;
   width: 70%;
+  display: block;
+  margin: 10px auto;
+  outline: none;
 }
-
+.box-config {
+  text-align: center;
+}
 .create {
   /* display: inline-block; */
   /* margin-top: 20px; */
@@ -118,6 +122,10 @@ main {
   text-align: center;
 }
 
+textarea {
+  resize: none;
+  height: auto;
+}
 .navbar {
   /* background-color: #CCD5D9; */
   width: 100%;
@@ -182,15 +190,9 @@ li {
   justify-content: space-between;
 }
 
-.textarea-posts {
-  margin-bottom: 10px;
-
-}
-
 .card-btns {
   text-align: left;
-  margin-bottom: 10px;
-  margin-left: 5px;
+  margin: 10px;
 }
 
 li.card {

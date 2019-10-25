@@ -35,8 +35,8 @@ function Login() {
       <h1 class="title">&lt Yellow Bag &gt</h1>
       <h3 class="subtitle">Bem vindo, viajante!</h3>
         <form>
-          ${Input({ type: 'email', class: 'js-email-input', placeholder: ' Email' })}
-          ${Input({ type: 'password', class: 'js-password-input', placeholder: ' Senha' })}
+          ${Input({ type: 'email', class: 'js-email-input input-entrada', placeholder: ' Email' })}
+          ${Input({ type: 'password', class: 'js-password-input input-entrada', placeholder: ' Senha' })}
           ${Button({ class: 'signIn', title: 'Entrar', onclick: signIn })}
        </form>
       <section class="error"></section>

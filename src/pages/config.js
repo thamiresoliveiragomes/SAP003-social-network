@@ -50,12 +50,11 @@ function Config() {
   const template = `
   <section class="box-config">
     <h1>Editar Dados</h1>
-    <form>
-      ${Input({ type: 'text', class: 'js-text-input', placeholder: 'nome' })}<br>
-      ${Input({ type: 'text', class: 'js-text2-input', placeholder: 'sobrenome' })}<br>
-      ${Input({ type: 'text', class: 'js-bio-input', placeholder: 'bio' })}<br>
-      ${Input({ type: 'date', class: 'js-date-input' })}<br>
-      <select class='js-status-input'>
+    <form class='form-config'>
+      ${Input({ type: 'text', class: 'js-text-input input-config', placeholder: 'nome' })}
+      ${Input({ type: 'text', class: 'js-text2-input input-config', placeholder: 'sobrenome' })}
+      ${Input({ type: 'text', class: 'js-bio-input input-config', placeholder: 'bio' })}
+      <select class='js-status-input input-config'>
         <option value= >Status de Relacionamento</option>
         <option value=Solteiro(a)>Solteiro(a)</option>
         <option value='Relacionamento Sério'>Relacionamento Sério</option> 
@@ -63,9 +62,11 @@ function Config() {
         <option value=Casado(a)>Casado(a)</option>
         <option value=Divorciado(a)>Divorciado(a)</option>
         <option value=Viúvo(a)>Viúvo(a)</option>";
-      </select>
-      ${Button({ class: 'cancel', title: 'Cancelar', onclick: cancel })}<br>
-      ${Button({ class: 'update', title: 'Salvar', onclick: save })}<br>
+      </select><br>
+      <label>Data de Nascimento:</label>
+      ${Input({ type: 'date', class: 'js-date-input input-config' })}
+      ${Button({ class: 'cancel', title: 'Cancelar', onclick: cancel })}
+      ${Button({ class: 'update', title: 'Salvar', onclick: save })}
     </form>
     </section>
   `;
