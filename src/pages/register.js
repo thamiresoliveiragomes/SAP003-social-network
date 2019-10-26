@@ -52,7 +52,7 @@ function create() {
 function Register() {
   const template = `
     ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
-    <section class="box-login">
+    <section class="box-register">
     <h1>Criar Conta</h1>
     <form>
       ${Input({ type: 'email', class: 'js-email-register-input input-register', placeholder: 'email' })}
@@ -60,7 +60,7 @@ function Register() {
       ${Input({ type: 'password', class: 'js-confirm-password-input input-register', placeholder: 'confirmar senha' })}
       ${Input({ type: 'text', class: 'js-text-input input-register', placeholder: 'nome' })}
       ${Input({ type: 'text', class: 'js-text2-input input-register', placeholder: 'sobrenome' })}
-      ${Input({ type: 'text', class: 'js-bio-input input-register', placeholder: 'bio' })}
+      ${Input({ type: 'text', maxlength: '100', class: 'js-bio-input input-register', placeholder: 'bio' })}
       <select class='js-status-input  input-register'>
         <option value= >Status de Relacionamento</option>
         <option value='Solteiro(a)'>Solteiro(a)</option>

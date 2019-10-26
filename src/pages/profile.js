@@ -17,10 +17,13 @@ function printProfile(user) {
   const status = user.data().status;
   const profileTemplate = `
     <section class="box-profile1">
-      <h3>${nome} ${sobrenome}</h3>
-      <p>Nascida em ${nascimento}</p> 
-      <p>${status}</p>
-      <p>Sobre mim: ${bio}</p>
+      <div class="foto"></div>
+      <div class="dados">
+        <h4>${nome} ${sobrenome}</h4>
+        <p class="dados2">${bio}</p>
+        <p class="dados2">Nascida em ${nascimento}</p> 
+        <p class="dados2">${status}</p>
+      </div>
     </section>
     `;
 

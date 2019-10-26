@@ -61,13 +61,14 @@ main {
   background-color: #CCD5D9;
 }
 
-.box-login, .box-config {
+.box-login, .box-config, .box-register {
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
+
 .input-feed {
   height: 80px;
   width: 250px;
@@ -93,9 +94,6 @@ main {
   margin: 10px auto;
   outline: none;
 }
-.box-config {
-  text-align: center;
-}
 
 .error {
   color: red;
@@ -106,7 +104,6 @@ main {
   color:#CCD5D9;
   font-size: 0.7em;
   text-align: right;
-  
 }
 
 .box-intro {
@@ -123,6 +120,7 @@ main {
 textarea {
   resize: none;
 }
+
 .navbar {
   /* background-color: #CCD5D9; */
   width: 100%;
@@ -166,9 +164,31 @@ textarea {
 
 .box-profile1 {
   text-align: left;
-  padding-left: 2%;
-  border: ridge #CCD5D9;
-  /* list-style-type: none; */
+  /* border: ridge #CCD5D9; */
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 200px;
+  grid-gap: 30px;
+  grid-template-areas: "foto  dados";
+}
+
+.foto {
+  grid-area: foto;
+  background-color: rgba(141, 61, 61, 0.438);
+	width: 100px;
+	height: 100px;
+  border-radius: 50%;
+  margin-top: 3git 0%;
+  margin-left: 10px;
+}
+
+.dados {
+  grid-area: dados;
+}
+
+.dados2 {
+  font: normal 0.8em arial;
+  color: rgb(155, 162, 165);
 }
 
 li {
@@ -227,6 +247,23 @@ li.card {
     margin-right: 7%;
   } 
 
+  .box-register { 
+    min-width: 400px;
+    background-color: rgba(218, 218, 253, 0.034);
+    margin-right: 7%;
+  } 
+
+  .box-config {
+    min-width: 400px;
+  }
+
+  .box-profile1 {
+    text-align: left;
+    padding-left: 2%;
+    border: ridge #CCD5D9;
+    /* list-style-type: none; */
+  }
+
   .js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
   .js-confirm-password-input, .js-date-input, .js-date-input {
     background-color:white;
@@ -236,3 +273,10 @@ li.card {
   }
 }
 
+/* palheta de cores:
+  #8C0F54 ROXO
+  #CCD5D9 CINZA
+  #54BFB5 AZUL
+  #F2C84B AMARELINHO
+  #F29F05 AMARELAO
+   */
