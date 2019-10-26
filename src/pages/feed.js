@@ -1,5 +1,4 @@
 import Button from '../components/button.js';
-import Input from '../components/input.js';
 import Card from '../components/card.js';
 import CardUser from '../components/card-user.js';
 
@@ -14,9 +13,20 @@ function profile() {
   window.location = '#profile';
 }
 
-function edit() {
-  window.location = '#config';
-}
+function likePost(event) {
+  const id = event.currentTarget.dataset.id;
+  // const likeButton = document.querySelector(`.like[data-id='${id}']`);
+  // likeButton.disabled = true; 
+  const postCollection = firebase.firestore().collection('posts');
+  postCollection.doc(id).get().then((post) => { 
+    const likes = (post.data().likes) + 1;
+    postCollection.doc(id).update({
+      likes,
+    });
+    const likeButton = document.querySelector(`.like[data-id='${id}']`);
+    likeButton.disabled = true;
+  });
+};
 
 function editPost(event) {
   const id = event.currentTarget.dataset.id;
@@ -49,6 +59,7 @@ function printData(post, classe) {
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
   const txt = post.data().txt;
+  const likes = post.data().likes;
   const userId = post.data().user_uid;
 
   const usersCollection = firebase.firestore().collection('users');
@@ -61,17 +72,22 @@ function printData(post, classe) {
           ${CardUser(idPost, date, txt, nome)}
           `;
           postList.innerHTML += postTemplateUser;
+
+          const posts = document.getElementById(idPost);
+          posts.style.height = `${posts.scrollHeight}px`;
         } else {
           const postTemplate = `
-            ${Card(idPost, date, txt, nome)}
-          `;
+            ${Card(idPost, date, txt, nome, likes)}
+            `;
           postList.innerHTML += postTemplate;
+
+          const posts = document.getElementById(idPost);
+          posts.style.height = `${posts.scrollHeight}px`;
         }
       }
     });
   });
 }
-
 
 function loadData(classe) {
   const postCollection = firebase.firestore().collection('posts');
@@ -87,7 +103,6 @@ function loadData(classe) {
 
 function savePost() {
   const txt = document.querySelector('.js-text-input');
-  console.log(txt)
   const post = {
     txt: txt.value,
     date: new Date(),
@@ -99,6 +114,7 @@ function savePost() {
   postCollection.add(post)
     .then(() => {
       txt.value = '';
+      txt.style.height = '34px';
     });
 }
 
@@ -129,7 +145,6 @@ function Feed() {
       ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>' })}
       <ul class="toggle-content" id="lista-menu">
         <li> ${Button({ class: 'profile', title: 'Perfil', onclick: profile })} </li>
-        <li> ${Button({ class: 'profile', title: 'Editar', onclick: edit })}</li>
         <li> ${Button({ class: 'profile', title: 'Sair', onclick: logout })}</li>
         </ul>
     </div>
@@ -151,6 +166,7 @@ function Feed() {
   </section>
   `;
   window.location = '#feed';
+
   return template;
 }
 
@@ -159,8 +175,11 @@ window.app = {
   printData,
   postDelete,
   printName,
+  likePost,
   editPost,
   savePostEdited,
+  showMenubar,
+  logout,
 };
 
 export default Feed;

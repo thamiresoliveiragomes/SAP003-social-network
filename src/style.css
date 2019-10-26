@@ -6,6 +6,10 @@ main {
   justify-content: center;
 }
 
+body {
+  background-image: url("/src/imagens/Fundo1.png");
+}
+
 .primary-button {
   background-color: #F2C84B;
   font-size: 0.8rem;
@@ -23,8 +27,9 @@ main {
   background-color: transparent;
 }
 
-.editar {
-  background-color: lightgreen;
+.editar, .save {
+  background-color: #F29F05
+  ;
 }
 
 .logo {
@@ -70,7 +75,6 @@ main {
 }
 
 .input-feed {
-  height: 80px;
   width: 250px;
 }
 
@@ -113,8 +117,13 @@ main {
 }
 
 .textarea-posts {
-  height: 50px;
+  min-height: 30px;
+  padding: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
   width: auto;
+  padding: 10px;
+  vertical-align: center;
 }
 
 textarea {
@@ -141,7 +150,7 @@ textarea {
 
 .navbar-brand {
   flex-basis: 100%;
-  align-self: center;
+  /* align-self: center; */
   font-size: larger;
 }
 
@@ -162,9 +171,12 @@ textarea {
   padding: 10px;
 }
 
+.box-profile {
+  text-align: center;
+}
+
 .box-profile1 {
   text-align: left;
-  /* border: ridge #CCD5D9; */
   display: grid;
   grid-template-columns: 100px auto;
   grid-template-rows: 200px;
@@ -174,11 +186,11 @@ textarea {
 
 .foto {
   grid-area: foto;
-  background-color: rgba(141, 61, 61, 0.438);
+  background-color: rgba(61, 136, 141, 0.438);
 	width: 100px;
 	height: 100px;
   border-radius: 50%;
-  margin-top: 3git 0%;
+  margin-top: 30%;
   margin-left: 10px;
 }
 
@@ -187,8 +199,12 @@ textarea {
 }
 
 .dados2 {
-  font: normal 0.8em arial;
+  font: normal 0.8em sans-serif;
   color: rgb(155, 162, 165);
+}
+
+.edit {
+  grid-area: edit;
 }
 
 li {
@@ -197,7 +213,6 @@ li {
 }
 
 .js-post, .js-user-post {
-  list-style-type: none;
   padding-inline-start: 0px;
 }
 
@@ -209,7 +224,9 @@ li {
 
 .card-btns {
   text-align: left;
-  margin: 10px;
+  padding: 10px;
+  /* background-color:#F2C84B */
+  ;
 }
 
 li.card {
@@ -224,7 +241,7 @@ li.card {
 
 @media (min-width: 500px) {
 
-  main {
+  .tela {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -257,20 +274,49 @@ li.card {
     min-width: 400px;
   }
 
-  .box-profile1 {
-    text-align: left;
-    padding-left: 2%;
-    border: ridge #CCD5D9;
-    /* list-style-type: none; */
+  .input-config {
+    width: 50%;
   }
 
   .js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
   .js-confirm-password-input, .js-date-input, .js-date-input {
-    background-color:white;
-    border-radius: 10px;
-    height: 30px;
-    width: 50%;
+    
   }
+
+.register, .config {
+  background-color:white;
+  border-radius: 10px;
+  height: 30px;
+  width: 50%;
+}
+
+.box-profile {
+  text-align: center;
+  margin-right: 50%;
+}
+
+.box-profile1 {
+  /* justify-content: left; */
+  /* display: inline-block; */
+  text-align: left;
+  border: ridge #CCD5D9;
+  width: 350px;
+  margin-top: 100px;
+
+}
+
+.nav-btn-div {
+  flex-basis: 50%;
+}
+
+.nav-btn {
+  width: 100px;
+}
+
+.navbar-brand {
+  margin-right: 25%;
+  margin-left: 25%;
+}
 }
 
 /* palheta de cores:

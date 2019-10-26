@@ -16,6 +16,7 @@ function printProfile(user) {
   const bio = user.data().bio;
   const status = user.data().status;
   const profileTemplate = `
+  <section class="box-profile">
     <section class="box-profile1">
       <div class="foto"></div>
       <div class="dados">
@@ -25,6 +26,8 @@ function printProfile(user) {
         <p class="dados2">${status}</p>
       </div>
     </section>
+    ${Button({ class: 'edit', title: 'Editar', onclick: edit })}
+  </section>
     `;
 
   userProfile.innerHTML = profileTemplate;
@@ -54,12 +57,22 @@ function userPosts() {
 
 function Profile() {
   const template = `
-    <section class="box-profile">
+    <nav class="navbar">
+    <div class="nav-btn-div">
+      ${Button({ class: 'nav-btn', onclick: window.app.showMenubar, title: '<i class="fas fa-bars"></i>' })}
+      <ul class="toggle-content" id="lista-menu">
+        <li> ${Button({ class: 'profile', title: 'Feed', onclick: feed })} </li>
+        <li> ${Button({ class: 'profile', title: 'Sair', onclick: window.app.logout })}</li>
+        </ul>
+    </div>
+    <a class="navbar-brand title">&lt Yellow Bag &gt</a>
+    </nav>
+    <section>
       <p class="js-profile"></p>
-      ${Button({ class: 'edit', title: 'Editar', onclick: edit })}
-      ${Button({ class: 'voltar', title: 'Ir para o Feed', onclick: feed })}
+    </section>
+      <section class="box-post">
+        <ul class="js-user-post"></ul>
       </section>
-      <ul class="js-user-post"></ul>
       `;
   return template;
 }
