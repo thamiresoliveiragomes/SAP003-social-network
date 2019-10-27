@@ -16,6 +16,7 @@ function printProfile(user) {
   const bio = user.data().bio;
   const status = user.data().status;
   const profileTemplate = `
+  <section class="body-profile"></section>
   <section class="box-profile">
     <section class="box-profile1">
       <div class="foto"></div>
@@ -67,9 +68,7 @@ function Profile() {
     </div>
     <a class="navbar-brand title">&lt Yellow Bag &gt</a>
     </nav>
-    <section>
-      <p class="js-profile"></p>
-    </section>
+    <p class="js-profile"></p>
       <section class="box-post">
         <ul class="js-user-post"></ul>
       </section>

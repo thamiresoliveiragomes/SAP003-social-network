@@ -150,19 +150,23 @@ function Feed() {
     </div>
     <a class="navbar-brand title">&lt Yellow Bag &gt</a>
   </nav>
-
-  <section class="box-intro">
-    <h4 class='name' id='name'></h4>
-    <p>Compartilhe suas aventuras!</p>
-
+  
+  <section class="body-feed">
+  <section class="box-profile2">
+    <div class="foto"></div>
+    <div class="dados">
+      <h4 class='name' id='name'></h4>
+      <p>Compartilhe suas aventuras!</p>
+    </div>
   </section>
 
-  <section class="box-post">
-    <form>
+  <section class="box-post-feed">
+    <form class="form-feed">
       <textarea class='js-text-input input-feed' placeholder= 'Escreva sua publicação aqui...'> </textarea><br>
       ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
     </form>
   <ul class="js-post"></ul>
+  </section>
   </section>
   `;
   window.location = '#feed';

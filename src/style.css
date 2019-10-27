@@ -6,9 +6,9 @@ main {
   justify-content: center;
 }
 
-body {
+/* body {
   background-image: url("/src/imagens/Fundo1.png");
-}
+} */
 
 .primary-button {
   background-color: #F2C84B;
@@ -23,13 +23,22 @@ body {
   outline: none;
 }
 
+.secondary-button{
+  border-radius: 50%;
+  padding: 8px;
+  width: 35px;
+  border: none;
+}
+
+.form-feed {
+  text-align: center;
+}
 .deletar {
   background-color: transparent;
 }
 
 .editar, .save {
-  background-color: #F29F05
-  ;
+  background-color: #F29F05;
 }
 
 .logo {
@@ -42,11 +51,15 @@ body {
   width: 100px;
 }
 
-.secondary-button{
-  border-radius: 50%;
-  padding: 8px;
-  width: 35px;
-  border: none;
+.error {
+  color: red;
+}
+
+.data {
+  margin-left: 10px;
+  color:#CCD5D9;
+  font-size: 0.7em;
+  text-align: right;
 }
 
 .title {
@@ -66,16 +79,10 @@ body {
   background-color: #CCD5D9;
 }
 
-.box-login, .box-config, .box-register {
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
 .input-feed {
   width: 250px;
+  padding: 2px;
+  margin: 2px;
 }
 
 .input-entrada {
@@ -89,7 +96,6 @@ body {
 }
 
 .input-register, .input-config {
-  /* height: 5px; */
   background-color:white;
   border-radius: 15px;
   height: 30px;
@@ -99,15 +105,12 @@ body {
   outline: none;
 }
 
-.error {
-  color: red;
-}
-
-.data {
-  margin-left: 10px;
-  color:#CCD5D9;
-  font-size: 0.7em;
-  text-align: right;
+.box-login, .box-config, .box-register {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .box-intro {
@@ -116,66 +119,19 @@ body {
   text-align: center;
 }
 
-.textarea-posts {
-  min-height: 30px;
-  padding: 5px;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: auto;
-  padding: 10px;
-  vertical-align: center;
-}
-
-textarea {
-  resize: none;
-}
-
-.navbar {
-  /* background-color: #CCD5D9; */
-  width: 100%;
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: row;
-}
-
-.nav-btn-div {
-  flex-basis: 55%;
-}
-
-.nav-btn {
-  border-radius: 0px;
-  margin: 0px 5px;
-  width: 50px;
-}
-
-.navbar-brand {
-  flex-basis: 100%;
-  /* align-self: center; */
-  font-size: larger;
-}
-
-.toggle-content {
-  display: none;
-  padding: 0px;
-  margin: 0px 5px;
-}
-
-.profile {
-  width: 50px;
-  margin: 0px;
-  border-radius: 0px;
-}
-
 .box-post {
   text-align: center;
   padding: 10px;
 }
 
-.box-profile {
+.box-profile, .box-profile2 {
   text-align: center;
+  background-image: url(.//imagens/profile.png);
+  background-repeat: no-repeat;
+  padding-top: 60px;
 }
 
-.box-profile1 {
+.box-profile1, .box-profile2 {
   text-align: left;
   display: grid;
   grid-template-columns: 100px auto;
@@ -203,8 +159,52 @@ textarea {
   color: rgb(155, 162, 165);
 }
 
-.edit {
-  grid-area: edit;
+.textarea-posts {
+  min-height: 30px;
+  padding: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: auto;
+  padding: 10px;
+  vertical-align: center;
+}
+
+textarea {
+  resize: none;
+}
+
+.navbar {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-btn-div {
+  flex-basis: 55%;
+}
+
+.nav-btn {
+  border-radius: 0px;
+  margin: 0px 5px;
+  width: 50px;
+}
+
+.navbar-brand {
+  flex-basis: 100%;
+  font-size: larger;
+}
+
+.toggle-content {
+  display: none;
+  padding: 0px;
+  margin: 0px 5px;
+}
+
+.profile {
+  width: 50px;
+  margin: 0px;
+  border-radius: 0px;
 }
 
 li {
@@ -225,12 +225,9 @@ li {
 .card-btns {
   text-align: left;
   padding: 10px;
-  /* background-color:#F2C84B */
-  ;
 }
 
 li.card {
-  
   border: 1px solid;
   margin-bottom: 20px;
 }
@@ -278,45 +275,101 @@ li.card {
     width: 50%;
   }
 
-  .js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
-  .js-confirm-password-input, .js-date-input, .js-date-input {
-    
+  .register, .config {
+    background-color:white;
+    border-radius: 10px;
+    height: 30px;
+    width: 50%;
   }
 
-.register, .config {
-  background-color:white;
-  border-radius: 10px;
-  height: 30px;
-  width: 50%;
-}
+  .box-profile1 {
+    text-align: left;
+    width: 350px;
+  }
 
-.box-profile {
-  text-align: center;
-  margin-right: 50%;
-}
+  .nav-btn-div {
+    flex-basis: 50%;
+  }
 
-.box-profile1 {
-  /* justify-content: left; */
-  /* display: inline-block; */
-  text-align: left;
-  border: ridge #CCD5D9;
-  width: 350px;
-  margin-top: 100px;
+  .navbar-brand {
+    margin-right: 25%;
+    margin-left: 25%;
+  }
 
-}
+  .body-profile {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    grid-template-areas: "box-profile  box-post";
+  }
 
-.nav-btn-div {
-  flex-basis: 50%;
-}
+  .box-profile {
+    grid-area: box-profile;
+    text-align: center;
+    display: inline-block;
+    margin-left: 80px;
+    margin-top: 50px;
+    border: ridge rgba(204, 213, 217, 0.486);
+    background-image: url(.//imagens/profile.png);
+    background-repeat: no-repeat;
+  }
 
-.nav-btn {
-  width: 100px;
-}
+  .box-post {
+    grid-area: box-post;
+    margin-left: 500px;
+    margin-top: -365px;
+    max-width: 700px;
+    min-width: 300px;
+  }
 
-.navbar-brand {
-  margin-right: 25%;
-  margin-left: 25%;
-}
+
+  .body-feed {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    grid-template-areas: "box-profile2  box-post-feed";
+  }
+
+  .box-profile2 {
+    grid-area: box-profile2;
+    text-align: center;
+    margin-left: 80px;
+    margin-top: 50px;
+    border: ridge rgba(204, 213, 217, 0.486);
+    background-image: url(.//imagens/profile.png);
+    background-repeat: no-repeat;
+    padding-top: 70px;
+    width: 300px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-template-rows: 200px;
+    grid-gap: 30px;
+    grid-template-areas: "foto  dados";
+  }
+
+  .box-post-feed {
+    grid-area: box-post-feed;
+    margin-left: 200px;
+    margin-top: 50px;
+    max-width: 700px;
+    min-width: 300px;
+  }
+
+   .foto {
+    grid-area: foto;
+  }
+  
+  .dados {
+    grid-area: dados;
+    padding-top: 20px;
+  }
+  
+  
 }
 
 /* palheta de cores:
