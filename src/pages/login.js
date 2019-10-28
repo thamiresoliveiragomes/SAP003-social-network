@@ -29,6 +29,7 @@ function google() {
 function Login() {
   window.location.href = '#login';
   const template = `
+  <main class="tela">
     ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
     <section class="box-login">
       <h1 class="title">&lt Yellow Bag &gt</h1>
@@ -43,6 +44,7 @@ function Login() {
         ${RoundButton({ icone: 'fab fa-google', class: 'google', title: 'google', onclick: google })}
       <p>Ainda não tem uma conta? <a href="#register">Registre-se</a></p>
     </section>
+    </main>
     `;
 
   return template;

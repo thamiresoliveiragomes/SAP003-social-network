@@ -6,6 +6,10 @@ main {
   justify-content: center;
 }
 
+/* body {
+  background-image: url("/src/imagens/Fundo1.png");
+} */
+
 .primary-button {
   background-color: #F2C84B;
   font-size: 0.8rem;
@@ -19,12 +23,22 @@ main {
   outline: none;
 }
 
+.secondary-button{
+  border-radius: 50%;
+  padding: 8px;
+  width: 35px;
+  border: none;
+}
+
+.form-feed {
+  text-align: center;
+}
 .deletar {
   background-color: transparent;
 }
 
-.editar {
-  background-color: lightgreen;
+.editar, .save {
+  background-color: #F29F05;
 }
 
 .logo {
@@ -37,11 +51,15 @@ main {
   width: 100px;
 }
 
-.secondary-button{
-  border-radius: 50%;
-  padding: 8px;
-  width: 35px;
-  border: none;
+.error {
+  color: red;
+}
+
+.data {
+  margin-left: 10px;
+  color:#CCD5D9;
+  font-size: 0.7em;
+  text-align: right;
 }
 
 .title {
@@ -61,16 +79,10 @@ main {
   background-color: #CCD5D9;
 }
 
-.box-login, .box-config {
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
 .input-feed {
-  height: 80px;
   width: 250px;
+  padding: 2px;
+  margin: 2px;
 }
 
 .input-entrada {
@@ -84,7 +96,6 @@ main {
 }
 
 .input-register, .input-config {
-  /* height: 5px; */
   background-color:white;
   border-radius: 15px;
   height: 30px;
@@ -93,20 +104,13 @@ main {
   margin: 10px auto;
   outline: none;
 }
-.box-config {
+
+.box-login, .box-config, .box-register {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-}
-
-.error {
-  color: red;
-}
-
-.data {
-  margin-left: 10px;
-  color:#CCD5D9;
-  font-size: 0.7em;
-  text-align: right;
-  
 }
 
 .box-intro {
@@ -115,16 +119,61 @@ main {
   text-align: center;
 }
 
+.box-post {
+  text-align: center;
+  padding: 10px;
+}
+
+.box-profile, .box-profile2 {
+  text-align: center;
+  background-image: url(.//imagens/profile.png);
+  background-repeat: no-repeat;
+  padding-top: 60px;
+}
+
+.box-profile1, .box-profile2 {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 200px;
+  grid-gap: 30px;
+  grid-template-areas: "foto  dados";
+}
+
+.foto {
+  grid-area: foto;
+  background-color: rgba(61, 136, 141, 0.438);
+	width: 100px;
+	height: 100px;
+  border-radius: 50%;
+  margin-top: 30%;
+  margin-left: 10px;
+}
+
+.dados {
+  grid-area: dados;
+}
+
+.dados2 {
+  font: normal 0.8em sans-serif;
+  color: rgb(155, 162, 165);
+}
+
 .textarea-posts {
-  height: 50px;
+  min-height: 30px;
+  padding: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
   width: auto;
+  padding: 10px;
+  vertical-align: center;
 }
 
 textarea {
   resize: none;
 }
+
 .navbar {
-  /* background-color: #CCD5D9; */
   width: 100%;
   padding: 10px 0px;
   display: flex;
@@ -143,7 +192,6 @@ textarea {
 
 .navbar-brand {
   flex-basis: 100%;
-  align-self: center;
   font-size: larger;
 }
 
@@ -159,25 +207,12 @@ textarea {
   border-radius: 0px;
 }
 
-.box-post {
-  text-align: center;
-  padding: 10px;
-}
-
-.box-profile1 {
-  text-align: left;
-  padding-left: 2%;
-  border: ridge #CCD5D9;
-  /* list-style-type: none; */
-}
-
 li {
   display: flex;
   flex-direction: column;
 }
 
 .js-post, .js-user-post {
-  list-style-type: none;
   padding-inline-start: 0px;
 }
 
@@ -189,11 +224,10 @@ li {
 
 .card-btns {
   text-align: left;
-  margin: 10px;
+  padding: 10px;
 }
 
 li.card {
-  
   border: 1px solid;
   margin-bottom: 20px;
 }
@@ -204,7 +238,7 @@ li.card {
 
 @media (min-width: 500px) {
 
-  main {
+  .tela {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -227,12 +261,121 @@ li.card {
     margin-right: 7%;
   } 
 
-  .js-email-register-input, .js-password-register-input, .js-text-input, .js-text2-input, .js-bio-input, .js-status-input, 
-  .js-confirm-password-input, .js-date-input, .js-date-input {
+  .box-register { 
+    min-width: 400px;
+    background-color: rgba(218, 218, 253, 0.034);
+    margin-right: 7%;
+  } 
+
+  .box-config {
+    min-width: 400px;
+  }
+
+  .input-config {
+    width: 50%;
+  }
+
+  .register, .config {
     background-color:white;
     border-radius: 10px;
     height: 30px;
     width: 50%;
   }
+
+  .box-profile1 {
+    text-align: left;
+    width: 350px;
+  }
+
+  .nav-btn-div {
+    flex-basis: 50%;
+  }
+
+  .navbar-brand {
+    margin-right: 25%;
+    margin-left: 25%;
+  }
+
+  .body-profile {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    grid-template-areas: "box-profile  box-post";
+  }
+
+  .box-profile {
+    grid-area: box-profile;
+    text-align: center;
+    display: inline-block;
+    margin-left: 80px;
+    margin-top: 50px;
+    border: ridge rgba(204, 213, 217, 0.486);
+    background-image: url(.//imagens/profile.png);
+    background-repeat: no-repeat;
+  }
+
+  .box-post {
+    grid-area: box-post;
+    margin-left: 500px;
+    margin-top: -365px;
+    max-width: 700px;
+    min-width: 300px;
+  }
+
+
+  .body-feed {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+    grid-template-areas: "box-profile2  box-post-feed";
+  }
+
+  .box-profile2 {
+    grid-area: box-profile2;
+    text-align: center;
+    margin-left: 80px;
+    margin-top: 50px;
+    border: ridge rgba(204, 213, 217, 0.486);
+    background-image: url(.//imagens/profile.png);
+    background-repeat: no-repeat;
+    padding-top: 70px;
+    width: 300px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-template-rows: 200px;
+    grid-gap: 30px;
+    grid-template-areas: "foto  dados";
+  }
+
+  .box-post-feed {
+    grid-area: box-post-feed;
+    margin-left: 200px;
+    margin-top: 50px;
+    max-width: 700px;
+    min-width: 300px;
+  }
+
+   .foto {
+    grid-area: foto;
+  }
+  
+  .dados {
+    grid-area: dados;
+    padding-top: 20px;
+  }
+  
+  
 }
 
+/* palheta de cores:
+  #8C0F54 ROXO
+  #CCD5D9 CINZA
+  #54BFB5 AZUL
+  #F2C84B AMARELINHO
+  #F29F05 AMARELAO
+   */
