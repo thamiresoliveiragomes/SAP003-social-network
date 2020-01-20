@@ -1,8 +1,6 @@
 function Image(props) {
   const template = `
-    <figure>
-        <img class="${props.class} image" alt="${props.alt}" src="${props.src}"/> 
-    </figure>
+      <img class='${props.class}' alt='${props.alt}' src='${props.src}'/> 
   `;
   return template;
 }

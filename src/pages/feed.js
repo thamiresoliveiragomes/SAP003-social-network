@@ -1,6 +1,18 @@
+// import { StyleSheet, css } from 'aphrodite';
 import Button from '../components/button.js';
 import Card from '../components/card.js';
 import CardUser from '../components/card-user.js';
+
+// const styles = StyleSheet.create({
+//   bodyFeed: {
+//     textAlign: 'center',
+//     display: 'grid',
+//     gridTemplateColumns: '250px auto',
+//     gridTemplateRows: 'auto',
+//     gridGap: '30px',
+//     gridTemplateAreas: 'box-profile2  box-post-feed',
+//   },
+// });
 
 function logout() {
   firebase.auth().signOut()
@@ -151,7 +163,7 @@ function Feed() {
     <a class="navbar-brand title">&lt Yellow Bag &gt</a>
   </nav>
   
-  <section class="body-feed">
+  <section class="bodyFeed">
   <section class="box-profile2">
     <div class="foto"></div>
     <div class="dados">

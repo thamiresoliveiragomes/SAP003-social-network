@@ -1,4 +1,4 @@
-import RoundButton from './round-button.js';
+import Button from './button.js';
 
 function Card(idPost, date, txt, name, likes) {
   const template = `
@@ -8,7 +8,7 @@ function Card(idPost, date, txt, name, likes) {
       </header>
       <textarea id=${idPost} class='textarea-posts' disabled>${txt}</textarea>
       <section class='card-btns'>
-      ${RoundButton({ class: 'like', title: '<i class="fas fa-heart"></i>', dataId: idPost, onclick: window.app.likePost })}
+      ${Button({ class: 'like', classType: 'round-button', title: '<i class="fas fa-heart"></i>', dataId: idPost, onclick: window.app.likePost })}
       ${likes}
       </section>
   </li>`;

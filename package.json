@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "aphrodite": "^2.4.0",
     "firebaseui": "^4.2.0",
     "serve": "^11.2.0"
   }

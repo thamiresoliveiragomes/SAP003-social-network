@@ -4,14 +4,14 @@ import Feed from './pages/feed.js';
 import Config from './pages/config.js';
 import Profile from './pages/profile.js';
 
-function autoresize(event) {
-  event.preventDefault();
+const autoresize = (e) => {
+  e.preventDefault();
   const txt = document.querySelector('.js-text-input');
   txt.style.cssText = 'height: auto';
   txt.style.height = `${txt.scrollHeight}px`;
-}
+};
 
-function verificaUser() {
+const verificaUser = () => {
   firebase.auth().onAuthStateChanged((user) => {
     const currentHash = window.location.hash;
     const main = document.querySelector('main');
@@ -41,7 +41,7 @@ function verificaUser() {
       }
     }
   });
-}
+};
 
 window.addEventListener('load', verificaUser);
 window.addEventListener('hashchange', () => {

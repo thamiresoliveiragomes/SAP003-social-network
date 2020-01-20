@@ -3,14 +3,55 @@ main {
   flex-direction: column;
   justify-content: center;
   font-family: 'Lato', sans-serif;
-  justify-content: center;
 }
 
-/* body {
-  background-image: url("/src/imagens/Fundo1.png");
-} */
+/* TELA MOBILE */
 
-.primary-button {
+/* LOGIN */
+
+.tela {
+  margin: 0 5%;
+}
+.logo, .box-logo {
+  max-width:100%;
+  height: auto;
+  width: 500px;
+  margin: 2%;
+}
+.error {
+  font-weight: bolder;
+  color: red;
+}
+.input-entrada {
+  background-color:#CCD5D9;
+  border-radius: 20px;
+  margin: 5px;
+  outline:none;
+  height: 30px;
+  width: 80%;
+}
+.box-login, .box-register, .box-config {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* REGISTER / CONFIG */
+.input-register, .input-config {
+  background-color:white;
+  border-radius: 15px;
+  height: 30px;
+  width: 70%;
+  display: block;
+  margin: 10px auto;
+  outline: none;
+}
+
+/*  */
+
+.button {
   background-color: #F2C84B;
   font-size: 0.8rem;
   color: white;
@@ -21,14 +62,75 @@ main {
   margin-top: 10px;
   margin-bottom: 10px;
   outline: none;
+  width: 100px;
 }
-
-.secondary-button{
+.round-button{
   border-radius: 50%;
   padding: 8px;
   width: 35px;
   border: none;
 }
+
+
+@media (min-width: 500px) {
+
+  /* LOGIN */
+  .tela {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+  }
+  .logo {
+    max-width: 100%;
+    min-width: 400px;
+    height: auto;
+    margin: 5%;
+    padding: 5%;
+  }
+  .box-logo {
+    min-width: 400px;
+    height: auto;
+    margin: 0 5%;
+    padding: 5%;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+  }
+  .box-login { 
+    width: 50%;
+    min-width: 400px;
+    width: 400px;
+    margin: 0 5%;
+    background-color: rgba(218, 218, 253, 0.034);
+    border: 1px solid rgb(215, 231, 204) ;
+    box-shadow: 3px 3px 5px 5px #CCD5D9;
+  } 
+
+  /* REGISTER / CONFIG */
+  .box-register { 
+    min-width: 400px;
+    background-color: rgba(218, 218, 253, 0.034);
+    margin-right: 7%;
+  } 
+  .box-config {
+    min-width: 400px;
+  }
+  .input-config {
+    width: 50%;
+  }
+
+
+  /*  */
+}
+
+
+
+  
+
+
+
+
 
 .form-feed {
   text-align: center;
@@ -41,19 +143,6 @@ main {
   background-color: #F29F05;
 }
 
-.logo {
-  max-width:100%;
-  height: auto;
-  width: 500px;
-}
-
-.signIn {
-  width: 100px;
-}
-
-.error {
-  color: red;
-}
 
 .data {
   margin-left: 10px;
@@ -85,33 +174,6 @@ main {
   margin: 2px;
 }
 
-.input-entrada {
-  background-color:#CCD5D9;
-  border-radius: 20px;
-  margin: 5px 5px 5px 5px;
-  outline:none;
-  height: 30px;
-  width: 80%;
-  outline: none;
-}
-
-.input-register, .input-config {
-  background-color:white;
-  border-radius: 15px;
-  height: 30px;
-  width: 70%;
-  display: block;
-  margin: 10px auto;
-  outline: none;
-}
-
-.box-login, .box-config, .box-register {
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
 
 .box-intro {
   display: flex;
@@ -238,42 +300,13 @@ li.card {
 
 @media (min-width: 500px) {
 
-  .tela {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    text-align: center;
-    margin-top: 7%;
-    margin-bottom: 7%;
-  }
+ 
 
-  .logo {
-    margin-left: 7%;
-    height:auto;
-    min-width: 600px;
-  }
 
-  .box-login { 
-    min-width: 400px;
-    background-color: rgba(218, 218, 253, 0.034);
-    border: 1px solid rgb(215, 231, 204) ;
-    box-shadow: 3px 3px 5px 5px #CCD5D9;
-    margin-right: 7%;
-  } 
 
-  .box-register { 
-    min-width: 400px;
-    background-color: rgba(218, 218, 253, 0.034);
-    margin-right: 7%;
-  } 
+ 
 
-  .box-config {
-    min-width: 400px;
-  }
-
-  .input-config {
-    width: 50%;
-  }
+  
 
   .register, .config {
     background-color:white;
@@ -325,7 +358,7 @@ li.card {
   }
 
 
-  .body-feed {
+  .bodyFeed {
     text-align: center;
     display: grid;
     grid-template-columns: 250px auto;
@@ -368,14 +401,13 @@ li.card {
     grid-area: dados;
     padding-top: 20px;
   }
-  
-  
 }
 
-/* palheta de cores:
-  #8C0F54 ROXO
-  #CCD5D9 CINZA
-  #54BFB5 AZUL
-  #F2C84B AMARELINHO
-  #F29F05 AMARELAO
-   */
+
+
+/* palheta de cores:*/
+.Cinza   { color: #CCD5D9; }
+.Blue    { color: #54BFB5; }
+.yellow1 { color: #F2C84B; }
+.yellow2 { color: #F29F05; }
+.Roxo    { color: #8C0F54; }

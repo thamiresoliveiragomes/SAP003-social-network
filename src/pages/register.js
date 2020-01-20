@@ -1,9 +1,9 @@
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import Image from '../components/image.js';
+import erro from '../Utils/translateError.js';
 
-function saveUser() {
-  const firestoreUserCollection = firebase.firestore().collection('users');
+const saveUser = () => {
   const nome = document.querySelector('.js-text-input');
   const sobrenome = document.querySelector('.js-text2-input');
   const bio = document.querySelector('.js-bio-input');
@@ -17,10 +17,10 @@ function saveUser() {
     nascimento: nascimento.value,
     user_uid: firebase.auth().currentUser.uid,
   };
-  firestoreUserCollection.add(user);
-}
+  firebase.firestore().collection('users').add(user);
+};
 
-function create() {
+const create = () => {
   const email = document.querySelector('.js-email-register-input').value;
   const password = document.querySelector('.js-password-register-input').value;
   const passwordConfirmation = document.querySelector('.js-confirm-password-input').value;
@@ -28,32 +28,25 @@ function create() {
   const sobrenome = document.querySelector('.js-text2-input').value;
   const errorMessage = document.querySelector('.error');
 
-  if (nome === '' || sobrenome === '') {
+  if (nome === '' || sobrenome === '' || email === '' || password === '') {
     errorMessage.textContent = 'Preencha os campos em branco';
+  } else if (password !== passwordConfirmation) {
+    errorMessage.textContent = 'Senha não confere';
   } else if (password === passwordConfirmation) {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       window.location = '#feed';
       window.saveUser();
     }).catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/weak-password') errorMessage.textContent = 'A senha deve possuir no mínimo 6 caracteres';
-      if (errorCode === 'auth/email-already-in-use') errorMessage.textContent = 'O e-mail informado já está em uso';
-      if (errorCode === 'auth/operation-not-allowed') errorMessage.textContent = 'Conta não ativada';
-      if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
+      window.erro(error);
     });
-  } else if (password !== passwordConfirmation) {
-    errorMessage.textContent = 'Senha não confere';
-  } else if (email === '' || password === '') {
-    errorMessage.textContent = 'Preencha os campos em branco';
   }
-}
+};
 
-
-function Register() {
+const Register = () => {
   const template = `
-  <main class="tela">
+  <main class='tela'>
     ${Image({ class: 'logo', alt: 'logo', src: './imagens/yellowbag.png' })}
-    <section class="box-register">
+    <section class='box-register'>
     <h1>Criar Conta</h1>
     <form>
       ${Input({ type: 'email', class: 'js-email-register-input input-register', placeholder: ' email' })}
@@ -69,19 +62,20 @@ function Register() {
         <option value='Relacionamento Aberto'>Relacionamento Aberto</option> 
         <option value='Casado(a)'>Casado(a)</option>
         <option value='Divorciado(a)'>Divorciado(a)</option>
-        <option value='Viúvo(a)'>Viúvo(a)</option>";
+        <option value='Viúvo(a)'>Viúvo(a)</option>
       </select>
       <label>Data de nascimento:</label>
       ${Input({ type: 'date', class: 'js-date-input input-register', placeholder: ' data de nascimento' })}<div>
-      ${Button({ class: 'create', title: 'Criar conta', onclick: create })}
+      ${Button({ classType: 'button', title: 'Criar conta', onclick: create })}
     </form>
-    <p class="error"></p>
-    <p>Já tem uma conta? <a href="#login">Fazer Login</a></p>
+    <p class='error'></p>
+    <p>Já tem uma conta? <a href='#login'>Fazer Login</a></p>
     </section>
   </main>
   `;
+
   return template;
-}
+};
 
 window.saveUser = saveUser;
 
