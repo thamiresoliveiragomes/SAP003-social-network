@@ -49,14 +49,21 @@ const loadProfile = () => {
 const userPosts = () => {
   const currentUserId = firebase.auth().currentUser.uid;
   firebase.firestore()
-    .collection('posts')
-    .orderBy('date', 'desc')
+    .collection('users')
     .where('user_uid', '==', currentUserId)
     .get()
     .then((querySnapshot) => {
-      querySnapshot.forEach((post) => {
-        window.app.postCard(post, '.js-user-post');
-      });
+      const users = querySnapshot.docs;
+
+      firebase.firestore()
+        .collection('posts')
+        .orderBy('date', 'desc')
+        .where('user_uid', '==', currentUserId)
+        .get()
+        .then((snapshot) => {
+          const posts = snapshot.docs;
+          window.app.postCard(posts, users, '.js-user-post');
+        });
     });
 };
 

@@ -55,25 +55,22 @@ const likePost = (event) => {
     });
 };
 
-const postCard = (post, classe) => {
+const postCard = (posts, users, classe) => {
   const postList = document.querySelector(classe);
-  const idPost = post.id;
-  const date = post.data().date.toDate().toLocaleString('pt-BR');
-  const txt = post.data().txt;
-  const likes = post.data().likes;
-  const userId = post.data().user_uid;
 
-  firebase.firestore()
-    .collection('users')
-    .onSnapshot((snap) => {
-      snap.forEach((user) => {
-        if (user.data().user_uid === userId) {
-          const name = ` ${user.data().nome} ${user.data().sobrenome} `;
-          const postTemplate = ` ${Card(idPost, name, date, txt, likes, userId)} `;
-          postList.innerHTML += postTemplate;
-        }
-      });
-    });
+  const template = posts.map((post) => {
+    const idPost = post.id;
+    const date = post.data().date.toDate().toLocaleString('pt-BR');
+    const txt = post.data().txt;
+    const likes = post.data().likes;
+    const userId = post.data().user_uid;
+    const postUser = users.filter(user => user.data().user_uid === userId)[0];
+    const userData = postUser && postUser.data();
+    const name = ` ${userData && userData.nome} ${userData && userData.sobrenome} `;
+    return `${Card(idPost, name, date, txt, likes, userId)} `;
+  }).join(',');
+
+  postList.innerHTML = template;
 };
 
 const loadPosts = (classe) => {
@@ -81,14 +78,18 @@ const loadPosts = (classe) => {
   postList.innerHTML = 'Carregando...';
 
   firebase.firestore()
-    .collection('posts')
-    .orderBy('date', 'desc')
+    .collection('users')
     .onSnapshot((snap) => {
-      postList.innerHTML = '';
-      snap.forEach((post) => {
-        postCard(post, '.js-post');
-      });
-    });
+      const users = snap.docs;
+
+      firebase.firestore()
+        .collection('posts')
+        .orderBy('date', 'desc')
+        .onSnapshot((snapshot) => {
+          const posts = snapshot.docs;
+          postCard(posts, users, '.js-post');
+        });
+    })
 };
 
 const savePost = () => {
