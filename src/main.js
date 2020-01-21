@@ -28,7 +28,7 @@ const verificaUser = () => {
         default:
           main.innerHTML = Feed();
           window.app.printName();
-          window.app.loadData('.js-post'); 
+          window.app.loadPosts('.js-post');
           document.querySelector('.js-text-input').addEventListener('input', autoresize);
       }
     } else if (!user) {

@@ -1,14 +1,14 @@
 import Button from '../components/button.js';
 
-function edit() {
-  window.location = '#config';
-}
-
-function feed() {
+const feed = () => {
   window.location = '#feed';
-}
+};
 
-function printProfile(user) {
+const edit = () => {
+  window.location = '#config';
+};
+
+const printProfile = (user) => {
   const userProfile = document.querySelector('.js-profile');
   const nome = user.data().nome;
   const sobrenome = user.data().sobrenome;
@@ -16,65 +16,72 @@ function printProfile(user) {
   const bio = user.data().bio;
   const status = user.data().status;
   const profileTemplate = `
-  <section class="body-profile"></section>
-  <section class="box-profile">
-    <section class="box-profile1">
-      <div class="foto"></div>
+    <section class="box-profile">
+      <div class='foto-box'>
+        <div class="foto"></div>
+      </div>
       <div class="dados">
         <h4>${nome} ${sobrenome}</h4>
         <p class="dados2">${bio}</p>
         <p class="dados2">Nascida em ${nascimento}</p> 
         <p class="dados2">${status}</p>
       </div>
-    </section>
-    ${Button({ class: 'edit', title: 'Editar', onclick: edit })}
-  </section>
-    `;
+      </section>
+      ${Button({ class: 'edit', classType: 'button', title: 'Editar', onclick: edit })}
+  `;
 
   userProfile.innerHTML = profileTemplate;
-}
+};
 
-function loadProfile() {
-  const firestoreUserCollection = firebase.firestore().collection('users');
+const loadProfile = () => {
   const currentUserId = firebase.auth().currentUser.uid;
-  firestoreUserCollection.where('user_uid', '==', currentUserId).get()
+  firebase.firestore()
+    .collection('users')
+    .where('user_uid', '==', currentUserId)
+    .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((user) => {
         printProfile(user);
       });
     });
-}
+};
 
-function userPosts() {
-  const firestorePostCollection = firebase.firestore().collection('posts');
+const userPosts = () => {
   const currentUserId = firebase.auth().currentUser.uid;
-  firestorePostCollection.orderBy('date', 'desc').where('user_uid', '==', currentUserId).get()
+  firebase.firestore()
+    .collection('posts')
+    .orderBy('date', 'desc')
+    .where('user_uid', '==', currentUserId)
+    .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((post) => {
-        window.app.printData(post, '.js-user-post');
+        window.app.postCard(post, '.js-user-post');
       });
     });
-}
+};
 
-function Profile() {
+const Profile = () => {
   const template = `
     <nav class="navbar">
-    <div class="nav-btn-div">
-      ${Button({ class: 'nav-btn', onclick: window.app.showMenubar, title: '<i class="fas fa-bars"></i>' })}
-      <ul class="toggle-content" id="lista-menu">
-        <li> ${Button({ class: 'profile', title: 'Feed', onclick: feed })} </li>
-        <li> ${Button({ class: 'profile', title: 'Sair', onclick: window.app.logout })}</li>
+      <div class="nav-btn-div">
+        ${Button({ class: 'nav-btn', classType: 'button', onclick: window.app.openMenu, title: '<i class="fas fa-bars"></i>' })}
+        <ul class="toggle-content" id="lista-menu">
+          <li> ${Button({ class: 'option-btn', classType: 'button', title: 'Feed', onclick: feed })} </li>
+          <li> ${Button({ class: 'option-btn', classType: 'button', title: 'Sair', onclick: window.app.logout })}</li>
         </ul>
-    </div>
-    <a class="navbar-brand title">&lt Yellow Bag &gt</a>
+      </div>
+      <a class="navbar-title">&lt Yellow Bag &gt</a>
     </nav>
-    <p class="js-profile"></p>
-      <section class="box-post">
+
+    <section class="body-profile">
+      <span class="js-profile"></span>
+      <section class="box-post-feed">
         <ul class="js-user-post"></ul>
       </section>
+    </section>
       `;
   return template;
-}
+};
 
 window.profile = {
   userPosts,

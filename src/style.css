@@ -8,9 +8,12 @@ main {
 /* TELA MOBILE */
 
 /* LOGIN */
-
 .tela {
   margin: 0 5%;
+}
+.subtitle {
+  color: #F29F05;
+  font-size: 0.8rem;
 }
 .logo, .box-logo {
   max-width:100%;
@@ -29,6 +32,13 @@ main {
   outline:none;
   height: 30px;
   width: 80%;
+}
+.google {
+  margin-left: 45%;
+  color: #F29F05;
+  cursor: pointer;
+  margin-top: 15px;
+  background-color: #CCD5D9;
 }
 .box-login, .box-register, .box-config {
   background-color: rgb(255, 255, 255);
@@ -70,6 +80,152 @@ main {
   width: 35px;
   border: none;
 }
+
+/* POST CARD */
+.card {
+  border: solid 1px #CCD5D9;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 2px #CCD5D9;
+  margin: 20px 10px;
+  max-width: 600px;
+}
+li {
+  display: flex;
+  flex-direction: column;
+}
+.post-header {
+  background-color:#8C0F54 ;
+  display: flex;
+  justify-content: left;
+  color: #CCD5D9;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0px 20px;
+  font-size: 0.8em;
+  text-align: right;
+}
+.post-textarea {
+  min-height: 60px;
+  padding: 10px;
+  overflow: auto;
+  background: white;
+  border: none;
+  border-bottom: solid 1px #CCD5D9;
+  color: rgb(110, 110, 110);
+}
+.post-btn {
+  text-align: left;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.editar, .save, .like {
+  background: #F2C84B;
+  margin-right: 5px;
+  outline: none;
+}
+.save {
+  display: none;
+}
+.deletar {
+  background-color: transparent;
+  color: red;
+  border: #CCD5D9;
+}
+
+/* FEEED */
+.navbar {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  background: #F2C84B;
+  color: #8C0F54;
+  max-height: 25px;
+  margin-bottom: 50px;
+}
+.navbar-title {
+  flex-basis: 100%;
+  font-size: larger;
+  font-weight: bolder;
+}
+.nav-btn-div {
+  flex-basis: 55%;
+}
+.nav-btn {
+  border-radius: 0px;
+  margin: 0px;
+  width: 60px;
+  background: #8C0F54;
+}
+.option-btn {
+  width: 60px;
+  margin: 0px;
+  border-top: solid 1px white;
+  border-radius: 0px;
+  background: #8C0F54;
+}
+.toggle-content {
+  display: none;
+  padding: 0px;
+  margin: 0px 0px;
+}
+
+.body-feed, .body-profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.box-profile-feed {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+.foto {
+  /* background-image: url(.//imagens/people.jpg); */
+  background: #54BFB5;
+	width: 100px;
+	height: 100px;
+  border-radius: 50%;
+}
+.foto-box {
+  width: 30%;
+  margin: 10% 0%;
+  margin-left: 10%;
+}
+.dados {
+  width: 60%;
+  margin: 10% 0%;
+}
+.dados2 {
+  font: normal 0.8em sans-serif;
+  color: rgb(155, 162, 165);
+}
+.input-feed {
+  width: 250px;
+  padding: 2px;
+  margin: 2px;
+  border: solid 1px #CCD5D9;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 2px #CCD5D9;
+  outline: none;
+}
+
+/* PROFILE */
+.box-profile {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 50px 5%;
+  border: solid 1px #CCD5D9;
+  background-image: url(.//imagens/profile.png);
+  background-repeat: no-repeat;
+  padding-top: 70px;
+  /* max-width: 380px; */
+  width: 360px;
+  height: 250px;
+}
+
 
 
 @media (min-width: 500px) {
@@ -120,290 +276,60 @@ main {
     width: 50%;
   }
 
-
-  /*  */
-}
-
-
-
-  
-
-
-
-
-
-.form-feed {
-  text-align: center;
-}
-.deletar {
-  background-color: transparent;
-}
-
-.editar, .save {
-  background-color: #F29F05;
-}
-
-
-.data {
-  margin-left: 10px;
-  color:#CCD5D9;
-  font-size: 0.7em;
-  text-align: right;
-}
-
-.title {
-  color: #F29F05;
-}
-
-.subtitle {
-  color: #F29F05;
-  font-size: 0.8rem;
-}
-
-.google {
-  margin-left: 45%;
-  color: #F29F05;
-  cursor: pointer;
-  margin-top: 15px;
-  background-color: #CCD5D9;
-}
-
-.input-feed {
-  width: 250px;
-  padding: 2px;
-  margin: 2px;
-}
-
-
-.box-intro {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.box-post {
-  text-align: center;
-  padding: 10px;
-}
-
-.box-profile, .box-profile2 {
-  text-align: center;
-  background-image: url(.//imagens/profile.png);
-  background-repeat: no-repeat;
-  padding-top: 60px;
-}
-
-.box-profile1, .box-profile2 {
-  text-align: left;
-  display: grid;
-  grid-template-columns: 100px auto;
-  grid-template-rows: 200px;
-  grid-gap: 30px;
-  grid-template-areas: "foto  dados";
-}
-
-.foto {
-  grid-area: foto;
-  background-color: rgba(61, 136, 141, 0.438);
-	width: 100px;
-	height: 100px;
-  border-radius: 50%;
-  margin-top: 30%;
-  margin-left: 10px;
-}
-
-.dados {
-  grid-area: dados;
-}
-
-.dados2 {
-  font: normal 0.8em sans-serif;
-  color: rgb(155, 162, 165);
-}
-
-.textarea-posts {
-  min-height: 30px;
-  padding: 5px;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: auto;
-  padding: 10px;
-  vertical-align: center;
-}
-
-textarea {
-  resize: none;
-}
-
-.navbar {
-  width: 100%;
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: row;
-}
-
-.nav-btn-div {
-  flex-basis: 55%;
-}
-
-.nav-btn {
-  border-radius: 0px;
-  margin: 0px 5px;
-  width: 50px;
-}
-
-.navbar-brand {
-  flex-basis: 100%;
-  font-size: larger;
-}
-
-.toggle-content {
-  display: none;
-  padding: 0px;
-  margin: 0px 5px;
-}
-
-.profile {
-  width: 50px;
-  margin: 0px;
-  border-radius: 0px;
-}
-
-li {
-  display: flex;
-  flex-direction: column;
-}
-
-.js-post, .js-user-post {
-  padding-inline-start: 0px;
-}
-
-.post-header {
-  background-color:#8C0F54 ;
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-btns {
-  text-align: left;
-  padding: 10px;
-}
-
-li.card {
-  border: 1px solid;
-  margin-bottom: 20px;
-}
-
-.save {
-  display: none;
-}
-
-@media (min-width: 500px) {
-
- 
-
-
-
- 
-
-  
-
-  .register, .config {
-    background-color:white;
-    border-radius: 10px;
-    height: 30px;
-    width: 50%;
+  /* FEEED */
+  .navbar-title {
+    margin-right: 25%;
+    margin-left: 25%;
   }
-
-  .box-profile1 {
-    text-align: left;
-    width: 350px;
-  }
-
   .nav-btn-div {
     flex-basis: 50%;
   }
 
-  .navbar-brand {
-    margin-right: 25%;
-    margin-left: 25%;
-  }
-
-  .body-profile {
+  .body-feed, .body-profile {
+    display: flex;
+    flex-direction: row;
     text-align: center;
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-template-rows: auto;
-    grid-gap: 30px;
-    grid-template-areas: "box-profile  box-post";
   }
-
-  .box-profile {
-    grid-area: box-profile;
+  .box-profile-feed {
     text-align: center;
-    display: inline-block;
-    margin-left: 80px;
-    margin-top: 50px;
-    border: ridge rgba(204, 213, 217, 0.486);
-    background-image: url(.//imagens/profile.png);
-    background-repeat: no-repeat;
-  }
-
-  .box-post {
-    grid-area: box-post;
-    margin-left: 500px;
-    margin-top: -365px;
-    max-width: 700px;
-    min-width: 300px;
-  }
-
-
-  .bodyFeed {
-    text-align: center;
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-template-rows: auto;
-    grid-gap: 30px;
-    grid-template-areas: "box-profile2  box-post-feed";
-  }
-
-  .box-profile2 {
-    grid-area: box-profile2;
-    text-align: center;
-    margin-left: 80px;
-    margin-top: 50px;
-    border: ridge rgba(204, 213, 217, 0.486);
+    margin: 50px 5%;
+    border: solid 1px #CCD5D9;
     background-image: url(.//imagens/profile.png);
     background-repeat: no-repeat;
     padding-top: 70px;
-    width: 300px;
+    width: 50%;
+    max-width: 320px;
     height: 200px;
-    display: grid;
-    grid-template-columns: 100px auto;
-    grid-template-rows: 200px;
-    grid-gap: 30px;
-    grid-template-areas: "foto  dados";
   }
-
-  .box-post-feed {
-    grid-area: box-post-feed;
-    margin-left: 200px;
-    margin-top: 50px;
-    max-width: 700px;
-    min-width: 300px;
+  .foto-box {
+    margin-top: 15%;
+    margin-left: 10%;
   }
-
-   .foto {
-    grid-area: foto;
-  }
-  
   .dados {
-    grid-area: dados;
-    padding-top: 20px;
+    margin-top: 10%;
+  }
+  .box-post-feed {
+    text-align: center;
+    width: 50%;
+    margin: 50px 5%;
+  }
+
+  /* PROFILE */
+  
+  .box-profile {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 50px 5%;
+    border: solid 1px #CCD5D9;
+    background-image: url(.//imagens/profile.png);
+    background-repeat: no-repeat;
+    padding-top: 70px;
+    /* max-width: 380px; */
+    width: 360px;
+    height: 250px;
   }
 }
-
-
 
 /* palheta de cores:*/
 .Cinza   { color: #CCD5D9; }

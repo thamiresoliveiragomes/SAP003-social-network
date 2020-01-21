@@ -1,72 +1,61 @@
-// import { StyleSheet, css } from 'aphrodite';
 import Button from '../components/button.js';
 import Card from '../components/card.js';
-import CardUser from '../components/card-user.js';
 
-// const styles = StyleSheet.create({
-//   bodyFeed: {
-//     textAlign: 'center',
-//     display: 'grid',
-//     gridTemplateColumns: '250px auto',
-//     gridTemplateRows: 'auto',
-//     gridGap: '30px',
-//     gridTemplateAreas: 'box-profile2  box-post-feed',
-//   },
-// });
-
-function logout() {
+const logout = () => {
   firebase.auth().signOut()
     .then(() => {
       window.location = '#login';
     });
-}
+};
 
-function profile() {
+const profile = () => {
   window.location = '#profile';
-}
+};
 
-function likePost(event) {
+const editPost = (event) => {
   const id = event.currentTarget.dataset.id;
-  // const likeButton = document.querySelector(`.like[data-id='${id}']`);
-  // likeButton.disabled = true; 
-  const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(id).get().then((post) => { 
-    const likes = (post.data().likes) + 1;
-    postCollection.doc(id).update({
-      likes,
-    });
-    const likeButton = document.querySelector(`.like[data-id='${id}']`);
-    likeButton.disabled = true;
+  const textArea = document.querySelector(`textarea[id='${id}']`);
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  textArea.disabled = false;
+  textArea.style.color = 'black';
+  saveButton.style.display = 'inline-block';
+};
+
+const saveEditedPost = (event) => {
+  const id = event.currentTarget.dataset.id;
+  const textArea = document.querySelector(`textarea[id='${id}']`);
+  const saveButton = document.querySelector(`.save[data-id='${id}']`);
+  textArea.disabled = true;
+  textArea.style.color = 'rgb(110, 110, 110)';
+  saveButton.style.display = 'none';
+
+  firebase.firestore().collection('posts').doc(id).update({
+    txt: textArea.value,
   });
 };
 
-function editPost(event) {
-  const id = event.currentTarget.dataset.id;
-  document.querySelector(`textarea[id='${id}']`).disabled = false;
-  const saveButton = document.querySelector(`.save[data-id='${id}']`);
-  saveButton.style.display = 'inline-block';
-}
-
-function savePostEdited(event) {
-  const id = event.currentTarget.dataset.id;
-  const saveButton = document.querySelector(`.save[data-id='${id}']`);
-  saveButton.style.display = 'none';
-  const textArea = document.querySelector(`textarea[id='${id}']`);
-  textArea.disabled = true;
-  const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(id).update({
-    txt: textArea.value,
-  });
-}
-
-function postDelete(event) {
+const postDelete = (event) => {
   const dataId = event.currentTarget.dataset.id;
-  const postCollection = firebase.firestore().collection('posts');
-  postCollection.doc(dataId).delete();
   document.querySelector(`li[data-id='${dataId}']`).remove();
-}
 
-function printData(post, classe) {
+  firebase.firestore().collection('posts').doc(dataId).delete();
+};
+
+const likePost = (event) => {
+  const id = event.currentTarget.dataset.id;
+  const likeButton = document.querySelector(`.like[data-id='${id}']`);
+  likeButton.disabled = true;
+
+  firebase.firestore().collection('posts').doc(id).get()
+    .then((post) => {
+      const likes = (post.data().likes) + 1;
+      firebase.firestore().collection('posts').doc(id).update({
+        likes,
+      });
+    });
+};
+
+const postCard = (post, classe) => {
   const postList = document.querySelector(classe);
   const idPost = post.id;
   const date = post.data().date.toDate().toLocaleString('pt-BR');
@@ -74,46 +63,35 @@ function printData(post, classe) {
   const likes = post.data().likes;
   const userId = post.data().user_uid;
 
-  const usersCollection = firebase.firestore().collection('users');
-  usersCollection.onSnapshot((snap) => {
-    snap.forEach((user) => {
-      if (user.data().user_uid === userId) {
-        const nome = ` ${user.data().nome} ${user.data().sobrenome}`;
-        if (userId === firebase.auth().currentUser.uid) {
-          const postTemplateUser = `
-          ${CardUser(idPost, date, txt, nome)}
-          `;
-          postList.innerHTML += postTemplateUser;
-
-          const posts = document.getElementById(idPost);
-          posts.style.height = `${posts.scrollHeight}px`;
-        } else {
-          const postTemplate = `
-            ${Card(idPost, date, txt, nome, likes)}
-            `;
+  firebase.firestore()
+    .collection('users')
+    .onSnapshot((snap) => {
+      snap.forEach((user) => {
+        if (user.data().user_uid === userId) {
+          const name = ` ${user.data().nome} ${user.data().sobrenome} `;
+          const postTemplate = ` ${Card(idPost, name, date, txt, likes, userId)} `;
           postList.innerHTML += postTemplate;
-
-          const posts = document.getElementById(idPost);
-          posts.style.height = `${posts.scrollHeight}px`;
         }
-      }
+      });
     });
-  });
-}
+};
 
-function loadData(classe) {
-  const postCollection = firebase.firestore().collection('posts');
+const loadPosts = (classe) => {
   const postList = document.querySelector(classe);
   postList.innerHTML = 'Carregando...';
-  postCollection.orderBy('date', 'desc').onSnapshot((snap) => {
-    postList.innerHTML = '';
-    snap.forEach((post) => {
-      printData(post, '.js-post');
-    });
-  });
-}
 
-function savePost() {
+  firebase.firestore()
+    .collection('posts')
+    .orderBy('date', 'desc')
+    .onSnapshot((snap) => {
+      postList.innerHTML = '';
+      snap.forEach((post) => {
+        postCard(post, '.js-post');
+      });
+    });
+};
+
+const savePost = () => {
   const txt = document.querySelector('.js-text-input');
   const post = {
     txt: txt.value,
@@ -122,80 +100,83 @@ function savePost() {
     likes: 0,
     user_uid: firebase.auth().currentUser.uid,
   };
-  const postCollection = firebase.firestore().collection('posts');
-  postCollection.add(post)
+
+  firebase.firestore().collection('posts').add(post)
     .then(() => {
       txt.value = '';
-      txt.style.height = '34px';
     });
-}
+};
 
-function showMenubar() {
+const printName = () => {
+  const userId = firebase.auth().currentUser.uid;
+  firebase.firestore()
+    .collection('users')
+    .where('user_uid', '==', userId)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        document.querySelector('.name').innerHTML = `Olá, ${user.data().nome}`;
+      });
+    });
+};
+
+const openMenu = () => {
   const list = document.getElementById('lista-menu');
   if (list.style.display === 'block') {
     list.style.display = 'none';
   } else {
     list.style.display = 'block';
   }
-}
+};
 
-function printName() {
-  const userId = firebase.auth().currentUser.uid;
-  firebase.firestore().collection('users').where('user_uid', '==', userId).get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((user) => {
-        const nome = user.data().nome;
-        document.getElementById('name').innerHTML = ` Olá, ${nome}`;
-      });
-    });
-}
-
-function Feed() {
+const Feed = () => {
   const template = `
-  <nav class="navbar">
-    <div class="nav-btn-div">
-      ${Button({ class: 'nav-btn', onclick: showMenubar, title: '<i class="fas fa-bars"></i>' })}
-      <ul class="toggle-content" id="lista-menu">
-        <li> ${Button({ class: 'profile', title: 'Perfil', onclick: profile })} </li>
-        <li> ${Button({ class: 'profile', title: 'Sair', onclick: logout })}</li>
+    <nav class="navbar">
+      <div class="nav-btn-div">
+        ${Button({ class: 'nav-btn', classType: 'button', onclick: openMenu, title: '<i class="fas fa-bars"></i>' })}
+        <ul class="toggle-content" id="lista-menu">
+          <li> ${Button({ class: 'option-btn', classType: 'button', title: 'Perfil', onclick: profile })} </li>
+          <li> ${Button({ class: 'option-btn', classType: 'button', title: 'Sair', onclick: logout })}</li>
         </ul>
-    </div>
-    <a class="navbar-brand title">&lt Yellow Bag &gt</a>
-  </nav>
-  
-  <section class="bodyFeed">
-  <section class="box-profile2">
-    <div class="foto"></div>
-    <div class="dados">
-      <h4 class='name' id='name'></h4>
-      <p>Compartilhe suas aventuras!</p>
-    </div>
-  </section>
+      </div>
+      <a class="navbar-title">&lt Yellow Bag &gt</a>
+    </nav>
+    
+    <section class="body-feed">
+      <section class="box-profile-feed">
+        <div class="foto-box">
+          <div class="foto"></div>
+        </div>
+        <div class="dados">
+          <h4 class='name'></h4>
+          <p>Compartilhe suas aventuras!</p>
+        </div>
+      </section>
 
-  <section class="box-post-feed">
-    <form class="form-feed">
-      <textarea class='js-text-input input-feed' placeholder= 'Escreva sua publicação aqui...'> </textarea><br>
-      ${Button({ class: 'publicar', title: 'Publicar', onclick: savePost })}<br>
-    </form>
-  <ul class="js-post"></ul>
-  </section>
-  </section>
+      <section class="box-post-feed">
+        <form>
+          <textarea class='js-text-input input-feed' placeholder= 'Escreva sua publicação aqui...'> </textarea><br>
+          ${Button({ class: 'publicar', classType: 'button', title: 'Publicar', onclick: savePost })}<br>
+        </form>
+        <ul class="js-post"></ul>
+      </section>
+    </section>
   `;
   window.location = '#feed';
 
   return template;
-}
+};
 
 window.app = {
-  loadData,
-  printData,
-  postDelete,
-  printName,
-  likePost,
-  editPost,
-  savePostEdited,
-  showMenubar,
+  openMenu,
   logout,
+  printName,
+  loadPosts,
+  postCard,
+  editPost,
+  saveEditedPost,
+  postDelete,
+  likePost,
 };
 
 export default Feed;
