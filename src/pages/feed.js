@@ -68,7 +68,7 @@ const postCard = (posts, users, classe) => {
     const userData = postUser && postUser.data();
     const name = ` ${userData && userData.nome} ${userData && userData.sobrenome} `;
     return `${Card(idPost, name, date, txt, likes, userId)} `;
-  }).join(',');
+  }).join('');
 
   postList.innerHTML = template;
 };
