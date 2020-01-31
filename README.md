@@ -14,7 +14,7 @@ Este projeto faz parte do bootcamp da Laboratoria.
 
 A aplicação consiste na criação de uma Rede Social. Foi desenvolvida em *JavaScript(ES6+)*, juntamente com *HTML5*, *CCS3* e [Firebase](https://firebase.google.com/) Hosting e Firestore para hospedagem e banco de dados.
 
-A página da aplicação pode ser acessada atraves do Link: [Yellow Bag](https://yellow-bag.firebaseapp.com/)
+A página da aplicação pode ser acessada atraves do Link: [Yellow Bag](https://thamiresoliveiragomes.github.io/SAP003-social-network/src/index)
 
 ## 2. Resumo do projeto
 
