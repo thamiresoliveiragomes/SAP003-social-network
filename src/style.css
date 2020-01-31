@@ -112,6 +112,7 @@ li {
   border: none;
   border-bottom: solid 1px #CCD5D9;
   color: rgb(110, 110, 110);
+  resize: vertical;
 }
 .post-btn {
   text-align: left;
@@ -202,13 +203,16 @@ li {
   color: rgb(155, 162, 165);
 }
 .input-feed {
-  width: 250px;
+  width: 80%;
   padding: 2px;
   margin: 2px;
   border: solid 1px #CCD5D9;
   border-radius: 10px;
   box-shadow: 1px 1px 5px 2px #CCD5D9;
   outline: none;
+}
+ul{
+  padding: 0;
 }
 
 /* PROFILE */
