@@ -1,8 +1,12 @@
+body {
+  margin: 0;
+}
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: 'Lato', sans-serif;
+  padding: 0;
 }
 
 /* TELA MOBILE */
@@ -87,7 +91,7 @@ main {
   border-radius: 10px;
   box-shadow: 1px 1px 5px 2px #CCD5D9;
   margin: 20px 10px;
-  max-width: 600px;
+  width: 100%;
 }
 li {
   display: flex;
@@ -137,13 +141,11 @@ li {
 /* FEEED */
 .navbar {
   width: 100%;
-  padding: 10px 0px;
+  padding: 4% 0%;
   display: flex;
   flex-direction: row;
   background: #F2C84B;
   color: #8C0F54;
-  max-height: 25px;
-  margin-bottom: 50px;
 }
 .navbar-title {
   flex-basis: 100%;
@@ -201,9 +203,10 @@ li {
 .dados2 {
   font: normal 0.8em sans-serif;
   color: rgb(155, 162, 165);
+  word-wrap: break-word;
 }
 .input-feed {
-  width: 80%;
+  width: 90%;
   padding: 2px;
   margin: 2px;
   border: solid 1px #CCD5D9;
@@ -213,6 +216,10 @@ li {
 }
 ul{
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4%;
 }
 
 /* PROFILE */
@@ -220,14 +227,11 @@ ul{
   display: flex;
   flex-direction: row;
   text-align: center;
-  margin: 50px 5%;
+  margin: 5%;
   border: solid 1px #CCD5D9;
   background-image: url(.//imagens/profile.png);
   background-repeat: no-repeat;
   padding-top: 70px;
-  /* max-width: 380px; */
-  width: 360px;
-  height: 250px;
 }
 
 
@@ -288,7 +292,9 @@ ul{
   .nav-btn-div {
     flex-basis: 50%;
   }
-
+  .navbar {
+    padding: 2% 0;
+  }
   .body-feed, .body-profile {
     display: flex;
     flex-direction: row;
@@ -296,7 +302,7 @@ ul{
   }
   .box-profile-feed {
     text-align: center;
-    margin: 50px 5%;
+    margin: 5% 3%;
     border: solid 1px #CCD5D9;
     background-image: url(.//imagens/profile.png);
     background-repeat: no-repeat;
@@ -314,8 +320,8 @@ ul{
   }
   .box-post-feed {
     text-align: center;
-    width: 50%;
-    margin: 50px 5%;
+    width: 100%;
+    margin: 2% 1% 4% 4%;
   }
 
   /* PROFILE */

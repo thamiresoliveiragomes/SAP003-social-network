@@ -25,9 +25,10 @@ const printProfile = (user) => {
         <p class="dados2">${bio}</p>
         <p class="dados2">Nascida em ${nascimento}</p> 
         <p class="dados2">${status}</p>
+        ${Button({ class: 'edit', classType: 'button', title: 'Editar', onclick: edit })}
       </div>
       </section>
-      ${Button({ class: 'edit', classType: 'button', title: 'Editar', onclick: edit })}
+      
   `;
 
   userProfile.innerHTML = profileTemplate;
